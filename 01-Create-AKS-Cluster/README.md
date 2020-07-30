@@ -10,8 +10,8 @@
   - **Resource Group:** Creat New: aks-rg1
   - **Kubernetes Cluster Name:** aksdemo1
   - **Region:** East Us
-  - **Kubernetes Version:** What ever is latest stable version
-  - **Node Size:** Standard DS2 v2 (Default one)
+  - **Kubernetes Version:** Select what ever is latest stable version
+  - **Node Size:** Standard DS2 v2 (Default one) (or) (B2s - 4GB RAM 2VPCU)
   - **Node Count:** 2
 - **Node Pools**
   - leave to defaults
