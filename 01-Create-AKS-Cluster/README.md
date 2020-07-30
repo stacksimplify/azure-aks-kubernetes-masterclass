@@ -1,16 +1,69 @@
 # Create AKS Cluster
 
 ## Step-01: Introduction
+- Understand about AKS Cluster
 
 ## Step-02: Create AKS Cluster
+- Create Kubernetes Cluster
+- **Basics**
+  - **Subscription:** Free Trial
+  - **Resource Group:** Creat New: aks-rg1
+  - **Kubernetes Cluster Name:** aksdemo1
+  - **Region:** East Us
+  - **Kubernetes Version:** What ever is latest stable version
+  - **Node Size:** Standard DS2 v2 (Default one)
+  - **Node Count:** 2
+- **Node Pools**
+  - leave to defaults
+- **Authentication**
+  - leave to defaults
+- **Networking**
+  - **Network Configuration:** Advanced
+  - **Network Policy:** Azure
+  - Rest all leave to defaults
+- **Integrations**
+  - leave to defaults
+- **Tags**
+  - leave to defaults
+- **Review + Create**
+  - Click on **Create**
 
-## Step-01: Create Cloud Shell
-- Click on link https://shell.azure.com/
-- Select **Bash**
-- Click on **Create Storage**
 
-
-## Application Deployment
-
+## Step-03: Configure kubectl to connect to AKS Cluster
 ```
+# Template
+az aks get-credentials --resource-group <Resource-Group-Name> --name <Cluster-Name>
+
+# Replace Resource Group & Cluster Name
+az aks get-credentials --resource-group aks-rg1 --name aksdemo1
+
+# List Kubernetes Worker Nodes
+kubectl get nodes 
+kubectl get nodes -o wide
 ```
+
+## Step-04: Deploy Sample Application and Test
+```
+# Deploy Application
+cd /home/stack/azure-aks-kubernetes-masterclass/01-Create-AKS-Cluster  
+kubectl apply -f kube-manifests/
+
+# Verify Pods
+kubectl get pods
+
+# Verify Deployment
+kubectl get deployment
+
+# Verify Service (Make a note of external ip)
+kubectl get service
+
+# Access Application
+http://<External-IP-from-get-service-output>
+```
+
+## Step-05: Clean-Up
+```
+# Delete Applications
+kubectl delete -f kube-manifests/
+```
+
