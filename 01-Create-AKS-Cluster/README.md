@@ -43,6 +43,9 @@ kubectl get nodes -o wide
 ```
 
 ## Step-04: Deploy Sample Application and Test
+- Don't worry about what is present in these two files for now. 
+- By the time we complete **Kubernetes Fundamentals** sections, you will be an expert in writing Kubernetes manifest in YAML.
+- For now just focus on result. 
 ```
 # Deploy Application
 cd /home/stack/azure-aks-kubernetes-masterclass/01-Create-AKS-Cluster  
