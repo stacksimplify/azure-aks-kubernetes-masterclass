@@ -43,12 +43,12 @@ kubectl get pods
 kubectl delete pod <Pod-Name>
 ```
 
-## Step-03: Create NodePort Service for ReplicaSet
+## Step-03: Create LoadBalancer Service for ReplicaSet
 ```yml
 apiVersion: v1
 kind: Service
 metadata:
-  name: replicaset-nodeport-service
+  name: replicaset-loadbalancer-service
 spec:
   type: NodePort
   selector:
@@ -59,20 +59,16 @@ spec:
       targetPort: 80
       nodePort: 31232  
 ```
-- Create NodePort Service for ReplicaSet & Test
+- **Create LoadBalancer Service for ReplicaSet & Test**
 ```
-# Create NodePort Service
+# Create LoadBalancer Service
 kubectl apply -f 03-replicaset-nodeport-servie.yml
 
-# List NodePort Service
+# List LoadBalancer Service
 kubectl get svc
 
-# Get Public IP
-kubectl get nodes -o wide
-
 # Access Application
-http://<Worker-Node-Public-IP>:<NodePort>
-http://<Worker-Node-Public-IP>:31232
+http://<Load-Balancer-Service-IP>
 
 ```
 

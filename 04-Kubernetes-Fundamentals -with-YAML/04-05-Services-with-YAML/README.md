@@ -2,7 +2,7 @@
 
 ## Step-01: Introduction to Services
 - We are going to look in to below two services in detail with a frotnend and backend example
-  - NodePort Service
+  - LoadBalancer Service
   - ClusterIP Service
 
 ## Step-02: Create Backend Deployment & Cluster IP Service
@@ -20,28 +20,28 @@ kubectl get all
 ```
 
 
-## Step-03: Create Frontend Deployment & NodePort Service
+## Step-03: Create Frontend Deployment & LoadBalancer Service
 - Write the Deployment template for frontend Nginx Application
 - Write the NodePort service template for frontend Nginx Application
 ```
 cd <Course-Repo>\kubernetes-fundamentals\10-Services-with-YAML\kube-manifests
 kubectl get all
-kubectl apply -f 03-frontend-deployment.yml -f 04-frontend-nodeport-service.yml
+kubectl apply -f 03-frontend-deployment.yml -f 04-frontend-LoadBalancer-service.yml
 kubectl get all
 ```
 - **Access REST Application**
 ```
-# Get External IP of nodes using
-kubectl get nodes -o wide
+# Get Service IP
+kubectl get svc
 
 # Access REST Application  (Port is static 31234 configured in frontend service template)
-http://<node1-public-ip>:31234/hello
+http://<Load-Balancer-Service-IP>/hello
 ```
 
 ## Step-04: Delete & Recreate Objects using kubectl apply
 ### Delete Objects (file by file)
 ```
-kubectl delete -f 01-backend-deployment.yml -f 02-backend-clusterip-service.yml -f 03-frontend-deployment.yml -f 04-frontend-nodeport-service.yml
+kubectl delete -f 01-backend-deployment.yml -f 02-backend-clusterip-service.yml -f 03-frontend-deployment.yml -f 04-frontend-LoadBalancer-service.yml
 kubectl get all
 ```
 ### Recreate Objects using YAML files in a folder

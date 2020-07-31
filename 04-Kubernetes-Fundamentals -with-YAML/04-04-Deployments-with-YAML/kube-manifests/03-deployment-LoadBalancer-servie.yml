@@ -1,14 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: replicaset-nodeport-service
+  name: deployment-loadbalancer-service
 spec:
-  type: NodePort 
+  type: LoadBalancer 
   selector: 
-    app: myapp2 
+    app: myapp3
   ports: 
     - name: http
       port: 80
       targetPort: 80
-      nodePort: 31232
     

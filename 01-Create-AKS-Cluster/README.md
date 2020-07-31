@@ -42,7 +42,12 @@ kubectl get nodes
 kubectl get nodes -o wide
 ```
 
-## Step-04: Deploy Sample Application and Test
+## Step-04: Explore the AKS cluster on Azure Management Console
+- Explore the Virtual machines
+- Explore the Network
+
+
+## Step-05: Deploy Sample Application and Test
 - Don't worry about what is present in these two files for now. 
 - By the time we complete **Kubernetes Fundamentals** sections, you will be an expert in writing Kubernetes manifest in YAML.
 - For now just focus on result. 
@@ -64,7 +69,7 @@ kubectl get service
 http://<External-IP-from-get-service-output>
 ```
 
-## Step-05: Clean-Up
+## Step-06: Clean-Up
 ```
 # Delete Applications
 kubectl delete -f kube-manifests/

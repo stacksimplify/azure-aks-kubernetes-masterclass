@@ -3,7 +3,6 @@
 ## Step-01: Copy templates from ReplicaSet
 - Copy templates from ReplicaSet and change the `kind: Deployment` 
 - Update Container Image version to `3.0.0`
-- Update NodePort service `nodePort: 31233`
 - Change all names to Deployment
 - Change all labels and selectors to `myapp3`
 
@@ -14,8 +13,8 @@ kubectl get deploy
 kubectl get rs
 kubectl get po
 
-# Create NodePort Service
-kubectl apply -f 03-deployment-nodeport-service.yml
+# Create LoadBalancer Service
+kubectl apply -f 03-deployment-LoadBalancer-service.yml
 
 # List Service
 kubectl get svc
@@ -24,7 +23,7 @@ kubectl get svc
 kubectl get nodes -o wide
 
 # Access Application
-http://<Worker-Node-Public-IP>:31233
+http://<Load-Balancer-Service-IP>
 ```
 ## API References
 - **Deployment:** https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#deployment-v1-apps

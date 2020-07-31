@@ -45,7 +45,7 @@ kubectl get pods
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp-pod-nodeport-service  # Name of the Service
+  name: myapp-pod-loadbalancer-service  # Name of the Service
 spec:
   type: NodePort
   selector:
@@ -56,22 +56,18 @@ spec:
     - name: http
       port: 80    # Service Port
       targetPort: 80 # Container Port
-      nodePort: 31231 # NodePort
 ```
-- **Create NodePort Service for Pod**
+- **Create LoadBalancer Service for Pod**
 ```
 # Create Service
-kubectl apply -f 03-pod-nodeport-service.yml
+kubectl apply -f 03-pod-LoadBalancer-service.yml
 
 # List Service
 kubectl get svc
 
-# Get Public IP
-kubectl get nodes -o wide
-
 # Access Application
-http://<WorkerNode-Public-IP>:<NodePort>
-http://<WorkerNode-Public-IP>:31231
+http://<Load-Balancer-Service-IP>
+
 ```
 
 ## API Object References
