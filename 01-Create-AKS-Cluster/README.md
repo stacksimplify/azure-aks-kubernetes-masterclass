@@ -11,7 +11,7 @@
   - **Kubernetes Cluster Name:** aksdemo1
   - **Region:** East Us
   - **Kubernetes Version:** Select what ever is latest stable version
-  - **Node Size:** Standard DS2 v2 (Default one) (or) (B2s - 4GB RAM 2VPCU)
+  - **Node Size:** Standard DS2 v2 (Default one)
   - **Node Count:** 2
 - **Node Pools**
   - leave to defaults
@@ -43,11 +43,43 @@ kubectl get nodes -o wide
 ```
 
 ## Step-04: Explore the AKS cluster on Azure Management Console
-- Explore the Virtual machines
-- Explore the Network
+- Explore the following features on high-level
+- **Overview**
+  - Activity Log
+  - Access Control (IAM)
+  - Security
+  - Diagnose and solver problems
+- **Settings**
+  - Node Pools
+  - Upgrade
+  - Scale
+  - Networking
+  - DevSpaces
+  - Deployment Center
+  - Policies
+- **Monitoring**
+  - Insights
+  - Alerts
+  - Metrics
+  - and many more 
+- **VM Scale Sets**
+  - Verify Azure VM Instances
+  - Verify if **Enhanced Networking is enabled or not**  
 
+## Step-05: Explore Cluster Control Plane and Workload inside that
+```
+# List Namespaces
+kubectl get namespaces
+kubectl get ns
 
-## Step-05: Deploy Sample Application and Test
+# List Pods from all namespaces
+kubectl get pods --all-namespaces
+
+# List all k8s objects from Cluster Control plane
+kubectl get all --all-namespaces
+```
+
+## Step-06: Deploy Sample Application and Test
 - Don't worry about what is present in these two files for now. 
 - By the time we complete **Kubernetes Fundamentals** sections, you will be an expert in writing Kubernetes manifest in YAML.
 - For now just focus on result. 
@@ -69,7 +101,7 @@ kubectl get service
 http://<External-IP-from-get-service-output>
 ```
 
-## Step-06: Clean-Up
+## Step-07: Clean-Up
 ```
 # Delete Applications
 kubectl delete -f kube-manifests/
