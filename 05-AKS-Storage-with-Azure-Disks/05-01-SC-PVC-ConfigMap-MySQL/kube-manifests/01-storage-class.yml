@@ -7,3 +7,5 @@ reclaimPolicy: Retain  # Disk is retained when the pod is deleted
 parameters:
   storageaccounttype: Premium_LRS
   kind: Managed
+
+ # Allow Voluem Expansion 

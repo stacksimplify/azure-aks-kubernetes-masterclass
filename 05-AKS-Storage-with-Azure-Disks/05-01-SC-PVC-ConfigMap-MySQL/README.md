@@ -1,7 +1,7 @@
-# EKS Storage -  Storage Classes, Persistent Volume Claims
+# AKS Storage -  Storage Classes, Persistent Volume Claims
 
 ## Step-01: Introduction
-- We are going to create a MySQL Database with persistence storage using AWS EBS Volumes
+- We are going to create a MySQL Database with persistence storage using **Azure Disks** 
 
 | Kubernetes Object  | YAML File |
 | ------------- | ------------- |
@@ -71,13 +71,16 @@ kubectl run -it --rm --image=mysql:5.6 --restart=Never mysql-client -- mysql -h 
 mysql> show schemas;
 ```
 
-## Step-05: References
+## Step-05: Clean-Up V1
+```
+# Delete All
+kubectl delete -f kube-manifests/
+```
+
+## Step-05: References & Storage Best Practices
 - We need to discuss references exclusively here. 
-- These will help you in writing effective templates based on need in your environments. 
-- Few features are still in alpha stage as on today (Example:Resizing), but once they reach beta you can start leveraging those templates and make your trials. 
-- **EBS CSI Driver:** https://github.com/kubernetes-sigs/aws-ebs-csi-driver
-- **EBS CSI Driver Dynamic Provisioning:**  https://github.com/kubernetes-sigs/aws-ebs-csi-driver/tree/master/examples/kubernetes/dynamic-provisioning
-- **EBS CSI Driver - Other Examples like Resizing, Snapshot etc:** https://github.com/kubernetes-sigs/aws-ebs-csi-driver/tree/master/examples/kubernetes
-- **k8s API Reference Doc:** https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#storageclass-v1-storage-k8s-io
+- https://docs.microsoft.com/en-us/azure/aks/concepts-storage
+- https://docs.microsoft.com/en-us/azure/aks/operator-best-practices-storage
+- https://docs.microsoft.com/en-us/azure/aks/azure-disks-dynamic-pv
 
 
