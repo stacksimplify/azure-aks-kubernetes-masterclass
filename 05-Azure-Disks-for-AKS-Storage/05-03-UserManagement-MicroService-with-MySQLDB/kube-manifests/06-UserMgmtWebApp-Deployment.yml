@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
         - name: usermgmt-webapp
-          image: stacksimplify/kube-usermanagement-microservice:1.0.0
+          image: stacksimplify/kube-usermgmt-webapp:1.0.0-MySQLDB
+          imagePullPolicy: Always
           ports: 
             - containerPort: 8095           
           env:
