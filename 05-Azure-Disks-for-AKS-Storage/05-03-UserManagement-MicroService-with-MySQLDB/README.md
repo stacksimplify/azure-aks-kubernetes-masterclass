@@ -134,4 +134,7 @@ kubectl get pods
 kubectl get sc,pvc,pv
 ```
 
-
+## Connect to Usermgnt Web App Container
+```
+kubectl exec --stdin --tty usermgmt-webapp-7677c876bb-pjnwx -- /bin/bash
+```
