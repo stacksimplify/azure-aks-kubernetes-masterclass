@@ -14,12 +14,16 @@ spec:
       labels: 
         app: usermgmt-webapp
     spec:
+      initContainers:
+        - name: init-db
+          image: busybox:1.31
+          command: ['sh', '-c', 'echo -e "Checking for the availability of MySQL Server deployment"; while ! nc -z mysql 3306; do sleep 1; printf "-"; done; echo -e "  >> MySQL DB Server has started";']      
       containers:
         - name: usermgmt-webapp
           image: stacksimplify/kube-usermgmt-webapp:1.0.0-MySQLDB
           imagePullPolicy: Always
           ports: 
-            - containerPort: 8095           
+            - containerPort: 8080           
           env:
             - name: DB_HOSTNAME
               value: "mysql"            
