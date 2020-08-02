@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment 
 metadata:
-  name: usermgmt-microservice
+  name: usermgmt-webapp
   labels:
-    app: usermgmt-restapp
+    app: usermgmt-webapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: usermgmt-restapp
+      app: usermgmt-webapp
   template:  
     metadata:
       labels: 
-        app: usermgmt-restapp
+        app: usermgmt-webapp
     spec:
       containers:
-        - name: usermgmt-restapp
+        - name: usermgmt-webapp
           image: stacksimplify/kube-usermanagement-microservice:1.0.0
           ports: 
             - containerPort: 8095           

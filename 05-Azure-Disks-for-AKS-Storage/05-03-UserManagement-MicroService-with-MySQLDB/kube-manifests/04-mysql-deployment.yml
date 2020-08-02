@@ -31,7 +31,7 @@ spec:
       volumes: 
         - name: mysql-persistent-storage
           persistentVolumeClaim:
-            claimName: ebs-mysql-pv-claim
+            claimName: azure-managed-disk-pvc
         - name: usermanagement-dbcreation-script
           configMap:
             name: usermanagement-dbcreation-script
