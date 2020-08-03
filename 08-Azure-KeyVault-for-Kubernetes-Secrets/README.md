@@ -221,7 +221,7 @@ stack@Azure:~$
 
 ## Step-0: Update Application Deployment files
 
-## Step-0 Deploy the SecretProviderClass yaml 
+## Step-0 Deploy All 
 ```
 # Deploy Secret Provider Class
 kubectl apply -f kube-manifests/01-SecretProviderClass-and-PodIdentity/02-SecretProviderClass-Cleaned-Comments.yml
@@ -229,6 +229,8 @@ kubectl apply -f kube-manifests/01-SecretProviderClass-and-PodIdentity/02-Secret
 # Deploy Pod Identity Binding
 kubectl apply -f kube-manifests/01-SecretProviderClass-and-PodIdentity/04-PodIdentityBinding.yml
 
+# Deploy Apps
+kubectl apply -f kube-manifests/02-Application
 ```
 
 ## Step-06: 

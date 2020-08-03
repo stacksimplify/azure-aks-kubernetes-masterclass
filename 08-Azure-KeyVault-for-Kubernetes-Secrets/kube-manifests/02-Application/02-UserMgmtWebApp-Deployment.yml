@@ -38,10 +38,10 @@ spec:
                 secretKeyRef:
                   name: mysql-db-password
                   key: db-password             
-        volumeMounts:
-        - name: mysqldb-azure-vault-secrets
-          mountPath: "/mnt/secrets-store"
-          readOnly: true
+          volumeMounts:
+            - name: mysqldb-azure-vault-secrets
+              mountPath: "/mnt/secrets-store"
+              readOnly: true
       volumes:
         - name: mysqldb-azure-vault-secrets
           csi:
