@@ -16,12 +16,14 @@
 - **Node Pools**
   - leave to defaults
 - **Authentication**
-  - leave to defaults
+  - Authentication method: 	System-assigned managed identity
+  - Rest all leave to defaults
 - **Networking**
   - **Network Configuration:** Advanced
   - **Network Policy:** Azure
   - Rest all leave to defaults
 - **Integrations**
+  - Azure Container Registry: None
   - leave to defaults
 - **Tags**
   - leave to defaults
@@ -107,3 +109,5 @@ http://<External-IP-from-get-service-output>
 kubectl delete -f kube-manifests/
 ```
 
+## Why Managed Identity when creating Cluster?
+- https://docs.microsoft.com/en-us/azure/aks/use-managed-identity#:~:text=AKS%20clusters%20with%20managed%20identities,enabled%20clusters%20isn't%20supported.
