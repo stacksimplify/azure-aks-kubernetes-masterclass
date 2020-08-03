@@ -216,9 +216,19 @@ stack@Azure:~$ az keyvault set-policy -n $VAULT_NAME --secret-permissions get --
 stack@Azure:~$
 ```
 
+## Step-0: Update Pod Identity Mapping
+
+
+## Step-0: Update Application Deployment files
+
 ## Step-0 Deploy the SecretProviderClass yaml 
 ```
-kubectl apply -f kube-manifests/02-SecretProviderClass-Cleaned-Comments.yml
+# Deploy Secret Provider Class
+kubectl apply -f kube-manifests/01-SecretProviderClass-and-PodIdentity/02-SecretProviderClass-Cleaned-Comments.yml
+
+# Deploy Pod Identity Binding
+kubectl apply -f kube-manifests/01-SecretProviderClass-and-PodIdentity/04-PodIdentityBinding.yml
+
 ```
 
 ## Step-06: 
