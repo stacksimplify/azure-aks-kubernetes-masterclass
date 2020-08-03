@@ -12,7 +12,7 @@
   - Subscription: Free Trial
   - Resource Group: aks-rg1
 - **Server Details**
-  - Server name: akswebappdb
+  - Server name: akswebappdb (This name is based on availability - in your case it might be something else)
   - Data source: none
   - Location: (US) East US
   - Version: 5.7 (default)
@@ -28,9 +28,26 @@
   - Password: Redhat1449
   - Confirm password: Redhat1449
 - **Review + Create**  
+- It will take close to 15 minutes to create the database. 
 
+## Step-03: Update Security Settings for Database
+- Go to **Azure Database for MySQL Servers** -> **akswebappdb**
+- **Settings -> Connection Security**
+  - **Very Important**: Enable **Allow Access to Azure Services**
+  - Update Firewall rules to allow from local desktop (Add current client IP Address)
+  - **SSL Settings**: Disabled  
+  - Click on **Save**
+- It will take close to 15 minutes for changes to take place. 
 
-## Step-03: Create Kubernetes externalName service Manifest and Deploy
+```
+# Template
+mysql --host=mydemoserver.mysql.database.azure.com --user=myadmin@mydemoserver -p
+
+# 
+mysql --host=akswebappdb.mysql.database.azure.com --user=dbadmin@akswebappdb -p
+```
+
+## Step-04: Create Kubernetes externalName service Manifest and Deploy
 - Create mysql externalName Service
 - **01-MySQL-externalName-Service.yml**
 ```yml

@@ -4,4 +4,4 @@ metadata:
   name: mysql
 spec:
   type: ExternalName
-  externalName: usermgmtdb.cxojydmxwly6.us-east-1.rds.amazonaws.com
+  externalName: akswebappdb.mysql.database.azure.com
