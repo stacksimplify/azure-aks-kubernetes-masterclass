@@ -138,3 +138,8 @@ kubectl get sc,pvc,pv
 ```
 kubectl exec --stdin --tty usermgmt-webapp-7677c876bb-pjnwx -- /bin/bash
 ```
+
+## Connect to to MySQL DB to verify user
+```
+kubectl run -it --rm --image=mysql:5.6 --restart=Never mysql-client -- mysql -h mysql -pdbpassword11
+```
