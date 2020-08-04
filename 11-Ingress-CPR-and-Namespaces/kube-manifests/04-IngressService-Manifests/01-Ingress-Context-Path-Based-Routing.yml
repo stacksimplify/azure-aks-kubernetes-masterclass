@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: ingress-cpr-ns
-  namespace: ingress-basic  
+  namespace: app1  
   annotations:
     kubernetes.io/ingress.class: "nginx"
 spec:
