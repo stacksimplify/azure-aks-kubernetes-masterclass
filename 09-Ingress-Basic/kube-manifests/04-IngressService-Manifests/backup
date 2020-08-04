@@ -8,15 +8,15 @@ spec:
   rules:
   - http:
       paths:
-        - path: /app1/*
+        - path: /app1/
           backend:
             serviceName: app1-nginx-clusterip-service
             servicePort: 80
-        - path: /app1/*
+        - path: /app1/
           backend:
             serviceName: app2-nginx-clusterip-service
             servicePort: 80
-        - path: /*
+        - path: /
           backend:
             serviceName: usermgmt-webapp-clusterip-service
             servicePort: 80
