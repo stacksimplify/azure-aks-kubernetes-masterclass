@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: usermgmt-webapp-clusterip-service
+  namespace: app3  
+  labels: 
+    app: usermgmt-webapp
+spec:
+  type: ClusterIP
+  selector:
+    app: usermgmt-webapp
+  ports: 
+    - port: 80
+      targetPort: 8080
+
