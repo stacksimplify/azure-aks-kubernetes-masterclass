@@ -15,8 +15,28 @@ az network public-ip create --resource-group MC_aks-rg2_aksdemo2_eastus --name m
 ```
 - Make a note of Static IP which we will use in next step when installing Ingress Controller
 
+## Step-03: Create Record Sets in DNS Zones
+- Go to Services -> DNS Zones -> kubeoncloud.com
+- **app1.kubeoncloud.com**
+  - Create **Record Set**
+  - Name: app1.kubeoncloud.com
+  - Type: A
+  - Alias Record Set: YES
+  - Alias Type :Azure Resource
+  - Choose Subsciption: StackSimplify-Paid-Subscription
+  - Azure Resource: myAKSPublicIP
+  - Click on **OK**
+- **app2.kubeoncloud.com**
+  - Create **Record Set**
+  - Name: app2.kubeoncloud.com
+  - Type: A
+  - Alias Record Set: YES
+  - Alias Type :Azure Resource
+  - Choose Subsciption: StackSimplify-Paid-Subscription
+  - Azure Resource: myAKSPublicIP
+  - Click on **OK**  
 
-## Step-03: Install Ingress Controller
+## Step-04: Install Ingress Controller
 ```
 # Create a namespace for your ingress resources
 kubectl create namespace ingress-basic
@@ -47,11 +67,6 @@ helm install nginx-ingress stable/nginx-ingress \
 kubectl get service -l app=nginx-ingress --namespace ingress-basic
 ```
 
-## Step-04: Add an A record to your DNS zone
-```
-ssldemo.apps.stacksimplifygmail.onmicrosoft.com
-
-```
 
 ## Step-05: Install Cert Manager
 ```
@@ -75,17 +90,73 @@ helm install \
   jetstack/cert-manager
 ```
 
-## Step-06: Create Cluster Issuer
-
-
-## Step-07: Deploy Demo Application
-
-## Step-08: Create Ingress SSL Resource & Deploy
-
-
-## Step-0: Verify Certificate is ready
+## Step-06: Review or Create Cluster Issuer Kubernetes Manifest
+- Create or Review Cert Manager Cluster Issuer Kubernetes Manigest
+```yml
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: dkalyanreddy@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
 ```
-kubectl get certificate --namespace ingress-basic
+
+## Step-07: Review Application NginxApp1,2 K8S Manifests
+- 01-NginxApp1-Deployment.yml
+- 02-NginxApp1-ClusterIP-Service.yml
+- 01-NginxApp2-Deployment.yml
+- 02-NginxApp2-ClusterIP-Service.yml
+
+## Step-08: Create ore Review Ingress SSL Kubernetes Manifest
+- 01-Ingress-SSL.yml
+
+## Step-09: Deploy All Manifests & Verify
+- Certificate Request, Generation, Approal and Download and be ready might take from 1 hour to many days if we make any mistakes.
+- For me it took, only 5 minutes to get the certificate from **https://letsencrypt.org/**
+```
+# Deploy
+kubectl apply -R -f kube-manifests/
+
+# Verify Pods
+kubectl get pods
+
+# Verify SSL Certificates (It should turn to True)
+kubectl get certificate
+```
+```log
+stack@Azure:~$ kubectl get certificate
+NAME                      READY   SECRET                    AGE
+app1-kubeoncloud-secret   True    app1-kubeoncloud-secret   45m
+app2-kubeoncloud-secret   True    app2-kubeoncloud-secret   45m
+stack@Azure:~$
+```
+
+## Step-10: Access Application
+```
+http://app1.kubeoncloud.com/app1/index.html
+http://app2.kubeoncloud.com/app2/index.html
+```
+
+## Step-11: Verify Ingress logs for Client IP
+```
+# List Pods
+kubectl -n ingress-basic get pods
+
+# Check logs
+kubectl -n ingress-basic logs -f nginx-ingress-controller-xxxxxxxxx
+```
+## Step-12: Clean-Up
+```
+# Delete 
+kubectl delete -R -f kube-manifests/
 ```
 
 ## Cert Manager
@@ -95,3 +166,4 @@ kubectl get certificate --namespace ingress-basic
 ## AWS DNS Migrate to Azure
 - https://docs.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns
 - https://cloudmonix.com/blog/delegate-dns-domain-from-aws-to-azure/
+- https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1beta1.Issuer
