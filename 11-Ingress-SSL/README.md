@@ -75,10 +75,23 @@ helm install \
   jetstack/cert-manager
 ```
 
-## Step-06: 
+## Step-06: Create Cluster Issuer
 
 
+## Step-07: Deploy Demo Application
+
+## Step-08: Create Ingress SSL Resource & Deploy
+
+
+## Step-0: Verify Certificate is ready
+```
+kubectl get certificate --namespace ingress-basic
+```
 
 ## Cert Manager
 - https://docs.cert-manager.io/en/latest/reference/issuers.html
 - https://docs.cert-manager.io/en/latest/reference/ingress-shim.html
+
+## AWS DNS Migrate to Azure
+- https://docs.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns
+- https://cloudmonix.com/blog/delegate-dns-domain-from-aws-to-azure/

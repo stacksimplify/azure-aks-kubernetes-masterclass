@@ -8,10 +8,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - ssldemo.apps.stacksimplifygmail.onmicrosoft.com
+    - app1.kubeoncloud.com
     secretName: tls-secret
   rules:
-  - host: ssldemo.apps.stacksimplifygmail.onmicrosoft.com
+  - host: app1.kubeoncloud.com
     http:
       paths:
       - path: /
