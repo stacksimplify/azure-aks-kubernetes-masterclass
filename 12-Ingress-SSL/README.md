@@ -155,8 +155,11 @@ kubectl -n ingress-basic logs -f nginx-ingress-controller-xxxxxxxxx
 ```
 ## Step-12: Clean-Up
 ```
-# Delete 
+# Delete Apps
 kubectl delete -R -f kube-manifests/
+
+# Delete Ingress Controller
+kubectl delete namespace ingress-basic
 ```
 
 ## Cert Manager

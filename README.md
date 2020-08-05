@@ -12,4 +12,6 @@
 | 05.  | Azure Storage Accounts  |
 | 06.  | Azure Cloud Shell  |
 | 07.  | Azure Load Balancer  |
-| 08. PENDING  | Azure Application Gateway  |
+| 08.  | Azure DNS Zones  |
+| 09. PENDING  | Azure Application Gateway  |
+
