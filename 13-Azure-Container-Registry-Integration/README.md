@@ -1,7 +1,7 @@
 # Azure Container Registry ACR & AKS
 
-
 ## Step-01: Introduction
+- Docker Image Build and Push from Azure Cloud Shell
 
 ## Step-02: Create Azure Container Registry
 - Go to Services -> Container Registries

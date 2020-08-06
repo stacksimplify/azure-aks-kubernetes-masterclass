@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app1-nginx
-          image: stacksimplify/kube-nginxapp1:1.0.0
+          image: acrforaksdemo1.azurecr.io/fromcloudshell/kube-nginx:v1
           ports:
             - containerPort: 80
 
