@@ -36,11 +36,38 @@ az acr show -n $ACR_NAME --query "id" -o tsv
 ## Step-04: Build and Push Docker Image to ACR using CloudShell
 ```
 # Change Directory where Dockerfile is present
-cd docker-manifests
+cd /home/stack/azure-aks-kubernetes-masterclass/13-Azure-Container-Registry-Integration/docker-manifests
 
-az acr build --image sample/hello-world:v1 \
-  --registry myContainerRegistry008 \
+# Export Commands
+export IMAGE_NAME=fromcloudshell/kube-nginx:v1
+export ACR_NAME=acrforaksdemo1
+echo $IMAGE_NAME, $ACR_NAME
+
+# Build Image
+az acr build --image $IMAGE_NAME \
+  --registry $ACR_NAME \
   --file Dockerfile .
+```
+## Step-05: Verify if our image got pushed to ACR
+- Go to Services -> Container Registries -> acrfromaksdemo1
+- Go to Repositories -> fromcloudshell/kube-nginx
+- Make a note of docker pull command which gives us complete Docker Image path with tag
+```
+docker pull acrforaksdemo1.azurecr.io/fromcloudshell/kube-nginx:v1
+```
+
+## Step-06: Update Nginx App1 Deployment Image
+```yml
+    spec:
+      containers:
+        - name: app1-nginx
+          image: acrforaksdemo1.azurecr.io/fromcloudshell/kube-nginx:v1
+```
+
+## Step-07: Deploy Application
+```
+# Deploy
+kubectl apply -f kube-manifests/
 ```
 
 
