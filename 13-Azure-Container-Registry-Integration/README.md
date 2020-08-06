@@ -39,7 +39,7 @@ az acr show -n $ACR_NAME --query "id" -o tsv
 cd /home/stack/azure-aks-kubernetes-masterclass/13-Azure-Container-Registry-Integration/docker-manifests
 
 # Export Commands
-export IMAGE_NAME=fromcloudshell1/kube-nginx:v1
+export IMAGE_NAME=fromcloudshell/kube-nginx:v1
 export ACR_NAME=acrforaksdemo1
 echo $IMAGE_NAME, $ACR_NAME
 
@@ -56,15 +56,21 @@ az acr build --image $IMAGE_NAME \
 docker pull acrforaksdemo1.azurecr.io/fromcloudshell/kube-nginx:v1
 ```
 
-## Step-06: Update Nginx App1 Deployment Image
+
+## Step-06: Deploy to AKS & Test
+
+### Update Deployment Manifest with Image Name
 ```yml
     spec:
       containers:
-        - name: app1-nginx
-          image: acrforaksdemo1.azurecr.io/fromcloudshell/kube-nginx:v1
+        - name: acrdemo-cloudshell
+          image: acrforaksdemo1.azurecr.io/cloudshell/kube-nginx:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
 ```
 
-## Step-07: Deploy Application & Test
+### Deploy to AKS and Test
 ```
 # Deploy
 kubectl apply -f kube-manifests/
@@ -82,7 +88,11 @@ kubectl get svc
 # Access Application
 http://<External-IP-from-get-service-output>
 ```
-
+## Step-07: Clean-Up
+```
+# Delete Applications
+kubectl delete -f kube-manifests/
+```
 
 ## Pricing of Azure Container Registry
 - https://azure.microsoft.com/en-us/pricing/details/container-registry/

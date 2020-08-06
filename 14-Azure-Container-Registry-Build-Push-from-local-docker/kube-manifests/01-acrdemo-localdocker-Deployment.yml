@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: acrdemo-cloudshell-deployment
+  name: acrdemo-localdocker-deployment
   labels:
-    app: acrdemo-cloudshell
+    app: acrdemo-localdocker
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: acrdemo-cloudshell
+      app: acrdemo-localdocker
   template:
     metadata:
       labels:
-        app: acrdemo-cloudshell
+        app: acrdemo-localdocker
     spec:
       containers:
-        - name: acrdemo-cloudshell
-          image: acrforaksdemo1.azurecr.io/fromcloudshell/kube-nginx:v1
+        - name: acrdemo-localdocker
+          image: acrforaksdemo1.azurecr.io/localdocker/kube-nginx-acr:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 80
