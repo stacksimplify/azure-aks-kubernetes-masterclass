@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app1-nginx-deployment
+  name: acrdemo-cloudshell-deployment
   labels:
-    app: app1-nginx
+    app: acrdemo-cloudshell
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app1-nginx
+      app: acrdemo-cloudshell
   template:
     metadata:
       labels:
-        app: app1-nginx
+        app: acrdemo-cloudshell
     spec:
       containers:
-        - name: app1-nginx
+        - name: acrdemo-cloudshell
           image: acrforaksdemo1.azurecr.io/fromcloudshell/kube-nginx:v1
           ports:
             - containerPort: 80

@@ -64,10 +64,22 @@ docker pull acrforaksdemo1.azurecr.io/fromcloudshell/kube-nginx:v1
           image: acrforaksdemo1.azurecr.io/fromcloudshell/kube-nginx:v1
 ```
 
-## Step-07: Deploy Application
+## Step-07: Deploy Application & Test
 ```
 # Deploy
 kubectl apply -f kube-manifests/
+
+# List Pods
+kubectl get pods
+
+# Describe Pod
+kubectl describe pod 'alb-ingress-controller-[A-Za-z0-9-]+'
+
+# Get Load Balancer IP
+kubectl get svc
+
+# Access Application
+http://<External-IP-from-get-service-output>
 ```
 
 
