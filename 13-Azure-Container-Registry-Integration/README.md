@@ -39,7 +39,7 @@ az acr show -n $ACR_NAME --query "id" -o tsv
 cd /home/stack/azure-aks-kubernetes-masterclass/13-Azure-Container-Registry-Integration/docker-manifests
 
 # Export Commands
-export IMAGE_NAME=fromcloudshell/kube-nginx:v1
+export IMAGE_NAME=fromcloudshell1/kube-nginx:v1
 export ACR_NAME=acrforaksdemo1
 echo $IMAGE_NAME, $ACR_NAME
 
@@ -73,7 +73,8 @@ kubectl apply -f kube-manifests/
 kubectl get pods
 
 # Describe Pod
-kubectl describe pod 'alb-ingress-controller-[A-Za-z0-9-]+'
+kubectl describe pod <pod-name>
+kubectl describe pod acrdemo-cloudshell-deployment-749d4799d8-ggtqb
 
 # Get Load Balancer IP
 kubectl get svc

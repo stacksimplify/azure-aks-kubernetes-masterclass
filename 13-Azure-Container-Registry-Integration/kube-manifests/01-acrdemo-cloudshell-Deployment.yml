@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: acrdemo-cloudshell
-          image: acrforaksdemo1.azurecr.io/fromcloudshell/kube-nginx:v1
+          image: acrforaksdemo1.azurecr.io/fromcloudshell1/kube-nginx:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 80
