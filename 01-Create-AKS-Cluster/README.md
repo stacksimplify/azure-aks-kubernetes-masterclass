@@ -133,8 +133,6 @@ kubectl delete -f kube-manifests/
 
 ## References
 - https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-macos?view=azure-cli-latest
-- https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest
-- https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest
 
 ## Why Managed Identity when creating Cluster?
 - https://docs.microsoft.com/en-us/azure/aks/use-managed-identity
