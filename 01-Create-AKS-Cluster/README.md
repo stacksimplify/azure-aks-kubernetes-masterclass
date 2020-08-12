@@ -32,7 +32,7 @@
   - Click on **Create**
 
 
-## Step-03: Configure kubectl to connect to AKS Cluster
+## Step-03: Cloud Shell - Configure kubectl to connect to AKS Cluster
 ```
 # Template
 az aks get-credentials --resource-group <Resource-Group-Name> --name <Cluster-Name>
