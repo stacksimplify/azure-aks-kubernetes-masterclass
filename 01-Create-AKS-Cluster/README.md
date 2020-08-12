@@ -95,6 +95,10 @@ az aks install-cli
 
 # Configure Cluster Creds (kube config)
 az aks get-credentials --resource-group aks-rg1 --name aksdemo1
+
+# List AKS Nodes
+kubectl get nodes 
+kubectl get nodes -o wide
 ```
 - **Reference Documentation Links**
 - https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest
