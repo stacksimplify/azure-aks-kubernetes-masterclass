@@ -45,7 +45,20 @@ kubectl get nodes
 kubectl get nodes -o wide
 ```
 
-## Step-04: Explore the AKS cluster on Azure Management Console
+## Step-04: Explore Cluster Control Plane and Workload inside that
+```
+# List Namespaces
+kubectl get namespaces
+kubectl get ns
+
+# List Pods from all namespaces
+kubectl get pods --all-namespaces
+
+# List all k8s objects from Cluster Control plane
+kubectl get all --all-namespaces
+```
+
+## Step-05: Explore the AKS cluster on Azure Management Console
 - Explore the following features on high-level
 - **Overview**
   - Activity Log
@@ -69,18 +82,7 @@ kubectl get nodes -o wide
   - Verify Azure VM Instances
   - Verify if **Enhanced Networking is enabled or not**  
 
-## Step-05: Explore Cluster Control Plane and Workload inside that
-```
-# List Namespaces
-kubectl get namespaces
-kubectl get ns
 
-# List Pods from all namespaces
-kubectl get pods --all-namespaces
-
-# List all k8s objects from Cluster Control plane
-kubectl get all --all-namespaces
-```
 
 ## Step-06: Local Desktop - Install Azure CLI and Azure AKS CLI
 ```
