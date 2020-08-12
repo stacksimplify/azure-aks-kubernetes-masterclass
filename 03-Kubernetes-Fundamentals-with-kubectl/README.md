@@ -1,6 +1,5 @@
 # Kubernetes Fundaments using Imperative Approach using kubectl
 
-## Kubernetes Concepts
 
 | S.No  | Topic Name |
 | ------| ------------- |
