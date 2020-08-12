@@ -1,4 +1,6 @@
-# Setup Github Project in Azure Cloud Shell
+# Pre-requisites
+1. Azure Cloud Subscription
+2. Optional: Setup Github Project in Azure Cloud Shell
 
 ## Step-01: Create Cloud Shell
 - Click on link https://shell.azure.com/
