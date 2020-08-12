@@ -97,7 +97,7 @@ az aks install-cli
 az aks get-credentials --resource-group aks-rg1 --name aksdemo1
 ```
 - **Reference Documentation Links**
-- https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest
+- https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest
 - https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest
 
 ## Step-07: Deploy Sample Application and Test
