@@ -1,1 +1,0 @@
-# AKS Storage - Azure Disks

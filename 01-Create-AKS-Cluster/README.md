@@ -2,6 +2,7 @@
 
 ## Step-01: Introduction
 - Understand about AKS Cluster
+- Discuss about Kubernetes Architecture from AKS Cluster perspective
 
 ## Step-02: Create AKS Cluster
 - Create Kubernetes Cluster
@@ -9,10 +10,10 @@
   - **Subscription:** Free Trial
   - **Resource Group:** Creat New: aks-rg1
   - **Kubernetes Cluster Name:** aksdemo1
-  - **Region:** East Us
+  - **Region:** (US) Central US
   - **Kubernetes Version:** Select what ever is latest stable version
   - **Node Size:** Standard DS2 v2 (Default one)
-  - **Node Count:** 2
+  - **Node Count:** 1
 - **Node Pools**
   - leave to defaults
 - **Authentication**
@@ -81,13 +82,27 @@ kubectl get pods --all-namespaces
 kubectl get all --all-namespaces
 ```
 
-## Step-06: Deploy Sample Application and Test
+## Step-06: Local Desktop - Install Azure CLI and Azure AKS CLI
+```
+# Install Azure CLI (MAC)
+brew update && brew install azure-cli
+
+# Install Azure AKS CLI
+az aks install-cli
+
+# Configure Cluster Creds (kube config)
+az aks get-credentials --resource-group aks-rg1 --name aksdemo1
+```
+- **Reference Documentation Links**
+- https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest
+- https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest
+
+## Step-07: Deploy Sample Application and Test
 - Don't worry about what is present in these two files for now. 
 - By the time we complete **Kubernetes Fundamentals** sections, you will be an expert in writing Kubernetes manifest in YAML.
 - For now just focus on result. 
 ```
 # Deploy Application
-cd /home/stack/azure-aks-kubernetes-masterclass/01-Create-AKS-Cluster  
 kubectl apply -f kube-manifests/
 
 # Verify Pods
@@ -109,5 +124,10 @@ http://<External-IP-from-get-service-output>
 kubectl delete -f kube-manifests/
 ```
 
+## References
+- https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-macos?view=azure-cli-latest
+- https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest
+- https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest
+
 ## Why Managed Identity when creating Cluster?
-- https://docs.microsoft.com/en-us/azure/aks/use-managed-identity#:~:text=AKS%20clusters%20with%20managed%20identities,enabled%20clusters%20isn't%20supported.
+- https://docs.microsoft.com/en-us/azure/aks/use-managed-identity
