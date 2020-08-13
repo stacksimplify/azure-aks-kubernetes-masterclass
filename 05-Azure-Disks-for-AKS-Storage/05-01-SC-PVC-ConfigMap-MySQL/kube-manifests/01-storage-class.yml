@@ -1,0 +1,11 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: managed-premium-retain-sc
+provisioner: kubernetes.io/azure-disk
+reclaimPolicy: Retain  # Disk is retained when the pod is deleted
+parameters:
+  storageaccounttype: Premium_LRS
+  kind: Managed
+
+ # Allow Voluem Expansion 
