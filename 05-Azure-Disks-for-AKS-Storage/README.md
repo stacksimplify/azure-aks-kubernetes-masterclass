@@ -1,12 +1,9 @@
-# AWS EKS Storage
-
-## AWS EBS CSI Driver
-- We are going to use EBS CSI Driver and use EBS Volumes for persistence storage to MySQL Database
+# Azure AKS Storage - Azure Disks
 
 ## Topics
-1. Install EBS CSI Driver
-2. Create MySQL Database Deployment & ClusterIP Service
-3. Create User Management Microservice Deployment & NodePort Service
+1. Understand about Azure Disks
+2. How we are going to use Azure Disks for Applications deployed on AKS for persistent Storage?
+3. Understand best possible options available that we can configure in Storage Classess to persist our data, save cost and performance etc.
 
 ## Concepts
 | Kubernetes Object  | YAML File |
@@ -14,21 +11,14 @@
 | Storage Class  | 01-storage-class.yml |
 | Persistent Volume Claim | 02-persistent-volume-claim.yml   |
 | Config Map  | 03-UserManagement-ConfigMap.yml  |
-| Deployment, Environment Variables, Volumes, VolumeMounts  | 04-mysql-deployment.yml  |
+| Deployment | 04-mysql-deployment.yml  |
+| Environment Variables | 04-mysql-deployment.yml  |
+| Volumes  | 04-mysql-deployment.yml  |
+| VolumeMounts  | 04-mysql-deployment.yml  |
 | ClusterIP Service  | 05-mysql-clusterip-service.yml  |
-| Deployment, Environment Variables  | 06-UserManagementMicroservice-Deployment.yml  |
-| NodePort Service  | 07-UserManagement-Service.yml  |
+| Deployment  | 06-UserMgmtWebApp-Deployment.yml  |
+| Environment Variables| 06-UserMgmtWebApp-Deployment.yml |
+| Init Containers  | 06-UserMgmtWebApp-Deployment.yml  |
+| Load Balancer Service  | 07-UserMgmtWebApp-Service.yml  |
 
 
-
-## References:
-- **Dynamic Volume Provisioning:** https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/
-- https://github.com/kubernetes-sigs/aws-ebs-csi-driver/tree/master/deploy/kubernetes/overlays/stable
-- https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html
-- https://github.com/kubernetes-sigs/aws-ebs-csi-driver
-- https://github.com/kubernetes-sigs/aws-ebs-csi-driver/tree/master/examples/kubernetes/dynamic-provisioning
-- https://github.com/kubernetes-sigs/aws-ebs-csi-driver/tree/master/deploy/kubernetes/overlays/stable
-- https://github.com/kubernetes-sigs/aws-ebs-csi-driver
-- **Legacy: Will be deprecated** 
-  - https://kubernetes.io/docs/concepts/storage/storage-classes/#aws-ebs
-  - https://docs.aws.amazon.com/eks/latest/userguide/storage-classes.html
