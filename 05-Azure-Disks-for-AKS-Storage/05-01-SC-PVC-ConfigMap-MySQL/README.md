@@ -19,7 +19,8 @@
 ### Create Persistent Volume Claims manifest
 ```
 # Create Storage Class & PVC
-kubectl apply -f kube-manifests/
+kubectl apply -f kube-manifests/01-storage-class.yml
+kubectl apply -f kube-manifests/02-persistent-volume-claim.yml
 
 # List Storage Classes
 kubectl get sc

@@ -1,11 +1,5 @@
-apiVersion: v1
-kind: PersistentVolumeClaim
+apiVersion: 
+kind: 
 metadata:
-  name: azure-managed-disk-pvc
-spec:
-  accessModes:
-  - ReadWriteOnce
-  storageClassName: managed-premium-retain-sc
-  resources:
-    requests:
-      storage: 5Gi      
+
+spec: 
