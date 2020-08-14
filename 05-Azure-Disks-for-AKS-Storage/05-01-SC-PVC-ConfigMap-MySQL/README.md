@@ -14,6 +14,7 @@
 ## Step-02: Create following Kubernetes manifests
 ### Create Storage Class manifest
 - https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode
+- https://kubernetes.io/docs/concepts/storage/storage-classes/#azure-disk
 
 
 ### Create Persistent Volume Claims manifest
@@ -86,6 +87,9 @@ kubect get pv
 # Delete PV exclusively
 kubectl get pv
 kubectl delete pv <PV-NAME>
+
+# Delete Azure Disks 
+Go to All Services -> Disks -> Select and Delete the Disk
 ```
 
 ## Step-07: References & Storage Best Practices

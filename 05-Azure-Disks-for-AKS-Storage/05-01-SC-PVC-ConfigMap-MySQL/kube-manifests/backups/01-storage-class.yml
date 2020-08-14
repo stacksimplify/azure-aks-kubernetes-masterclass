@@ -8,18 +8,16 @@ volumeBindingMode: WaitForFirstConsumer # Default is Immediate, recommended is W
 allowVolumeExpansion: true  
 parameters:
   storageaccounttype: Premium_LRS # or we can use Standard_LRS
-  kind: Managed # Default is shared, recommended is Managed
+  kind: managed # Default is shared (Other two are managed and dedicated)
 
-# Additional Reference
-# https://kubernetes.io/docs/concepts/storage/storage-classes/#azure-disk
-
+  
 ##############################################################################
-# Note - 1:
+# Note-1:
 #volumeBindingMode: Immediate - This setting implies that the PersistentVolumecreation, 
 #followed with the storage medium (Azure Disk in this case) provisioning is triggered as 
 #soon as the PersistentVolumeClaim is created.
 
-# Note - 2:
+# Note-2:
 # volumeBindingMode: WaitForFirstConsumer 
 #By default, the Immediate mode indicates that volume binding and dynamic provisioning 
 #occurs once the PersistentVolumeClaim is created. For storage backends that are 
@@ -32,13 +30,19 @@ parameters:
 #provisioned conforming to the topology that is specified by the Pod's scheduling 
 #constraints. 
 ##############################################################################
-# Note - 3: 
+# Note-3: 
 #reclaimPolicy: Delete - With this setting, as soon as a PersistentVolumeClaim is deleted, 
 #it also triggers the removal of the corresponding PersistentVolume along with the 
 #Azure Disk. 
 #We will be surprised provided if we intended to retain that data as backup.
 # reclaimPolicy: retain -  Disk is retained even when PVC is deleted - Recommended Option
 
-# Note - 4:
+# Note-4:
 # Both reclaimPolicy: Delete and volumeBindingMode: Immediate are default settings
+##############################################################################
+# Note-5:
+# Additional Reference
+# https://kubernetes.io/docs/concepts/storage/storage-classes/#azure-disk
+# Managed: When managed used, that disk is persisted for the Lifecycle of the cluster.
+# If we delete cluster, it will delete the disk
 ##############################################################################

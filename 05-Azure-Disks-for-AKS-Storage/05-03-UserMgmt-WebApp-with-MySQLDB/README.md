@@ -105,4 +105,7 @@ kubectl get sc,pvc,pv
 # Delete PV Exclusively
 kubectl get pv
 kubectl delete pv <PV-NAME>
+
+# Delete Azure Disks 
+Go to All Services -> Disks -> Select and Delete the Disk
 ```
