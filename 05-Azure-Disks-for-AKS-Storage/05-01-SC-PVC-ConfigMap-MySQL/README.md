@@ -77,22 +77,14 @@ mysql> show schemas;
 kubectl delete -f kube-manifests/
 ```
 
-## Step-06: Discuss about PV - Retain policy
+## Step-06: Delete PV exclusively - It exists due to retain policy
 ```
 # List PV
 kubect get pv
 
-# Delete PV
-kubect delete pv <PV-Name>
-```
-- **Important Note**
-```
-Retain
-The Retain reclaim policy allows for manual reclamation of the resource. When the PersistentVolumeClaim is deleted, the PersistentVolume still exists and the volume is considered "released". But it is not yet available for another claim because the previous claimant's data remains on the volume. An administrator can manually reclaim the volume with the following steps.
-
-Delete the PersistentVolume. The associated storage asset in external infrastructure (such as an AWS EBS, GCE PD, Azure Disk, or Cinder volume) still exists after the PV is deleted.
-Manually clean up the data on the associated storage asset accordingly.
-Manually delete the associated storage asset, or if you want to reuse the same storage asset, create a new PersistentVolume with the storage asset definition.
+# Delete PV exclusively
+kubectl get pv
+kubectl delete pv <PV-NAME>
 ```
 
 ## Step-07: References & Storage Best Practices
@@ -101,5 +93,6 @@ Manually delete the associated storage asset, or if you want to reuse the same s
 - https://docs.microsoft.com/en-us/azure/aks/operator-best-practices-storage
 - https://docs.microsoft.com/en-us/azure/aks/azure-disks-dynamic-pv
 - https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+- https://kubernetes.io/docs/concepts/storage/storage-classes/#azure-disk
 
 

@@ -101,4 +101,8 @@ kubectl get pods
 
 # Verify sc, pvc, pv
 kubectl get sc,pvc,pv
+
+# Delete PV Exclusively
+kubectl get pv
+kubectl delete pv <PV-NAME>
 ```

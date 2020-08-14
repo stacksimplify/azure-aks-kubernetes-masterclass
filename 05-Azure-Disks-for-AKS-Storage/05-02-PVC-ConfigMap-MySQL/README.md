@@ -58,7 +58,6 @@ mysql> show schemas;
 ```
 
 ## Step-06: Clean-Up
-- We can clean-up or leave them as is for our next section where we are going to add Spring Boot  Web Application for deployment
 ```
 # Delete all manifests
 kubectl delete -f kube-manifests/
