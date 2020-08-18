@@ -76,19 +76,24 @@ mysql> create database webappdb;
 mysql> show schemas;
 mysql> exit
 ```
-## Step-05: In User Management Microservice deployment file change username from `root` to `dbadmin`
-- **02-UserManagementMicroservice-Deployment-Service.yml**
+## Step-05: In User Management WebApp deployment file change username from `root` to `dbadmin@akswebappdb`
+- **02-UserMgmtWebApp-Deployment.yml**
 ```yml
 # Change From
           - name: DB_USERNAME
             value: "root"
+          - name: DB_PASSWORD
+            value: "dbpassword11"               
 
-# Change To
-          - name: DB_USERNAME
-            value: "dbadmin@akswebappdb"            
+# Change To dbadmin@<YOUR-Azure-MYSQL-DB-NAME>
+            - name: DB_USERNAME
+              value: "dbadmin@akswebappdb"            
+            - name: DB_PASSWORD
+              value: "Redhat1449"                  
+             
 ```
 
-## Step-06: Deploy User Management Microservice and Test
+## Step-06: Deploy User Management WebApp and Test
 ```
 # Deploy all Manifests
 kubectl apply -f kube-manifests/
