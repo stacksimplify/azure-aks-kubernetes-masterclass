@@ -5,10 +5,7 @@ metadata:
 spec:
   accessModes:
   - ReadWriteOnce
-  storageClassName: managed-premium # Using AKS provisioned storage class
+  storageClassName: managed-premium
   resources:
     requests:
       storage: 5Gi      
-
-# AKS already provisioned Storage classes managed-premium and default as part of 
-# default cluster setup      

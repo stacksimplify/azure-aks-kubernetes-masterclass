@@ -87,7 +87,7 @@ kubectl run -it --rm --image=mysql:5.6 --restart=Never mysql-client -- mysql -h 
 mysql> show schemas;
 mysql> use usermgmt;
 mysql> show tables;
-mysql> select * from users;
+mysql> select * from user;
 ```
 
 ## Step-06: Clean-Up

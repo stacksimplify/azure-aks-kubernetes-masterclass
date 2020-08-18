@@ -99,5 +99,5 @@ Go to All Services -> Disks -> Select and Delete the Disk
 - https://docs.microsoft.com/en-us/azure/aks/azure-disks-dynamic-pv
 - https://kubernetes.io/docs/concepts/storage/persistent-volumes/
 - https://kubernetes.io/docs/concepts/storage/storage-classes/#azure-disk
-
+- https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#storageclass-v1-storage-k8s-io
 
