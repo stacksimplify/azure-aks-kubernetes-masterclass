@@ -66,10 +66,10 @@ kubectl apply -f kube-manifests/01-MySQL-externalName-Service.yml
 ## Step-04:  Connect to RDS Database using kubectl and create usermgmt schema/db
 ```
 # Template
-kubectl run -it --rm --image=mysql:5.7.22 --restart=Never mysql-client -- mysql -h <AZURE-MYSQ-DB-HOSTNAME> -u dbadmin -pdbpassword11
+kubectl run -it --rm --image=mysql:5.7.22 --restart=Never mysql-client -- mysql -h <AZURE-MYSQ-DB-HOSTNAME> -u <USER_NAME> -p<PASSWORD>
 
-# Replace Host Name of Azure MySQL Database
-kubectl run -it --rm --image=mysql:5.7.22 --restart=Never mysql-client -- mysql -h akswebappdb.mysql.database.azure.com -u dbadmin -pRedhat1449
+# Replace Host Name of Azure MySQL Database and Username and Password
+kubectl run -it --rm --image=mysql:5.7.22 --restart=Never mysql-client -- mysql -h akswebappdb.mysql.database.azure.com -u dbadmin@akswebappdb -pRedhat1449
 
 mysql> show schemas;
 mysql> create database webappdb;
