@@ -69,10 +69,10 @@ kubectl apply -f kube-manifests/01-MySQL-externalName-Service.yml
 kubectl run -it --rm --image=mysql:5.7.22 --restart=Never mysql-client -- mysql -h <AZURE-MYSQ-DB-HOSTNAME> -u dbadmin -pdbpassword11
 
 # Replace Host Name of Azure MySQL Database
-kubectl run -it --rm --image=mysql:5.7.22 --restart=Never mysql-client -- mysql -h akswebappdb.mysql.database.azure.com -u dbadmin -pdbpassword11
+kubectl run -it --rm --image=mysql:5.7.22 --restart=Never mysql-client -- mysql -h akswebappdb.mysql.database.azure.com -u dbadmin -pRedhat1449
 
 mysql> show schemas;
-mysql> create database usermgmt;
+mysql> create database webappdb;
 mysql> show schemas;
 mysql> exit
 ```
@@ -85,7 +85,7 @@ mysql> exit
 
 # Change To
           - name: DB_USERNAME
-            value: "dbadmin"            
+            value: "dbadmin@akswebappdb"            
 ```
 
 ## Step-06: Deploy User Management Microservice and Test
@@ -101,8 +101,8 @@ kubectl logs -f <pod-name>
 ```
 ## Step-07: Access Application
 ```
-# Capture Worker Node External IP or Public IP
-kubectl get nodes -o wide
+# Get Public IP
+kubectl get svc
 
 # Access Application
 http://<External-IP-from-get-service-output>
