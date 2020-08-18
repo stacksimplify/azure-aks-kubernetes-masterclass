@@ -1,4 +1,4 @@
-# Use Azure Database for MySQL servers for AKS Workloads
+# Use Azure Database for MySQL for AKS Workloads
 
 ## Step-01: Introduction
 - What are the problems with MySQL Pod & Azure Disks? 
