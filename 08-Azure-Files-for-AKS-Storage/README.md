@@ -2,6 +2,8 @@
 
 ## Step-01: Introduction
 - Understand Azure Files
+- We are going to write a Deployment Manifest for NGINX Application which will have its static content served from **Azure File Shares** in **app1** folder
+- We are going to mount the file share to a specific path `mountPath: "/usr/share/nginx/html/app1"` in the Nginx container
 
 ### kube-manifests-v1: Custom Storage Class
 - We will define our own custom storage class with desired permissions 
@@ -29,6 +31,17 @@
   - file1.html
   - file2.html
 
+- k8s Deployment maniest - core item for review
+```yml
+          volumeMounts:
+            - name: my-azurefile-volume
+              mountPath: "/usr/share/nginx/html/app1"
+      volumes:
+        - name: my-azurefile-volume
+          persistentVolumeClaim:
+            claimName: my-azurefile-pvc    
+```  
+
 ## Step-03: Deploy Kube Manifests V1
 ```
 # Deploy
@@ -46,6 +59,7 @@ kubectl get svc
 
 # Access Application
 http://<External-IP-from-get-service-output>
+http://<External-IP-from-get-service-output>/app1/index.html
 ```
 
 ## Step-04: Upload Nginx Files to Azure File Share
