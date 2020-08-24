@@ -5,7 +5,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: azurefile
+  storageClassName: azurefile # default AKS provisioned storage class in my AKS Cluster
   resources:
     requests:
       storage: 5Gi
