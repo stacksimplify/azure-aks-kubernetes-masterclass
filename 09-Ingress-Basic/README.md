@@ -16,7 +16,7 @@ az network public-ip create --resource-group MC_aks-rg1_aksdemo1_centralus --nam
 - Make a note of Static IP which we will use in next step when installing Ingress Controller
 ```
 # Make a note of Public IP created for Ingress
-13.89.136.94
+52.154.156.139
 ```
 
 ## Step-03: Install Ingress Controller
@@ -51,7 +51,7 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
     --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
     --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
     --set controller.service.externalTrafficPolicy=Local \
-    --set controller.service.loadBalancerIP="20.37.141.33" 
+    --set controller.service.loadBalancerIP="52.154.156.139" 
 
 
 # List Services with labels
@@ -66,7 +66,10 @@ kubectl get all -n ingress-basic
 http://<Public-IP-created-for-Ingress>
 
 # Output should be
-404 Not Found
+404 Not Found from Nginx
+
+# Verify Load Balancer on Azure Mgmt Console
+Primarily refer Settings -> Frontend IP Configuration
 ```
 
 ## Step-04: Review Application k8s manifests

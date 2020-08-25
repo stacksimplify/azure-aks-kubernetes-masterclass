@@ -7,14 +7,14 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt    
 spec:
   rules:
-  - host: app1.kubeoncloud.com
+  - host: sapp1.kubeoncloud.com
     http:
       paths:
       - path: /
         backend:
           serviceName: app1-nginx-clusterip-service
           servicePort: 80
-  - host: app2.kubeoncloud.com
+  - host: sapp2.kubeoncloud.com
     http:
       paths:
       - path: /
@@ -23,10 +23,10 @@ spec:
           servicePort: 80          
   tls:
   - hosts:
-    - app1.kubeoncloud.com
-    secretName: app1-kubeoncloud-secret           
+    - sapp1.kubeoncloud.com
+    secretName: sapp1-kubeoncloud-secret           
   - hosts:
-    - app2.kubeoncloud.com
-    secretName: app2-kubeoncloud-secret           
+    - sapp2.kubeoncloud.com
+    secretName: sapp2-kubeoncloud-secret           
 
           
