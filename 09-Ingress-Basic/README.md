@@ -1,6 +1,12 @@
 # Ingress - Basics
 
-## Step-01: What are we going to learn?
+## Step-01: Introduction
+
+### Ingress Basic Architecture
+
+[![Image](https://www.stacksimplify.com/course-images/azure-aks-ingress-basic.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
+
+### What are we going to learn?
 - We are going to create a Static Public IP for Ingress in Azure AKS
 - Associate that Public IP to Ingress Controller during installation.
 - We are going to create a namespace for Ingress Controller where all ingress controller related things will be placed. 
@@ -9,10 +15,6 @@
 - Create / Review Ingress Manifest
 - Deploy a simple Nginx App1 with Ingress manifest and test it
 - Clean-Up or delete application after testing
-
-
-[![Image](https://www.stacksimplify.com/course-images/azure-aks-ingress-basic.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
-
 
 ## Step-02: Create Static Public IP
 ```
