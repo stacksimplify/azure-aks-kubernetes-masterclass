@@ -127,3 +127,4 @@ kubectl delete namespace ingress-basic
 - https://docs.cert-manager.io/en/latest/reference/ingress-shim.html
 - https://cert-manager.io/docs/release-notes/
 - https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1beta1.Issuer
+- https://letsencrypt.org/how-it-works/
