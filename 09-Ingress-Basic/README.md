@@ -10,6 +10,10 @@
 - Deploy a simple Nginx App1 with Ingress manifest and test it
 - Clean-Up or delete application after testing
 
+
+[![Image](https://www.stacksimplify.com/course-images/azure-aks-ingress-basic.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
+
+
 ## Step-02: Create Static Public IP
 ```
 # Get the resource group name of the AKS cluster 
