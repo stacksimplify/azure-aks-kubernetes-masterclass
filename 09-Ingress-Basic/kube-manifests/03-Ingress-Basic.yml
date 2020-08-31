@@ -10,5 +10,5 @@ spec:
         backend:
           serviceName: app1-nginx-clusterip-service
           servicePort: 80
-       
+
   
