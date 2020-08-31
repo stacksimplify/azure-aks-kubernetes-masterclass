@@ -1,4 +1,4 @@
-# Deletegate Domain to Azure DNS
+# Delegate Domain to Azure DNS
 
 ## Step-01: Introduction
 - Understand about
