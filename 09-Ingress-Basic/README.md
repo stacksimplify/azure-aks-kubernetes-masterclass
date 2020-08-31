@@ -129,7 +129,7 @@ kubectl delete -f kube-manifests/
 - https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.34.1/deploy/static/provider/cloud/deploy.yaml
 - https://kubernetes.github.io/ingress-nginx/deploy/#azure
 - https://helm.sh/docs/intro/install/
-
+- https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#ingress-v1-networking-k8s-io
 
 ## Important Note
 ```
