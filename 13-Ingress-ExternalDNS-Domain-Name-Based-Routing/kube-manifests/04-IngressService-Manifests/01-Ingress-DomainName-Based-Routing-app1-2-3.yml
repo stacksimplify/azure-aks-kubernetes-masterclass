@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: ingress-app1-app2
+  name: ingress-app1-app2-app3
   annotations:
     kubernetes.io/ingress.class: "nginx"
 spec:
@@ -20,4 +20,11 @@ spec:
         backend:
           serviceName: app2-nginx-clusterip-service
           servicePort: 80  
+  - host: eapp3.kubeoncloud.com    
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: usermgmt-webapp-clusterip-service
+          servicePort: 80                                  
                      

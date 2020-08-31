@@ -2,7 +2,7 @@
 
 ## Step-01: Introduction
 - We are going to implement Domain Name based routing using Ingress
-- We are going to implement two ingress resources with 3 applications
+- We are going to use 3 applications for this.
 
 [![Image](https://www.stacksimplify.com/course-images/azure-aks-ingress-domain-name-based-routing.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
 
@@ -12,8 +12,7 @@
 - App3 Manifests
 
 ## Step-03: Review Ingress Service Manifests
-- 01-Ingress-DomainName-Based-Routing-app1-app2.yml
-- 02-Ingress-DomainName-Based-Routing-app3.yml
+- 01-Ingress-DomainName-Based-Routing-app1-2-3.yml
 
 
 ## Step-04: Deploy and Verify
