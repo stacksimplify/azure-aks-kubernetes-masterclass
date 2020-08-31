@@ -48,13 +48,13 @@ az network dns record-set a list -g dns-zones -z kubeoncloud.com
 ## Step-05: Access Applications
 ```
 # Access App1
-http://<Public-IP-created-for-Ingress>/app1/index.html
+http://eapp1.kubeoncloud.com/app1/index.html
 
 # Access App2
-http://<Public-IP-created-for-Ingress>/app2/index.html
+http://eapp2.kubeoncloud.com/app2/index.html
 
 # Access Usermgmt Web App
-http://<Public-IP-created-for-Ingress>
+http://eapp3.kubeoncloud.com
 Username: admin101
 Password: password101
 
