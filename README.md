@@ -13,5 +13,5 @@
 | 06.  | Azure Cloud Shell  |
 | 07.  | Azure Load Balancer  |
 | 08.  | Azure DNS Zones  |
-| 09. PENDING  | Azure Application Gateway  |
+| 09.  | Azure Container Registries  |
 
