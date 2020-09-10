@@ -1,7 +1,10 @@
 # Azure Container Registry ACR - Build and Push from Local Docker Desktop
 
 ## Step-01: Introduction
-- Docker Image Build and Push from Azure Cloud Shell
+- Build a Docker Image from our Local Docker on our Desktop
+- Push to Azure Container Registry
+
+[![Image](https://www.stacksimplify.com/course-images/azure-aks-container-registry-integration.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
 
 ## Step-02: Create Azure Container Registry
 - Go to Services -> Container Registries
