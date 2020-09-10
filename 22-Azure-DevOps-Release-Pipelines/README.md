@@ -3,6 +3,8 @@
 ## Step-01: Introduction
 - Understand Release Pipelines concept
 
+[![Image](https://www.stacksimplify.com/course-images/azure-devops-release-pipelines-for-azure-aks.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
+
 ## Step-02: Create Namespaces
 ```
 # Create Namespaces
