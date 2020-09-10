@@ -1,7 +1,11 @@
 # Azure DevOps - Docker Build and Push to Azure Container Registry
 
 ## Step-01: Introduction
-- Build and Push Docker Image to Azure Container Registry
+- Understand Azure DevOps Basics
+- Understand Azure Pipelines
+- Implement a pipeline to Build and Push Docker Image to Azure Container Registry
+
+[![Image](https://www.stacksimplify.com/course-images/azure-devops-pipelines-build-and-push-docker-image-to-acr.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
 
 ## Step-02: Create Github Project and Check-In Code
 - Create a Github Repo with Name: azure-aks-app1-github-dockerhub
