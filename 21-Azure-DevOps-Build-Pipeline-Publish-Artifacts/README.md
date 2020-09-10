@@ -4,6 +4,8 @@
 - We are going to Build and Push Docker Image to Azure Container Registry
 - In addition, we need to publish our Kubernetes Manifests to Azure Pipelines so that we can leverage the same in Release Pipelines.
 
+[![Image](https://www.stacksimplify.com/course-images/azure-devops-pipelines-deploy-to-aks.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
+
 ## Step-02: Create a Build Pipeline and Publish Artifacts to Azure Pipelines
 - 03-custom-pipeline-buildandpush-to-acr-and-publish-artifacts.yml
 

@@ -1,9 +1,9 @@
 # Azure DevOps - Build, Push to ACR and Deploy to AKS
 
 ## Step-01: Introduction
+- Add a Deployment Pipeline in Azure Pipelines to Deploy newly built docker image from ACR to Azure AKS
 
-
-[![Image](https://www.stacksimplify.com/course-images/azure-devops-pipelines-build-and-push-docker-image-to-acr.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
+[![Image](https://www.stacksimplify.com/course-images/azure-devops-pipelines-deploy-to-aks.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
 
 ## Step-02: Create Pipeline for Deploy to AKS
 - Go to Pipleines -> Create new Pipleine
