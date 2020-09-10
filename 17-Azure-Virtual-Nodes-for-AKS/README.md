@@ -5,6 +5,8 @@
 - Understand Virtual Kubelet Concept
 - Virtual nodes require AKS clusters with Azure CNI networking
 
+[![Image](https://www.stacksimplify.com/course-images/azure-aks-virtual-nodes.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
+
 ## Step-02: Create a new cluster using Azure Management Console
 - Create Kubernetes Cluster
 - **Basics**

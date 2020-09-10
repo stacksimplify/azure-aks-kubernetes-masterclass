@@ -15,3 +15,6 @@
 | 08.  | Azure DNS Zones  |
 | 09.  | Azure Container Registries  |
 
+
+## References
+- AKS Releases:  https://github.com/Azure/AKS/releases
