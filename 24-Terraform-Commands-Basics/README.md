@@ -2,11 +2,23 @@
 
 ## Step-01: Introduction
 - Install Terraform
+- Understand what is Terraform
 - Understand Terrafom basic commands
+  - terraform version
   - terraform init
   - terraform plan
+  - terraform validate
   - terraform apply
   - terraform destroy
+  - terraform refresh
+  - terraform graph
+  - More to be added  
+
+## Pre-requisite-1: Install Visual Studio Code (VS Code Editor)
+- https://code.visualstudio.com/download
+
+## Pre-requisite-2: Install HashiCorp Terraform plugin for VS Code
+- https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform  
 
 ## Step-02: Terraform Install
 - **Referene Link:**
@@ -51,6 +63,9 @@ az login
 
 # Initialize Terraform
 terraform init
+
+# Validate terraform templates
+terraform validate
 
 # Dry run to see what resources gets created
 terraform plan

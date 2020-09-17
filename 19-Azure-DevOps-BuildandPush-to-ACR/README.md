@@ -12,8 +12,8 @@
 - Create Local folders
 ```
 # Create a folder for all Repos we are going to create 
-mkdir azure-devops-demo-repos
-cd azure-devops-demo-repos
+mkdir azure-devops-aks-demo-repos
+cd azure-devops-aks-demo-repos
 
 # Create a Directory for Repo
 mkdir azure-aks-app1-github-dockerhub

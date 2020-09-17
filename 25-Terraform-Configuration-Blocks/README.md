@@ -1,6 +1,9 @@
 # Terraform Configuration Language - Basics
 
 ## Step-01: Introduction
+- Understand Terraform language basics by creating a simple Azure AKS cluster using terraform.
+- Understand Input Variables in Terraform
+- Understand Output Values in Terraform
 
 ## Step-02: Terraform Configuration Language 
 - Understand Resources
@@ -28,9 +31,46 @@ resource "azurerm_resource_group" "aksdev" {   # BLOCK
 ```
 
 ## Step-03: Create a very basic AKS Cluster using Terraform
+- Create a simple AKS Cluster using terraform
+- Understand AKS resource for terraform
+- Discuss about `nodepool`, `identity` and `tags` blocks in Azure AKS Resource for terraform.
+
+```
+
+# Terraform Resource Block: Create Azure Kubernetes Cluter
+resource "azurerm_kubernetes_cluster" "aksdev" {
+  name                = "aksdev-k8s"
+  location            = azurerm_resource_group.aksdev.location
+  resource_group_name = azurerm_resource_group.aksdev.name
+  dns_prefix          = "aksdev-k8s"
+
+# Terraform Block - Mandatory Item for Azure AKS Cluster
+  default_node_pool {
+    name       = "default"
+    node_count = 1
+    vm_size    = "Standard_DS2_v2"
+  }
+
+# Terraform Block - Optional Item
+  identity {
+    type = "SystemAssigned"
+  }
+
+# Terraform Block - Optional Item
+  tags = {
+    Environment = "dev"
+  }
+
+}
+```
 
 
 ## Step-04: Terraform Input Variables
+- Implement input variables in terraform for AKS Cluster
+- Understand different options available to pass input variables
+  - variables.tf
+  - arguments
+  - arguments with a file containing variables
 ### Using variables.tf
 - Define couple of input variables in `variables.tf`
 - Reference them in `main.tf`
@@ -38,12 +78,12 @@ resource "azurerm_resource_group" "aksdev" {   # BLOCK
   - Resource Group Name
   - Location or Region
 
-### Using Command Line 
+### Using Command Line (Optional)
 ```
 -var = 
 ```
 
-### Using Command Line and load from file
+### Using Command Line and load from file (Optional)
 ```
 -var-file = 
 ```
@@ -52,9 +92,24 @@ resource "azurerm_resource_group" "aksdev" {   # BLOCK
 
 
 ## Step-05: Terraform Output Values
+- Understand what are output values
+- Implement output values for AKS Cluster terraform manifests
+- Start with simple stuff and uncomment all required stuff
+```
+output "location" {
+  value = azurerm_resource_group.aksdev.location
+}
 
+output "clusterid" {
+  value = azurerm_kubernetes_cluster.aksdev.id
+}
+```
 
-
+## Step-06: Migrate Terraform backend from local to Remote (Azure Storage Accounts)
+- Understand terraform state in detail
+- Migrate terraform state from local to Remote (Azure Storage Account)
+  - Create Azure Storage Account (Azure CLI or Terraform)
+  - Migrate `terraform.tfstate` from local to Azure Storage Account Container
 
 ## Step-00: Terraform Configuration Blocks
 - Resources
@@ -242,3 +297,10 @@ Terraform will perform the following actions:
 ## References
 - https://www.terraform.io/docs/configuration/syntax.html
 - https://learn.hashicorp.com/collections/terraform/azure-get-started
+
+## Terraform State
+- https://docs.microsoft.com/en-us/azure/developer/terraform/store-state-in-azure-storage
+
+## Temp References
+- **Picture Good:** https://medium.com/developingnodes/how-to-manage-terraform-state-in-azure-blob-storage-870a80917450
+- https://learn.hashicorp.com/tutorials/terraform/azure-remote?in=terraform/azure-get-started
