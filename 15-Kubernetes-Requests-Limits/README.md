@@ -6,6 +6,19 @@
 - When you specify a resource limit for a Container, the kubelet enforces those `limits` so that the running container is not allowed to use more of that resource than the limit you set. 
 -  The kubelet also reserves at least the `request` amount of that system resource specifically for that container to use.
 
+## Pre-requisite Check (Optional)
+- We should already have our AKS Cluster UP and Running. 
+- We should have configured our AKS Cluster credentials in command line to execute `kubectl` commands
+```
+# Configure AKS Cluster Credentials from command line
+az aks get-credentials --name aksdemo1 --resource-group aks-rg1
+
+# List Worker Nodes
+kubectl get nodes
+kubectl get nodes -o wide
+```
+
+
 ## Step-02: Add Requests & Limits
 ```yaml
           # Requests & Limits    
