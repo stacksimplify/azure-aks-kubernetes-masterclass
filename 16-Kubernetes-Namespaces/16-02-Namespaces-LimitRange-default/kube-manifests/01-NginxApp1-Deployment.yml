@@ -4,6 +4,7 @@ metadata:
   name: app1-nginx-deployment
   labels:
     app: app1-nginx
+  namespace: dev3    
 spec:
   replicas: 1
   selector:
@@ -20,11 +21,3 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 80
-          # Requests & Limits   
-          resources:
-            requests:
-              cpu: "100m" 
-              memory: "128Mi"
-            limits:
-              cpu: "200m"
-              memory: "256Mi"                     
