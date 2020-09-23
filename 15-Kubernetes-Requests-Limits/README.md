@@ -8,7 +8,7 @@
 
 ## Step-02: Add Requests & Limits
 ```yaml
-          # Requests & Limits for usermgmt-webapp Container   
+          # Requests & Limits    
           resources:
             requests:
               cpu: "100m" 
