@@ -19,7 +19,8 @@ kubectl get nodes -o wide
 ```
 
 
-## Step-02: Add Requests & Limits
+## Step-02: Add Requests & Limits & Review k8s Manifests
+- **Folder:** kube-manifests-v1
 ```yaml
           # Requests & Limits    
           resources:
