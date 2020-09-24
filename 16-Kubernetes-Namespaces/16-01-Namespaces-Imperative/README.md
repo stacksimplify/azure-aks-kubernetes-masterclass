@@ -1,3 +1,7 @@
+---
+title: Azure AKS Kubernetes  Namespaces Introduction
+description: Understand Kubernetes Namespace basics on Azure Kubernetes Service AKS Cluster
+---
 # Kubernetes Namespaces - Imperative using kubectl
 
 ## Step-01: Introduction
@@ -5,6 +9,13 @@
 - Resource names should be unique in a namespace
 - We can use namespaces to create multiple environments like dev, staging and production etc
 - Kubernetes will always list the resources from `default namespace` unless we provide exclusively from which namespace we need information from.
+
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-namespaces-1.png "Azure Kubernetes Service - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-namespaces-1.png){:target="_blank"}  
+
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-namespaces-2.png "Azure Kubernetes Service - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-namespaces-2.png){:target="_blank"}  
+
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-namespaces-3.png "Azure Kubernetes Service - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-namespaces-3.png){:target="_blank"}  
+
 
 ## Step-02: Namespaces Generic - Deploy in Dev1 and Dev2
 ### Create Namespace

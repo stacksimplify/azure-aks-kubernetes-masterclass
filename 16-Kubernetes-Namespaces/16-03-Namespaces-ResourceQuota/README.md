@@ -1,4 +1,11 @@
+---
+title: Azure AKS Kubernetes Namespaces Resource Quota
+description: Understand Kubernetes Namespaces Resource Quota Concept Azure Kubernetes Service 
+---
+
 # Kubernetes Namespaces - ResourceQuota - Declarative using YAML
+
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-namespaces-resource-quota.png "Azure Kubernetes Service - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-namespaces-resource-quota.png){:target="_blank"}  
 
 ## Step-01: Create Namespace manifest
 - **Important Note:** File name starts with `00-`  so that when creating k8s objects namespace will get created first so it don't throw an error.

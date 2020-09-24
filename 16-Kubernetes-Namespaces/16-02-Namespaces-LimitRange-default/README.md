@@ -1,4 +1,12 @@
+---
+title: Azure AKS Kubernetes Namespaces Limit Range
+description: Understand Kubernetes Namespaces Limit Range Concept Azure Kubernetes Service 
+---
 # Kubernetes Namespaces - LimitRange - Declarative using YAML
+
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-namespaces-limit-range.png "Azure Kubernetes Service - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-namespaces-limit-range.png){:target="_blank"}  
+
+
 ## Step-01: Create Namespace manifest
 - **Important Note:** File name starts with `00-`  so that when creating k8s objects namespace will get created first so it don't throw an error.
 ```yaml
@@ -80,11 +88,6 @@ http://<Public-IP-from-List-Services-Output>/app1/index.html
 # Delete All
 kubectl delete -f kube-manifests/
 ```
-
-
-
-
-
 
 
 ## References:
