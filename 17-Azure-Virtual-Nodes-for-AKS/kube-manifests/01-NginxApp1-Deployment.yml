@@ -4,9 +4,8 @@ metadata:
   name: app1-nginx-deployment
   labels:
     app: app1-nginx
-  namespace: dev3    
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: app1-nginx
@@ -18,6 +17,17 @@ spec:
       containers:
         - name: app1-nginx
           image: stacksimplify/kube-nginxapp1:1.0.0
-          imagePullPolicy: Always
           ports:
             - containerPort: 80
+# To schedule pods on Azure Virtual Nodes            
+      nodeSelector:
+        kubernetes.io/role: agent
+        beta.kubernetes.io/os: linux
+        type: virtual-kubelet
+      tolerations:
+      - key: virtual-kubelet.io/provider
+        operator: Exists
+      - key: azure.com/aci
+        effect: NoSchedule            
+
+   
