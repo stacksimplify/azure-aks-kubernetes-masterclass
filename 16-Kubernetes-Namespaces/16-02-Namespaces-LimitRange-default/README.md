@@ -7,6 +7,19 @@ description: Understand Kubernetes Namespaces Limit Range Concept Azure Kubernet
 [![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-namespaces-limit-range.png "Azure Kubernetes Service - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-namespaces-limit-range.png){:target="_blank"}  
 
 
+## Pre-requisite Check (Optional)
+- We should already have our AKS Cluster UP and Running. 
+- We should have configured our AKS Cluster credentials in command line to execute `kubectl` commands
+```
+# Configure AKS Cluster Credentials from command line
+az aks get-credentials --name aksdemo1 --resource-group aks-rg1
+
+# List Worker Nodes
+kubectl get nodes
+kubectl get nodes -o wide
+```
+
+
 ## Step-01: Create Namespace manifest
 - **Important Note:** File name starts with `00-`  so that when creating k8s objects namespace will get created first so it don't throw an error.
 ```yaml

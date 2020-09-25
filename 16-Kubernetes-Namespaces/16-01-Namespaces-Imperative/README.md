@@ -16,6 +16,18 @@ description: Understand Kubernetes Namespace basics on Azure Kubernetes Service 
 
 [![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-namespaces-3.png "Azure Kubernetes Service - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-namespaces-3.png){:target="_blank"}  
 
+## Pre-requisite Check (Optional)
+- We should already have our AKS Cluster UP and Running. 
+- We should have configured our AKS Cluster credentials in command line to execute `kubectl` commands
+```
+# Configure AKS Cluster Credentials from command line
+az aks get-credentials --name aksdemo1 --resource-group aks-rg1
+
+# List Worker Nodes
+kubectl get nodes
+kubectl get nodes -o wide
+```
+
 
 ## Step-02: Namespaces Generic - Deploy in Dev1 and Dev2
 ### Create Namespace
