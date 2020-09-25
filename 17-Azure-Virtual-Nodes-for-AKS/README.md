@@ -1,20 +1,19 @@
 ---
-title: Azure AKS Kubernetes Namespaces Resource Quota
-description: Understand Kubernetes Namespaces Resource Quota Concept Azure Kubernetes Service 
+title: Azure Kubernetes Service AKS Virtual Nodes
+description: Create Azure Kubernetes Services (AKS) cluster to use virtual nodes 
 ---
 
-# Azure Virtual Nodes for Azure AKS (Serverless)
+# Azure Kubernetes Service AKS Virtual Nodes (Serverless)
 
 ## Step-01: Introduction
 - Understand Azure Virtual Nodes
-- Understand Virtual Kubelet Concept
-- Virtual nodes require AKS clusters with Azure CNI networking
+- **Important Note:** Virtual nodes require AKS clusters with Azure CNI networking
 
 [![Image](https://www.stacksimplify.com/course-images/azure-aks-virtual-nodes.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1){:target="_blank"}  
 
 ## Step-02: Create a new cluster using Azure Management Console
 - **Basics**
-  - **Subscription:** Free Trial
+  - **Subscription:** Free Trial or Pay-as-you-go
   - **Resource Group:** Creat New: aks-rg2
   - **Kubernetes Cluster Name:** aksdemo2
   - **Region:** (US) Central US
@@ -42,8 +41,12 @@ description: Understand Kubernetes Namespaces Resource Quota Concept Azure Kuber
 
 ## Step-03: Verify Nodes
 ```
+# Configure Command Line Credentials
+az aks get-credentials --name aksdemo2 --resource-group aks-rg2
+
 # Verify Nodes
-kubectl get nodes
+kubectl get nodes 
+kubectl get nodes -o wide
 ```
 
 ## Step-04: Update Deployment Manifest to Schedule Pod on Virtual Nodes
