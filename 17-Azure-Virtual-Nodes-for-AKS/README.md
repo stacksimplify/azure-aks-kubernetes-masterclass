@@ -6,7 +6,9 @@ description: Create Azure Kubernetes Services (AKS) cluster to use virtual nodes
 # Azure Kubernetes Service AKS Virtual Nodes (Serverless)
 
 ## Step-01: Introduction
-- Understand Azure Virtual Nodes
+- What is [Virtual Kubelet](https://github.com/virtual-kubelet/virtual-kubelet)?
+- What is [Azure Container Instances - ACI](https://docs.microsoft.com/en-us/azure/container-instances/)?
+- What are [AKS Virtual Nodes](https://docs.microsoft.com/en-us/azure/aks/virtual-nodes-portal)?
 - **Important Note:** Virtual nodes require AKS clusters with Azure CNI networking
 
 [![Image](https://www.stacksimplify.com/course-images/azure-aks-virtual-nodes.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1){:target="_blank"}  
