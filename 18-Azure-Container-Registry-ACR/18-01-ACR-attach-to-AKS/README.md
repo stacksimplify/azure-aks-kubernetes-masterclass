@@ -1,6 +1,6 @@
 ---
-title: Integrate Azure Container Registry with AKS
-description: Deploy Applications in mixed mode to Virtual Nodes and AKS Nodepools
+title: Integrate Azure Container Registry ACR with AKS
+description: Build a Docker Image, Push to Azure Container Registry and  Attach ACR with AKS 
 ---
 
 # Azure Container Registry ACR - Build and Push from Local Docker Desktop

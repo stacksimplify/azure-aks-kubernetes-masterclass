@@ -11,7 +11,7 @@ description: Pull Docker Images from Azure Container Registry using Service Prin
 - Build a Docker Image from our Local Docker on our Desktop
 - Push to Azure Container Registry
 - Create Service Principal and using that create Kubernetes Secret. 
-- Using Kubernetes Secret associated to Pod Specificaiton, pull the docker image from Azure Container Registry and Deploy on Azure AKS Cluster
+- Using Kubernetes Secret associated to Pod Specificaiton, pull the docker image from Azure Container Registry and Schedule on Azure AKS NodePools
 
 
 [![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-and-acr-nodepools.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-and-acr-nodepools.png)
