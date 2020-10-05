@@ -1,9 +1,16 @@
+---
+title: Azure AKS Virtual Nodes Mixed Mode Deployments
+description: Deploy Applications in mixed mode to Virtual Nodes and AKS Nodepools
+---
+
 # Azure AKS Virtual Nodes Mixed Mode Deployments
 
 ## Step-01: Introduction
 - We are going to deploy MySQL on regular AKS nodepools (default system nodepool)
 - We are going to deploy **User Management Web Application** on Azure Virtual Nodes
 - All this we are going to do using NodeSelectors concept in Kubernetes
+
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-virtual-nodes-mixed-mode-deployments.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-virtual-nodes-mixed-mode-deployments.png)
 
 ## Step-02: Review Kubernetes Manifests
 ### MySQL Deployment 
@@ -56,13 +63,8 @@ Password: password101
 ```
 # Delete App
 kubectl delete -f kube-manifests/
+
+# Delete this new cluster created for Virtual Nodes (if you want to)
+az aks delete --name aksdemo2 --resource-group aks-rg2
 ```
 
-
-```
-az aks nodepool list --cluster-name aksdemo2 --resource-group aks-rg2 --output table
-az aks nodepool show --cluster-name aksdemo2 --resource-group aks-rg2 --name agentpool
-
-kubectl exec --stdin --tty usermgmt-webapp-57c6949bff-blqlf -- /bin/bash
-
-```

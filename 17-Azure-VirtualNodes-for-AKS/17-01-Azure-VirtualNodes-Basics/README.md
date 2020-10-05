@@ -11,6 +11,8 @@ description: Create Azure Kubernetes Services (AKS) cluster to use virtual nodes
 - What are [AKS Virtual Nodes](https://docs.microsoft.com/en-us/azure/aks/virtual-nodes-portal)?
 - **Important Note:** Virtual nodes require AKS clusters with [Azure CNI networking](https://docs.microsoft.com/en-us/azure/aks/configure-azure-cni)
 
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-virtual-nodes.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-virtual-nodes.png)
+
  ## Step-02: Create a new cluster using Azure Management Console
 - **Basics**
   - **Subscription:** Free Trial or Pay-as-you-go
