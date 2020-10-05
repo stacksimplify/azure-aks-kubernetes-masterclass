@@ -118,12 +118,8 @@ az aks delete --name aksdemo2 --resource-group aks-rg2
 ```
 
 ## References
-## Azure Virtual Nodes - Limitations
-- https://docs.microsoft.com/en-us/azure/aks/virtual-nodes-cli#known-limitations
-
-## Virtual kubelet
-- https://github.com/virtual-kubelet/virtual-kubelet
-- https://github.com/virtual-kubelet/azure-aci/blob/master/README.md
-
-## Virtual Node Autoscale
-- https://github.com/Azure-Samples/virtual-node-autoscale
+- [Azure Virtual Nodes - Limitations](https://docs.microsoft.com/en-us/azure/aks/virtual-nodes-cli#known-limitations
+)
+- [Virtual kubelet - Referece - 1](https://github.com/virtual-kubelet/virtual-kubelet)
+- [Virtual kubelet - Referece - 2](https://github.com/virtual-kubelet/azure-aci/blob/master/README.md)
+- [Virtual Node Autoscale - Optional & legacy](https://github.com/Azure-Samples/virtual-node-autoscale)
