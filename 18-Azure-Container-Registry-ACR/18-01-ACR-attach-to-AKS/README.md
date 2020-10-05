@@ -5,13 +5,17 @@ description: Build a Docker Image, Push to Azure Container Registry and  Attach 
 
 # Integrate Azure Container Registry ACR with AKS
 
+## Step-00: Pre-requisites
+- We should have Azure AKS Cluster Up and Running.
+- We have created a new aksdemo2 cluster as part of Azure Virtual Nodes demo in previous section.
+- We are going to leverage the same cluster for all 3 demos planned for Azure Container Registry and AKS.
+
 ## Step-01: Introduction
 - Build a Docker Image from our Local Docker on our Desktop
 - Tag the docker image in the required ACR Format
 - Push to Azure Container Registry
 - Attach ACR with AKS
 - Deploy kubernetes workloads and see if the docker image got pulled automatically from ACR we have created. 
-
 
 
 [![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-and-acr.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-and-acr.png)
