@@ -14,7 +14,7 @@ description: Deploy Applications in mixed mode to Virtual Nodes and AKS Nodepool
 
 ## Step-02: Review Kubernetes Manifests
 ### MySQL Deployment 
-- **File Name:** 04-mysql-deployment.yml**
+- **File Name:** 04-mysql-deployment.yml
 - No changes in it, MySQL pod will get scheduled on default AKS nodepool
 
 ### User Management Web Application Deployment
