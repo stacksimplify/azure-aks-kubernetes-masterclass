@@ -60,7 +60,7 @@ docker images
 docker images kube-nginx-acr:v1
 ```
 
-## Step-03: Run locally and test
+## Step-03: Run Docker Container locally and test
 ```
 # Run locally and Test
 docker run --name kube-nginx-acr --rm -p 80:80 -d kube-nginx-acr:v1
