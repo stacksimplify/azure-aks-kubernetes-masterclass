@@ -168,5 +168,8 @@ echo $ACR_NAME
 
 # Detach ACR with AKS Cluster
 az aks update -n aksdemo1 -g aks-rg2 --detach-acr $ACR_NAME
+
+# Delete ACR Repository
+Go To Services -> Container Registries -> acrforaksdemo2 -> Delete it
 ```
 
