@@ -48,6 +48,7 @@ kubectl logs -f $(kubectl get po -n kube-system | egrep -o 'aci-connector-linux-
 - Click on **Create**
 
 ## Step-02: Build Docker Image Locally
+- Review Docker Manigests 
 ```
 # Change Directory
 cd docker-manifests
