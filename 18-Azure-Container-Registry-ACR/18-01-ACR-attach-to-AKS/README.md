@@ -9,6 +9,20 @@ description: Build a Docker Image, Push to Azure Container Registry and  Attach 
 - We should have Azure AKS Cluster Up and Running.
 - We have created a new aksdemo2 cluster as part of Azure Virtual Nodes demo in previous section.
 - We are going to leverage the same cluster for all 3 demos planned for Azure Container Registry and AKS.
+```
+# Configure Command Line Credentials
+az aks get-credentials --name aksdemo2 --resource-group aks-rg2
+
+# Verify Nodes
+kubectl get nodes 
+kubectl get nodes -o wide
+
+# Verify aci-connector-linux
+kubectl get pods -n kube-system
+
+# Verify logs of ACI Connector Linux
+kubectl logs -f $(kubectl get po -n kube-system | egrep -o 'aci-connector-linux-[A-Za-z0-9-]+') -n kube-system
+```
 
 ## Step-01: Introduction
 - Build a Docker Image from our Local Docker on our Desktop
