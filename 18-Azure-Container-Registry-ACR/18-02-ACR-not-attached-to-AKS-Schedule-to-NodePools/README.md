@@ -40,7 +40,7 @@ kubectl logs -f $(kubectl get po -n kube-system | egrep -o 'aci-connector-linux-
 - Go to Services -> Container Registries
 - Click on **Add**
 - Subscription: StackSimplify-Paid-Subsciption
-- Resource Group: acr-rg1
+- Resource Group: acr-rg2
 - Registry Name: acrdemo2ss   (NAME should be unique across Azure Cloud)
 - Location: Central US
 - SKU: Basic  (Pricing Note: $0.167 per day)
@@ -111,7 +111,7 @@ docker push $ACR_REGISTRY/$ACR_NAMESPACE/$ACR_IMAGE_NAME:$ACR_IMAGE_TAG
 ## Step-05: Create Service Principal to access Azure Container Registry
 - Review file: shell-script/generate-service-principal.sh
 - Update ACR_NAME with your container registry name
-- Update SERVICE_PRINCIPAL_NAME
+- Update SERVICE_PRINCIPAL_NAME as desired
 ```sh
 #!/bin/bash
 
@@ -120,7 +120,7 @@ docker push $ACR_REGISTRY/$ACR_NAMESPACE/$ACR_IMAGE_NAME:$ACR_IMAGE_TAG
 # SERVICE_PRINCIPAL_NAME: Must be unique within your AD tenant
 #ACR_NAME=<container-registry-name>
 ACR_NAME=acrdemo2ss
-SERVICE_PRINCIPAL_NAME=acr-service-principal
+SERVICE_PRINCIPAL_NAME=acr-sp-demo
 
 # Obtain the full registry ID for subsequent command args
 ACR_REGISTRY_ID=$(az acr show --name $ACR_NAME --query id --output tsv)
