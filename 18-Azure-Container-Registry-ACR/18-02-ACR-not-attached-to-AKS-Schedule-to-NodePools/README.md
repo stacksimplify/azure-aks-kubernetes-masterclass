@@ -1,6 +1,6 @@
 ---
 title: Azure AKS Pull ACR using Service Principal
-description: Pull Docker Images from Azure Container Registry using Service Principal to Azure Kubernetes AKS Cluster
+description: Pull Docker Images from Azure Container Registry using Service Principal to Azure AKS Node pools
 ---
 
 # Azure AKS Pull Docker Images from ACR using Service Principal
