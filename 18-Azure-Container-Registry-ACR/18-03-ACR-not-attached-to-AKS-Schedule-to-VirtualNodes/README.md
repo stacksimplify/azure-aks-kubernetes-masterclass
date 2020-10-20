@@ -16,12 +16,74 @@ description: Pull Docker Images from Azure Container Registry using Service Prin
 [![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-and-acr-virtualnodes.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-and-acr-virtualnodes.png)
 
 
-## Step-02: Review & Update Deployment Manifest with Image Name, ImagePullSecrets
+
+## Step-02: Build Docker Image Locally
+```
+# Change Directory
+cd docker-manifests
+ 
+# Docker Build
+docker build -t acr-app3:v1 .
+
+# List Docker Images
+docker images
+docker images acr-app3:v1
+```
+
+## Step-03: Run locally and test
+```
+# Run locally and Test
+docker run --name acr-app3 --rm -p 80:80 -d acr-app3:v1
+
+# Access Application locally
+http://localhost
+
+# Stop Docker Image
+docker stop acr-app3
+```
+
+## Step-04: Enable Docker Login for ACR Repository 
+- Go to Services -> Container Registries -> acrdemo2ss
+- Go to **Access Keys**
+- Click on **Enable Admin User**
+- Make a note of Username and password
+
+## Step-05: Push Docker Image to Azure Container Registry
+
+### Build, Test Locally, Tag and Push to ACR
+```
+# Export Command
+export ACR_REGISTRY=acrdemo2ss.azurecr.io
+export ACR_NAMESPACE=app3
+export ACR_IMAGE_NAME=acr-app3
+export ACR_IMAGE_TAG=v1
+echo $ACR_REGISTRY, $ACR_NAMESPACE, $ACR_IMAGE_NAME, $ACR_IMAGE_TAG
+
+# Login to ACR
+docker login $ACR_REGISTRY
+
+# Tag
+docker tag acr-app3:v1  $ACR_REGISTRY/$ACR_NAMESPACE/$ACR_IMAGE_NAME:$ACR_IMAGE_TAG
+It replaces as below
+docker tag acr-app3:v1 acrdemo2ss.azurecr.io/app3/acr-app3:v1
+
+# List Docker Images to verify
+docker images acr-app3:v1
+docker images $ACR_REGISTRY/$ACR_NAMESPACE/$ACR_IMAGE_NAME:$ACR_IMAGE_TAG
+
+# Push Docker Images
+docker push $ACR_REGISTRY/$ACR_NAMESPACE/$ACR_IMAGE_NAME:$ACR_IMAGE_TAG
+```
+### Verify Docker Image in ACR Repository
+- Go to Services -> Container Registries -> acrdemo2ss
+- Go to **Repositories** -> **app3/acr-app3**
+
+## Step-06: Review & Update Deployment Manifest with Image Name, ImagePullSecrets
 ```yaml
     spec:
       containers:
         - name: acrdemo-localdocker
-          image: acrdemo2ss.azurecr.io/app2/acr-app2:v1
+          image: acrdemo2ss.azurecr.io/app3/acr-app3:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -29,7 +91,7 @@ description: Pull Docker Images from Azure Container Registry using Service Prin
         - name: acrdemo2ss-secret           
 ```
 
-## Step-03: Review & Update Deployment Manifest with NodeSelector
+## Step-07: Review & Update Deployment Manifest with NodeSelector
 ```yaml
 # To schedule pods on Azure Virtual Nodes            
       nodeSelector:
@@ -43,7 +105,7 @@ description: Pull Docker Images from Azure Container Registry using Service Prin
         effect: NoSchedule   
 ```
 
-## Step-04: Deploy to AKS and Test
+## Step-08: Deploy to AKS and Test
 ```
 # Deploy
 kubectl apply -f kube-manifests/
