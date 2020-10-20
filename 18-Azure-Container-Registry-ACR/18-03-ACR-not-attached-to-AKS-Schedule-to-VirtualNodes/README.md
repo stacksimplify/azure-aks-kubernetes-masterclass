@@ -16,7 +16,6 @@ description: Pull Docker Images from Azure Container Registry using Service Prin
 [![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-and-acr-virtualnodes.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-and-acr-virtualnodes.png)
 
 
-
 ## Step-02: Build Docker Image Locally
 ```
 # Change Directory
