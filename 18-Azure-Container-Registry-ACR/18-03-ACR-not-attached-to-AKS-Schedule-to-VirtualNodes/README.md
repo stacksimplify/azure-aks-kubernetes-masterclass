@@ -123,4 +123,10 @@ http://<External-IP-from-get-service-output>
 ```
 # Delete Applications
 kubectl delete -f kube-manifests/
+
+# Delete Container Registry
+Go to Services -> Container Registries -> acrdemo2ss -> Delete
+
+# Delete AKS Cluster
+Go to Services -> Resource Groups -> aks-rg2 -> Delete
 ```

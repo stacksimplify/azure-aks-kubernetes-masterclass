@@ -15,7 +15,7 @@ spec:
         app: acrdemo2ss
     spec:
       containers:
-        - name: acrdemo2ss
+        - name: acrdemo2ss-vn
           image: acrdemo2ss.azurecr.io/app3/acr-app3:v1 # Update Image Name 
           imagePullPolicy: Always
           ports:
