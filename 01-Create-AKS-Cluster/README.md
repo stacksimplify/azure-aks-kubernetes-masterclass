@@ -90,6 +90,9 @@ kubectl get all --all-namespaces
 # Install Azure CLI (MAC)
 brew update && brew install azure-cli
 
+# Login to Azure
+az login
+
 # Install Azure AKS CLI
 az aks install-cli
 
