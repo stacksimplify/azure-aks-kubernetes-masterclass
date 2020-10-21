@@ -5,8 +5,31 @@
 - In addition, we need to publish our Kubernetes Manifests to Azure Pipelines so that we can leverage the same in Release Pipelines.
 
 
-
 ## Step-02: Create a Build Pipeline and Publish Artifacts to Azure Pipelines
+- Go to Pipelines -> Create New Pipeline
+- Where is your Code?: Github  
+- Select Repository: azure-devops-github-acr-aks-app1
+- Configure Your Pipeline: Docker (Build and Push Image to Azure Container Registry )
+- Select an Azure Subscription: stacksimplify-paid-subscription
+- Continue (Login as admin user)
+- Container Registry: aksdevopsacr
+- Image Name: app1-nginx
+- Dockerfile: $(Build.SourcesDirectory)/Dockerfile
+- Click on **Validate and Configure**
+- Change Pipeline Name: 01-docker-build-and-push-to-acr-pipeline.yml
+- Click on **Save and Run**
+- Commit Message: Pipeline-1: Docker Build and Push to ACR
+- Commit directly to master branch: check
+- Click on **Save and Run**
+
+ ## Step-03: Verify Build and Deploy logs
+ - Build stage should pass. Verify logs
+ - Deploy stage should pass. Verify logs
+
+
+
+
+
 - 03-custom-pipeline-buildandpush-to-acr-and-publish-artifacts.yml
 
 ```yaml
