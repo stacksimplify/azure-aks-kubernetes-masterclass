@@ -1,0 +1,85 @@
+# Stages
+# Stage-1:
+  # Task-1: Build Docker Image and push to Docker Registry
+  # Task-2: Copy kube-manifest files to Build Artifact Directory
+  # Task-3: Publish build articats to Azure Pipelines
+  # Task-4: Verify contents in System Source Directory 
+  # Task-5: Verify contents in Build Artifact Directory 
+# Stage-2:
+  # Task-1: Download Build Artifacts
+  # Task-2: Deploy to Kubernetes
+
+trigger:
+- master
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+# Build Stage
+- stage: Build
+  displayName: Build stage
+  jobs:  
+  - job: Build
+    displayName: Build job
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    # List files from System Default Working Directory
+    - bash: echo Initial Source Directory Files; ls -R $(System.DefaultWorkingDirectory);
+    - bash: echo Image Tag $(Build.BuildId)   
+    # Task: Docker (Build and Push Images to Docker Registry)
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'DockerHubStackSimplify'
+        repository: 'stacksimplify/aks-github-dockerhub-nginxapp'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
+    - bash: echo Before copying to Build Artifact Directory; ls -R $(Build.ArtifactStagingDirectory)        
+    # Task: Copy files (Copy files from a source folder to target folder)    
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)/kube-manifests'
+        Contents: '**'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+        OverWrite: true
+    # List files from Build Artifact Staging Directory - After Copy
+    - bash: echo After copying to Build Artifact Directory; ls -R $(Build.ArtifactStagingDirectory)        
+    # Task: Publish build artifacts (Publish build to Azure Pipelines)    
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'kube-manifests'
+        publishLocation: 'Container'
+    - bash: echo After Published Build Artifacts to Pipeline; ls -R $(Build.ArtifactStagingDirectory)                
+
+# Deploy Stage
+- stage: Deploy
+  displayName: Deploy image
+  jobs:  
+  - job: Deploy
+    displayName: Deploy
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - bash: echo Before Download build Artifacts Step; ls -R $(Build.ArtifactStagingDirectory)                
+    # Task: Download build artifacts (Download files that were saved as artifacts of a completed build)
+    - task: DownloadBuildArtifacts@0
+      inputs:
+        buildType: 'current'
+        downloadType: 'single'
+        artifactName: 'kube-manifests'
+        itemPattern: '**/*.yml'
+        downloadPath: '$(System.ArtifactsDirectory)'                 
+    - bash: echo After Download build Artifacts Step; ls -R $(Build.ArtifactStagingDirectory)
+    # Task: Deploy to Kubernetes (User Kubernetes manifest files to deploy to AKS cluster)
+    - task: KubernetesManifest@0
+      inputs:
+        action: 'deploy'
+        kubernetesServiceConnection: 'k8s-aksdemo1-svc-connection'
+        namespace: 'default'
+        manifests: '$(System.ArtifactsDirectory)/kube-manifests/*.yml'
+        containers: 'stacksimplify/aks-github-dockerhub-nginxapp:$(tag)'
+
+

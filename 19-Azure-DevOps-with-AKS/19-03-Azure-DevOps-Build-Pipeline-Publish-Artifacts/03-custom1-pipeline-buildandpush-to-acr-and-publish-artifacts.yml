@@ -10,9 +10,9 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '96138b7c-fce8-4423-abc5-030953a28d07'
-  imageRepository: 'app1nginxaks'
-  containerRegistry: 'acrforaksdemo1.azurecr.io'
+  dockerRegistryServiceConnection: '3f60d734-2d68-41cf-ae78-e22d45f01a8e'
+  imageRepository: 'customaksnginxapp1'
+  containerRegistry: 'aksdevopsacr.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
   
@@ -37,8 +37,12 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-    - bash: echo Before copying to Build Artifact Directory; ls -R $(Build.ArtifactStagingDirectory)        
-    # Task: Copy files (Copy files from a source folder to target folder)    
+## Publish Artifacts pipeline code in addition to Build and Push          
+    - bash: echo Contents in System Default Working Directory; ls -R $(System.DefaultWorkingDirectory)        
+    - bash: echo Before copying Contents in Build Artifact Directory; ls -R $(Build.ArtifactStagingDirectory)        
+    # Task-2: Copy files (Copy files from a source folder to target folder)
+    # Source Directory: $(System.DefaultWorkingDirectory)/kube-manifests
+    # Target Directory: $(Build.ArtifactStagingDirectory)
     - task: CopyFiles@2
       inputs:
         SourceFolder: '$(System.DefaultWorkingDirectory)/kube-manifests'
@@ -46,12 +50,11 @@ stages:
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
         OverWrite: true
     # List files from Build Artifact Staging Directory - After Copy
-    - bash: echo After copying to Build Artifact Directory; ls -R $(Build.ArtifactStagingDirectory)        
-    # Task: Publish build artifacts (Publish build to Azure Pipelines)    
+    - bash: echo After copying to Build Artifact Directory; ls -R $(Build.ArtifactStagingDirectory)  
+    # Task-3: Publish build artifacts (Publish build to Azure Pipelines)           
     - task: PublishBuildArtifacts@1
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'kube-manifests'
         publishLocation: 'Container'
-    - bash: echo After Published Build Artifacts to Pipeline; ls -R $(Build.ArtifactStagingDirectory)                
 

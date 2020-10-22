@@ -13,7 +13,11 @@
 | 06.  | Azure Cloud Shell  |
 | 07.  | Azure Load Balancer  |
 | 08.  | Azure DNS Zones  |
-| 09.  | Azure Container Registries  |
+| 09.  | Azure Container Registries ACR  |
+| 10.  | Azure Container Registries ACR with Azure Service Principal |
+| 11.  | Azure DevOps - Build Pipelines with ACR & Github Repositories |
+| 12.  | Azure DevOps - Release Pipelines with AKS|
+
 
 ## Kubernetes Concepts Covered
 
