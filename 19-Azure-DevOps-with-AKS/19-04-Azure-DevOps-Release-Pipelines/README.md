@@ -1,15 +1,19 @@
-# Azure DevOps -  Release Pipelines
+---
+title: Azure DevOps Release Pipelines for AKS Kubernetes
+description: Create Azure Release Pipeline to Deploy Kubernetes Workloads to Dev, QA, Staging and Prod Environments
+---
+# Azure DevOps Release Pipelines
 
 ## Step-01: Introduction
 - Understand Release Pipelines concept
 - Create Release Pipelines to Deploy to Kubernetes Dev, QA, Staging and Prod namespaces
 - Add Pre-Deployment email approval for QA, Staging and Prod environment deployments
 
-[![Image](https://www.stacksimplify.com/course-images/azure-devops-release-pipelines-for-azure-aks.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
+[![Image](https://stacksimplify.com/course-images/azure-devops-release-pipelines-for-azure-aks.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-devops-release-pipelines-for-azure-aks.png)
 
-[![Image](https://www.stacksimplify.com/course-images/azure-devops-release-pipelines-demo-for-azure-aks.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
+[![Image](https://stacksimplify.com/course-images/azure-devops-release-pipelines-demo-for-azure-aks.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-devops-release-pipelines-demo-for-azure-aks.png)
 
-[![Image](https://www.stacksimplify.com/course-images/azure-devops-release-pipelines-releases-demo-for-azzure-aks.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
+[![Image](https://stacksimplify.com/course-images/azure-devops-release-pipelines-releases-demo-for-azzure-aks.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-devops-release-pipelines-releases-demo-for-azzure-aks.png)
 
 ## Step-02: Create Namespaces
 ```
@@ -197,6 +201,7 @@ kubectl get svc -n dev
 # Access Application
 http://<Public-IP-from-Get-Service-Output>
 ```
+- Verify Github Commit Id on Github Repository and Container Registry
 
 ## Step-10: Create QA, Staging and Prod Release Stages
 - Create QA, Staging and Prod Stages

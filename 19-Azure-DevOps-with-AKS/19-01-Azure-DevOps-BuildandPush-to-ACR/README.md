@@ -1,4 +1,9 @@
-# Azure DevOps - Docker Build and Push to Azure Container Registry
+---
+title: Azure DevOps Build, Push Docker Image to ACR
+description: Create Azure Pipeline to Build and Push Docker Image to Azure Container Registry  
+---
+
+# Azure DevOps - Build and Push Docker Image to Azure Container Registry
 
 ## Step-01: Introduction
 - Understand Azure DevOps Basics

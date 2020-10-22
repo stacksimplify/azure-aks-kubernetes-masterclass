@@ -1,4 +1,8 @@
-# Azure DevOps - Build Pipeline - Publish Artifacts
+---
+title: Azure DevOps Create Starter Pipeline
+description: Create Azure Pipeline to Build and Push Docker Image to Azure Container Registry using starter pipeline
+---
+# Azure DevOps Create Starter Pipeline
 
 ## Step-01: Introduction
 
@@ -13,6 +17,13 @@
 - **Task-1:** Build this task also from scratch
 - **Task-2:** Copy files from System Default Working Directory to Build Artifact Staging Directory
 - **Task-3:** Publish Artifacts to Azure Pipelines
+
+[![Image](https://stacksimplify.com/course-images/azure-devops-pipelines-key-concepts-1.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-devops-pipelines-key-concepts-1.png)
+
+[![Image](https://stacksimplify.com/course-images/azure-devops-pipelines-key-concepts-2.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-devops-pipelines-key-concepts-1.png)
+
+[![Image](https://stacksimplify.com/course-images/azure-devops-starter-pipeline.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-devops-starter-pipeline.png)
+
 
 ## Step-02: Task-1: Create a Build Pipeline and Publish Artifacts to Azure Pipelines
 - Go to Pipelines -> Create New Pipeline
