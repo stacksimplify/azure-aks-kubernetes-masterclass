@@ -97,6 +97,12 @@
 - Understand Pipeline concepts
   - Stages -> Stage -> Jobs -> Job -> Steps -> Task1, Task2, Task3
 - Change Pipeline name to  04-custom2-pipeline-build-from-scratch.yml
+
+### Discuss about tags
+- Tag1: $(Build.BuildId)
+- Tag2: $(Build.SourceVersion)
+
+
 ```yaml
 # Stages
 # Stage-1:
@@ -132,6 +138,7 @@ stages:
         Dockerfile: '**/Dockerfile'
         tags: |
           $(tag)
+          $(Build.SourceVersion)
 ## Publish Artifacts pipeline code in addition to Build and Push          
     - bash: echo Contents in System Default Working Directory; ls -R $(System.DefaultWorkingDirectory)        
     - bash: echo Before copying Contents in Build Artifact Directory; ls -R $(Build.ArtifactStagingDirectory)        
