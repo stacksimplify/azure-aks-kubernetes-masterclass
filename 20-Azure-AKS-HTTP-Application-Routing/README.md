@@ -1,20 +1,49 @@
 # Azure AKS - Enable HTTP Application Routing Feature
 
-## Step-01:
+## Step-01: Introduction
+- Enable HTTP Application Routing Add On
 
 ## Step-02: Create AKS Cluster with HTTP Application Routing Enabled
 - Create Cluster with HTTP Application Routing Enabled
 - In Networking tab, enable HTTP Application Routing
 - Rest all is same
+- **Basics**
+  - **Subscription:** Free Trial or Pay-as-you-go
+  - **Resource Group:** Creat New: aks-rg3
+  - **Kubernetes Cluster Name:** aksdemo3
+  - **Region:** (US) Central US
+  - **Kubernetes Version:** Select what ever is latest stable version
+  - **Node Size:** Standard DS2 v2 (Default one)
+  - **Node Count:** 1
+- **Node Pools**
+  - **Virtual Nodes:** Enabled / Disabled (Our choice)
+  - leave to defaults
+- **Authentication**
+  - Authentication method: 	System-assigned managed identity
+  - Rest all leave to defaults
+- **Networking**
+  - **Network Configuration:** Advanced
+  - **Network Policy:** Azure
+  - **HTTP Application Routing:** Enabled
+  - Rest all leave to defaults
+- **Integrations**
+  - Azure Container Registry: None
+  - leave to defaults
+- **Tags**
+  - leave to defaults
+- **Review + Create**
+  - Click on **Create**
 
-## Step-03: For existing clusters, enable HTTP Application Routing
+## Step-03: Configure AKS Credentials for kubectl
 ```
-# Enable HTTP Application Routing 
-az aks enable-addons --resource-group myResourceGroup --name myAKSCluster --addons http_application_routing
+# Configure Command Line Credentials
+az aks get-credentials --name aksdemo3 --resource-group aks-rg3
 
-# Replace Resource Group and Cluster Name
-az aks enable-addons --resource-group aks-rg1 --name aksdemo1 --addons http_application_routing
+# Verify Nodes
+kubectl get nodes 
+kubectl get nodes -o wide
 ```
+
 
 ## Step-04: List DNS Zone associated with AKS Cluster
 ```
@@ -75,4 +104,14 @@ kubectl delete -f  kube-manifests/
 
 # Disable Add-On HTTP Application Routing to AKS cluster
 az aks disable-addons --addons http_application_routing --name aksdemo3 --resource-group aks-rg1 --no-wait
+```
+
+## Additional Step:  For existing clusters, enable HTTP Application Routing 
+- This step not needed for us as we created new cluster with HTTP Application Routing Enabled
+```
+# Enable HTTP Application Routing 
+az aks enable-addons --resource-group myResourceGroup --name myAKSCluster --addons http_application_routing
+
+# Replace Resource Group and Cluster Name
+az aks enable-addons --resource-group aks-rg1 --name aksdemo1 --addons http_application_routing
 ```
