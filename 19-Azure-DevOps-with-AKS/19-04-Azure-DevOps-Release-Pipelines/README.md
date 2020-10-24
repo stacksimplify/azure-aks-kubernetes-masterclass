@@ -208,6 +208,26 @@ http://<Public-IP-from-Get-Service-Output>
 - Add Email Approvals
 - Click on **SAVE** to save release
 
+### Clone Dev Stage to Create QA Stage
+- Go to Releases -> 01-app1-release-pipeline -> Edit
+- Select **Dev Stage** -> Add -> **Clone Stage**
+- Stage Name: QA
+#### Task-1: Create Secret
+- Kubernetes service connection: qa-ns-k8s-aks-svc-conn
+- Namespace: qa
+- Secret name: qa-aksdevopsacr-secret
+- Click SAVE
+- Commit Message: QA Create Secret task updated
+
+#### Task-2: Deploy to AKS
+- Kubernetes service connection: qa-ns-k8s-aks-svc-conn
+- Namespace: qa
+- ImagePullSecrets: qa-aksdevopsacr-secret
+- Click SAVE
+- Commit Message: QA Deploy to AKS task updated
+
+
+
 ## Step-11: Check-In Code and Test
 - Update index.html
 ```
