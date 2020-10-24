@@ -245,10 +245,25 @@ kubectl get svc -n dev
 kubectl get svc -n qa
 kubectl get svc -n staging
 kubectl get svc -n prod
-
+kubect get svc --all-namespaces
 
 # Access Application
 http://<Public-IP-from-Get-Service-Output>
+```
+
+## Step-12: Clean-Up Apps
+```
+# Before Clean-Up: List all Pods and Services
+kubectl get pod,svc --all-namespaces
+
+# Clean-Up all Apps in Kubernetes
+kubectl delete ns dev
+kubectl delete ns qa
+kubectl delete ns staging
+kubectl delete ns prod
+
+# After Clean-Up: List all Pods and Services
+kubectl get pod,svc --all-namespaces
 ```
 
 ## References
