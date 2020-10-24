@@ -10,7 +10,7 @@ description: Create Azure Pipeline to Build and Push Docker Image to Azure Conta
 - Understand Azure Pipelines
 - Implement a pipeline to Build and Push Docker Image to Azure Container Registry
 
-[![Image](https://www.stacksimplify.com/course-images/azure-devops-pipelines-build-and-push-docker-image-to-acr.png "Azure AKS Kubernetes - Masterclass")](https://www.stacksimplify.com/course-images/azure-devops-pipelines-build-and-push-docker-image-to-acr.png)
+[![Image](https://stacksimplify.com/course-images/azure-devops-pipelines-build-and-push-docker-image-to-acr.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-devops-pipelines-build-and-push-docker-image-to-acr.png)
 
 ## Step-02: Create Github Project and Check-In Code
 ### Create Github Repo in Github
