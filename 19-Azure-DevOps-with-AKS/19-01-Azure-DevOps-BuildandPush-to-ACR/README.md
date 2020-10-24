@@ -53,7 +53,6 @@ https://github.com/stacksimplify/azure-devops-github-acr-aks-app1
 
 ## Step-03: Review github checked-in files
 - kube-manifests
-- pipeline-backup-files
 - Dockerfile
 - index.html
 
