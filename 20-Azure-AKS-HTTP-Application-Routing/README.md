@@ -185,11 +185,20 @@ kubectl -n kube-system logs -f $(kubectl -n kube-system get po | egrep -o 'addon
 ```
 - **Important Note:** If immediately application via DNS doesnt work, wait for 10 to 20 minutes for all the DNS changes to kick-in
 
-## Step-08: (Optional Step) Add DNS CNAME for your personal domain
+## Step-08: (Optional Step) Add DNS CNAME for your custom domain
+- **Pre-requisite-1:** You should have a registered domain to perform this step
+- **Pre-requisite-2:** You should have configured the DNZ Zone for your registered domain on Azure (Azure is optional, it can be in any DNS Provider like GoDaddy, AWS Route53 etc)
 - Go to All Services -> DNS Zones -> kubeoncloud.com
 - Create Record Set
   - Name: app1.kubeoncloud.com
   - CNAME: app1.7b8803340f38495c8402.centralus.aksapp.io
+- Access Application using our custom Domain
+```
+# Access Application
+http://<YOUR-CUSTOM-DOMAIN>/app1/index.html
+http://app1.kubeoncloud.com/app1/index.html
+
+```
 
 ## Step-09: Clean Up Apps
 ```
