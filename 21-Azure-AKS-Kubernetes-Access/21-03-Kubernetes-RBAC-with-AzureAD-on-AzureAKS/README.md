@@ -152,5 +152,18 @@ Error from server (Forbidden): services is forbidden: User "aksdev1@stacksimplif
 # Clean-Up Apps
 kubectl delete ns dev
 kubectl delete ns qa
+
+# Clean-Up Clusters
+Delete Clusters aksdemo3, aksdemo4
+Go to All Services -> Resource Groups -> Delete Resource group  aks-rg3
+Go to All Services -> Resource Groups -> Delete Resource group  aks-rg4
+
+# Delete Azure AD Users & Groups
+Users
+- user1aksadmin@stacksimplifygmail.onmicrosoft.com 
+- aksdev1@stacksimplifygmail.onmicrosoft.com
+Groups
+- k8sadmins
+- devaksteam
 ```
 
