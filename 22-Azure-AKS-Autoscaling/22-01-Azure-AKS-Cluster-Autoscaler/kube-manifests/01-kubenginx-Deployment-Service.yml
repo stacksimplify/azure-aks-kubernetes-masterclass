@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cluster-autoscaler-demoapp-deployment
+  labels:
+    app: ca-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ca-nginx
+  template:
+    metadata:
+      labels:
+        app: ca-nginx
+    spec:
+      containers:
+      - name: ca-nginx
+        #image: stacksimplify/kubenginx:1.0.0
+        image: stacksimplify/kube-helloworld:1.0.0
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "200Mi"
+            cpu: "250m"
+          limits:
+            memory: "500Mi"
+            cpu: "500m"                  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cluster-autoscaler-demoservice-nginx
+  labels:
+    app: ca-nginx
+spec:
+  type: LoadBalancer
+  selector:
+    app: ca-nginx
+  ports:
+  - port: 80
+    targetPort: 8080   

@@ -61,7 +61,7 @@ cat config
 # View kubeconfig
 kubectl config view
 
-# Configure AKSDEMO3 Cluster Access for kubectl
+# Configure AKSDEMO3 & 4 Cluster Access for kubectl
 az aks get-credentials --resource-group aks-rg3 --name aksdemo3
 
 # View kubeconfig
