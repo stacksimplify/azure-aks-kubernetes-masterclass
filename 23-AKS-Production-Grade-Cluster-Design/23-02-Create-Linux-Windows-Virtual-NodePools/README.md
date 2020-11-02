@@ -80,6 +80,13 @@ az aks nodepool add --resource-group ${AKS_RESOURCE_GROUP} \
                     --cluster-name ${AKS_CLUSTER} \
                     --name linux101 \
                     --node-count 1 \
+                    --enable-cluster-autoscaler \
+                    --max-count 5 \
+                    --min-count 1 \
+                    --mode User \
+                    --node-vm-size Standard_DS2_v2 \
+                    --node-zones 3 \
+                    --os-type Linux \                 
                     --labels nodepool-type=user nodepoolos=linux environment=production nodepoolos=linux app=java-apps \
                     --tags nodepool-type=user nodepoolos=linux environment=production nodepoolos=linux app=java-apps
 

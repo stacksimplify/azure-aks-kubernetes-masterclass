@@ -80,10 +80,10 @@ http://<public-ip-of-webserver-app>/app1/index.html
 ```
 # Delete Apps
 kubectl delete -R -f kube-manifests/
+
+# Delete Resource Group to delete all NodePools and Cluster
+az group delete -n ${AKS_RESOURCE_GROUP}
+
+# Delete Users and Groups in AD
 ```
 
-## References
-- https://docs.microsoft.com/en-in/azure/aks/concepts-clusters-workloads
-- https://docs.microsoft.com/en-in/azure/aks/operator-best-practices-advanced-scheduler
-- https://docs.microsoft.com/en-us/azure/aks/use-multiple-node-pools
-- https://docs.microsoft.com/en-us/azure/aks/windows-container-cli
