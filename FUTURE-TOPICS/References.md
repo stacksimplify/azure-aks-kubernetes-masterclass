@@ -61,3 +61,7 @@ On instances that support hyperthreading, Accelerated Networking is supported on
 
 ## Ingress Architecture References
 - https://www.google.com/imgres?imgurl=https%3A%2F%2Fkubesec.aksworkshop.io%2Fmedia%2Farchitecture%2Ffrontend.png&imgrefurl=https%3A%2F%2Fkubesec.aksworkshop.io%2F&tbnid=kJEnUDPZ3g5bFM&vet=12ahUKEwjv_5rsqrXrAhVyIrcAHS1wA7cQMygLegUIARC4AQ..i&docid=oOzhJXKW5y3VcM&w=3333&h=1875&q=azure%20aks%20ingress%20architecture%20diagram&ved=2ahUKEwjv_5rsqrXrAhVyIrcAHS1wA7cQMygLegUIARC4AQ
+
+
+## RBAC Pictures - Reference
+- https://theithollow.com/2019/05/20/kubernetes-role-based-access/

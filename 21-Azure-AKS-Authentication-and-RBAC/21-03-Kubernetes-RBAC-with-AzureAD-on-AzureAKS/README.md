@@ -1,12 +1,13 @@
 ---
-title: Kubernetes RBAC with Azure AD on Azure AKS
-description: Restrict Access to Azure Kubernetes Service resources using Kubernetes RBAC in combination with Azure AD Users
+title: Kubernetes RBAC Role & Role Binding with Azure AD on AKS
+description: Restrict Access to k8s namespace level resources using Kubernetes RBAC Role and Role Binding with Azure AD
 ---
-# Kubernetes RBAC with Azure AD on Azure AKS
+# Kubernetes RBAC Role & Role Binding with Azure AD on AKS
 
 ## Step-01: Introduction
 - AKS can be configured to use Azure AD for Authentication which we have seen in our previous section
 - In addition, we can also configure Kubernetes role-based access control (RBAC) to limit access to cluster resources based a user's identity or group membership.
+- Understand about Kubernetes RBAC Role & Role Binding
 
 ## Step-02: Create a Namespace Dev and Deploy Sample Application
 ```
@@ -117,6 +118,9 @@ subjects:
 
 ## Step-06: Create Kubernetes RBAC Role & Role Binding for Dev Namespace
 ```
+# As AKS Cluster Admin (--admin)
+az aks get-credentials --resource-group aks-rg3 --name aksdemo3 --admin
+
 # Create Kubernetes Role and Role Binding
 kubectl apply -f kube-manifests/02-Roles-and-RoleBindings
 
@@ -152,18 +156,5 @@ Error from server (Forbidden): services is forbidden: User "aksdev1@stacksimplif
 # Clean-Up Apps
 kubectl delete ns dev
 kubectl delete ns qa
-
-# Clean-Up Clusters
-Delete Clusters aksdemo3, aksdemo4
-Go to All Services -> Resource Groups -> Delete Resource group  aks-rg3
-Go to All Services -> Resource Groups -> Delete Resource group  aks-rg4
-
-# Delete Azure AD Users & Groups
-Users
-- user1aksadmin@stacksimplifygmail.onmicrosoft.com 
-- aksdev1@stacksimplifygmail.onmicrosoft.com
-Groups
-- k8sadmins
-- devaksteam
 ```
 
