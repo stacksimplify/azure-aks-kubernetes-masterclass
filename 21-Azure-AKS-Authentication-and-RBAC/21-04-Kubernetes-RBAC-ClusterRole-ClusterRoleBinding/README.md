@@ -7,9 +7,9 @@ description: Restrict Access to k8s resources using Kubernetes RBAC Cluster Role
 ## Step-01: Introduction
 - AKS can be configured to use Azure AD for Authentication which we have seen in our previous section
 - In addition, we can also configure Kubernetes role-based access control (RBAC) to limit access to cluster resources based a user's identity or group membership.
-- Understand about Kubernetes RBAC Cluster Role & Cluster Role Binding
+- Understand about Kubernetes RBAC **Cluster Role & Cluster Role Binding**
 
-## Step-02: Create AD Group, Role Assignment and User for Dev 
+## Step-02: Create AD Group, Role Assignment and User
 ```
 # Get Azure AKS Cluster Id
 AKS_CLUSTER_ID=$(az aks show --resource-group aks-rg3 --name aksdemo3 --query id -o tsv)
@@ -37,14 +37,14 @@ echo $AKS_READONLY_USER_OBJECT_ID
 az ad group member add --group aksreadonly --member-id $AKS_READONLY_USER_OBJECT_ID
 ```
 
-## Step-03: Test Dev User Authentication to Portal
+## Step-03: Test aksreadonly User Authentication to Portal
 - URL: https://portal.azure.com
 - Username: aksread1@stacksimplifygmail.onmicrosoft.com
 - Password: @AKSDemo123
 
 
 ## Step-04: Review Kubernetes RBAC ClusterRole & ClusterRoleBinding
-### Kubernetes RBAC Role for Dev Namespace
+### Kubernetes RBAC Role for aksreadonly User Access
 - **File Name:** ClusterRole-ReadOnlyAccess.yaml
 ```yaml
 kind: ClusterRole
@@ -61,9 +61,9 @@ rules:
   - cronjobs
   verbs: ["get", "list", "watch"]
 ```
-### Get Object Id for devaksteam AD Group
+### Get Object Id for aksreadonly AD Group
 ```
-# Get Object ID for AD Group devaksteam
+# Get Object ID for AD Group aksreadonly
 az ad group show --group aksreadonly --query objectId -o tsv
 
 # Output
@@ -101,7 +101,7 @@ kubectl get clusterrole
 kubectl get clusterrolebinding
 ```
 
-## Step-06: Access Dev Namespace using aksdev1 AD User
+## Step-06: Access AKS Cluster
 ```
 # Overwrite kubectl credentials
 az aks get-credentials --resource-group aks-rg3 --name aksdemo3 --overwrite-existing
