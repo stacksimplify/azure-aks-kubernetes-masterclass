@@ -13,6 +13,9 @@ description: Understand how to access multiple Azure Kubernetes AKS Clusters usi
   - kubectl config current-context
   - kubectl config use-context <context-name>
 
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-access-multiple-clusters.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-access-multiple-clusters.png)
+
+
 ## Step-02: Create AKSDEMO3 cluster using AKS CLI
 - Generates SSH Keys with option **--generate-ssh-keys** 
 - They will be stored in **$HOME/.ssh** folder in your local desktop

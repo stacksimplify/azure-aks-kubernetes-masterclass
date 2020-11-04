@@ -9,6 +9,18 @@ description: Restrict Access to k8s namespace level resources using Kubernetes R
 - In addition, we can also configure Kubernetes role-based access control (RBAC) to limit access to cluster resources based a user's identity or group membership.
 - Understand about Kubernetes RBAC Role & Role Binding
 
+
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-2.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-2.png)
+
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-1.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-1.png)
+
+
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-Role-RoleBinding-1.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-Role-RoleBinding-1.png)
+
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-Role-RoleBinding-2.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-Role-RoleBinding-2.png)
+
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-Role-RoleBinding-3.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-Role-RoleBinding-3.png)
+
 ## Step-02: Create a Namespace Dev and Deploy Sample Application
 ```
 # Configure Command Line Credentials for kubectl
@@ -96,6 +108,8 @@ az ad group show --group devaksteam --query objectId -o tsv
 e6dcdae4-e9ff-4261-81e6-0d08537c4cf8
 ```
 
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-Role.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-Role.png)
+
 ### Review & Update Kubernetes RBAC Role Binding for Dev Namespace
 - Update Azure AD Group **devaksteam** Object ID in Role Binding
 - **File Name:** rolebinding-dev-namespace.yaml
@@ -115,6 +129,9 @@ subjects:
   #name: groupObjectId
   name: "e6dcdae4-e9ff-4261-81e6-0d08537c4cf8"  
 ```
+
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-RoleBinding.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-RoleBinding.png)
+
 
 ## Step-06: Create Kubernetes RBAC Role & Role Binding for Dev Namespace
 ```

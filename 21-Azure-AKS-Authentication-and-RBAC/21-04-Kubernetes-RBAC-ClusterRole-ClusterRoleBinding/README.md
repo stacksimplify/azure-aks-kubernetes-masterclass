@@ -9,6 +9,11 @@ description: Restrict Access to k8s resources using Kubernetes RBAC Cluster Role
 - In addition, we can also configure Kubernetes role-based access control (RBAC) to limit access to cluster resources based a user's identity or group membership.
 - Understand about Kubernetes RBAC **Cluster Role & Cluster Role Binding**
 
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-CR-CRB-1.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-CR-CRB-1.png)
+
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-CR-CRB-2.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-CR-CRB-2.png)
+
+
 ## Step-02: Create AD Group, Role Assignment and User
 ```
 # Get Azure AKS Cluster Id
@@ -70,6 +75,8 @@ az ad group show --group aksreadonly --query objectId -o tsv
 e808215d-d159-49ba-8bb6-9661ba478842
 ```
 
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-ClusterRole.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-ClusterRole.png)
+
 ### Review & Update Kubernetes RBAC ClusterRoleBinding with Azure AD Group ID
 - Update Azure AD Group **aksreadonly** Object ID in Cluster Role Binding k8s manifest
 - **File Name:** ClusterRoleBinding-ReadOnlyAccess.yaml
@@ -87,6 +94,8 @@ subjects:
   #name: groupObjectId
   name: "e808215d-d159-49ba-8bb6-9661ba478842"   
 ```
+
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-ClusterRoleBinding.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-ClusterRoleBinding.png)
 
 ## Step-05: Create Kubernetes RBAC ClusterRole & ClusterRoleBinding 
 ```

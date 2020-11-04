@@ -7,6 +7,11 @@
 - Metrics Server
 
 
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-autoscaling-hpa-1.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-autoscaling-hpa-1.png)
+
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-autoscaling-hpa-2.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-autoscaling-hpa-2.png)
+
+
 ## Step-02: Review Deploy our Application
 ```
 # Deploy

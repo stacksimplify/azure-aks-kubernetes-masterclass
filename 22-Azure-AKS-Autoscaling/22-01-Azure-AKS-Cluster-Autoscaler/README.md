@@ -4,6 +4,9 @@
 - The Kubernetes Cluster Autoscaler automatically adjusts the number of nodes in your cluster when pods fail to launch due to lack of resources or when nodes in the cluster are underutilized and their pods can be rescheduled onto other nodes in the cluster.
 
 
+[![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-autoscaling-ca.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-autoscaling-ca.png)
+
+
 ## Step-02: Create Cluster with Cluster Autoscaler Enabled
 ```
 # Setup Environment Variables
