@@ -209,7 +209,7 @@ kubectl delete -f  kube-manifests/
 Go to Services -> DNS Zones -> 7b8803340f38495c8402.centralus.aksapp.io
 REFRESH to see DNS A and TXT records for app1 got deleted
 ```
-## Step-1o: Disable HTTP Application Routing Add On
+## Step-10: Disable HTTP Application Routing Add On
 ### Disable using Azure Portal
 - Go to All Services -> Kubernetes Services -> aksdemo2 -> Settings -> Networking
 - Enable HTTP application routing: Disable check box
