@@ -21,10 +21,13 @@ description: Restrict Access to k8s namespace level resources using Kubernetes R
 
 [![Image](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-Role-RoleBinding-3.png "Azure AKS Kubernetes - Masterclass")](https://stacksimplify.com/course-images/azure-kubernetes-service-RBAC-Role-RoleBinding-3.png)
 
-## Step-02: Create a Namespace Dev and Deploy Sample Application
+## Step-02: Create a Namespace Dev, QA and Deploy Sample Application
 ```
 # Configure Command Line Credentials for kubectl
-az aks get-credentials --name aksdemo3 --resource-group aks-rg3
+az aks get-credentials --name aksdemo3 --resource-group aks-rg3 --admin
+
+# View Cluster Info
+kubectl cluster-info
 
 # Create Namespaces dev and qa
 kubectl create namespace dev
