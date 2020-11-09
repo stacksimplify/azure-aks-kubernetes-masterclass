@@ -185,22 +185,7 @@ kubectl -n kube-system logs -f $(kubectl -n kube-system get po | egrep -o 'addon
 ```
 - **Important Note:** If immediately application via DNS doesnt work, wait for 10 to 20 minutes for all the DNS changes to kick-in
 
-## Step-08: (Optional Step) Add DNS CNAME for your custom domain
-- **Pre-requisite-1:** You should have a registered domain to perform this step
-- **Pre-requisite-2:** You should have configured the DNZ Zone for your registered domain on Azure (Azure is optional, it can be in any DNS Provider like GoDaddy, AWS Route53 etc)
-- Go to All Services -> DNS Zones -> kubeoncloud.com
-- Create Record Set
-  - Name: app1.kubeoncloud.com
-  - CNAME: app1.7b8803340f38495c8402.centralus.aksapp.io
-- Access Application using our custom Domain
-```
-# Access Application
-http://<YOUR-CUSTOM-DOMAIN>/app1/index.html
-http://app1.kubeoncloud.com/app1/index.html
-
-```
-
-## Step-09: Clean Up Apps
+## Step-08: Clean Up Apps
 ```
 # Delete Apps
 kubectl delete -f  kube-manifests/
@@ -209,7 +194,7 @@ kubectl delete -f  kube-manifests/
 Go to Services -> DNS Zones -> 7b8803340f38495c8402.centralus.aksapp.io
 REFRESH to see DNS A and TXT records for app1 got deleted
 ```
-## Step-10: Disable HTTP Application Routing Add On
+## Step-09: Disable HTTP Application Routing Add On
 ### Disable using Azure Portal
 - Go to All Services -> Kubernetes Services -> aksdemo2 -> Settings -> Networking
 - Enable HTTP application routing: Disable check box
