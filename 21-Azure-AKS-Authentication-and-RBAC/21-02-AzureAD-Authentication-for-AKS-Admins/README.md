@@ -105,7 +105,10 @@ kubectl get all --all-namespaces
 - We need to overwrite the $HOME/.kube/config to re-login with different user or same user
 ```
 # Overwrite kubectl credentials 
-az aks get-credentials --resource-group aks-rg5-aad --name aksdemo5aad --overwrite-existing
+az aks get-credentials --resource-group aks-rg3 --name aksdemo3 --overwrite-existing
+
+# View kubectl config (Observe aksdemo3 user)
+kubectl config view 
 
 # List Nodes
 kubectl get nodes
@@ -113,6 +116,9 @@ URL: https://microsoft.com/devicelogin
 Code: H8VP9YE7F (Sample)
 Username: user1aksadmin@stacksimplifygmail.onmicrosoft.com 
 Password: @AKSADAuth1011
+
+# View kubectl config (Observe aksdemo3 user - Access Token & Refresh token)
+kubectl config view 
 ```
 
 ## Step-06: How to bypass or Override AD Authentication and use k8s admin?
