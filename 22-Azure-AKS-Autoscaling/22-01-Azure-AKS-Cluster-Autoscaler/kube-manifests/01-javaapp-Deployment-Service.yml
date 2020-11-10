@@ -3,19 +3,19 @@ kind: Deployment
 metadata:
   name: cluster-autoscaler-demoapp-deployment
   labels:
-    app: ca-nginx
+    app: ca-java-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ca-nginx
+      app: ca-java-app
   template:
     metadata:
       labels:
-        app: ca-nginx
+        app: ca-java-app
     spec:
       containers:
-      - name: ca-nginx
+      - name: ca-java-app
         #image: stacksimplify/kubenginx:1.0.0
         image: stacksimplify/kube-helloworld:1.0.0
         ports:
@@ -31,13 +31,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: cluster-autoscaler-demoservice-nginx
+  name: cluster-autoscaler-demoservice-java-app
   labels:
-    app: ca-nginx
+    app: ca-java-app
 spec:
   type: LoadBalancer
   selector:
-    app: ca-nginx
+    app: ca-java-app
   ports:
   - port: 80
     targetPort: 8080   
