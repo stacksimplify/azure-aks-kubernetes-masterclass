@@ -2,7 +2,7 @@
 title: K8S RBAC Cluster Role & Role Binding with AD on AKS
 description: Restrict Access to k8s resources using Kubernetes RBAC Cluster Role and Role Binding with Azure AD
 ---
-# KK8S RBAC Cluster Role & Role Binding with AD on AKS
+# K8S RBAC Cluster Role & Role Binding with AD on AKS
 
 ## Step-01: Introduction
 - AKS can be configured to use Azure AD for Authentication which we have seen in our previous section

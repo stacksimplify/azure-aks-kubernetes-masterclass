@@ -8,5 +8,5 @@ roleRef:
   name: aks-cluster-readonly-role
 subjects:
 - kind: Group
-  #name: groupObjectId
-  name: "e808215d-d159-49ba-8bb6-9661ba478842"  
+  #name: groupObjectId # Your Azure AD Group Object ID: aksreadonly
+  name: "e8f709f7-4029-4fdb-b786-d0af29445fc9"  

@@ -71,7 +71,7 @@ http://<PublicIP-from-get-svc-output>/hello
 curl -w "\n" http://52.154.217.196/hello
 ```
 
-## Step-05: Scale our application to 30 pods
+## Step-05: Scale our application to 20 pods
 - In 2 to 3 minutes, one after the other new nodes will added and pods will be scheduled on them. 
 - Our max number of nodes will be 5 which we provided during cluster creation.
 ```
