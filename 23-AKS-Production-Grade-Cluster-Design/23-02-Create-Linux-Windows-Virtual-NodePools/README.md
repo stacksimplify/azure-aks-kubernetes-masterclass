@@ -1,7 +1,7 @@
 # Create Linux, Windows and Virtual Node Pools
 
 ## Step-01: Introduction
-- Enable Virtual Nodes
+- Enable Virtual Nodes (Serverless)
 - Create Linux User Node pool
 - Create Windows User Node pool
 
@@ -9,6 +9,9 @@
 ## Step-02: Enable Virtual Nodes on our AKS Cluster
 ### Step-02-01: Enable Virtual Nodes Add-On on our AKS Cluster
 ```
+# Verify Environment Variables
+echo ${AKS_CLUSTER}, ${AKS_VNET_SUBNET_VIRTUALNODES}
+
 # Enable Virtual Nodes on AKS Cluster
 az aks enable-addons \
     --resource-group ${AKS_RESOURCE_GROUP} \
@@ -22,7 +25,7 @@ kubectl get nodes
 # List Virtual Nodes ACI Pods
 kubectl get pods -n kube-system
 
-# Output
+# Sample Output for Reference
 Kalyans-Mac-mini:~ kalyanreddy$ kubectl get pods -n kube-system
 NAME                                         READY   STATUS             RESTARTS   AGE
 aci-connector-linux-6d57ccbf8b-bj6rk         0/1     CrashLoopBackOff   8          17m
@@ -32,10 +35,9 @@ azure-ip-masq-agent-rjvbd                    1/1     Running            0       
 
 # Verify Logs ACI Connector
 kubectl get pods -n kube-system
-kubectl -n kube-system logs -f <ACI-Connector-Pod-Name>
-kubectl -n kube-system logs -f aci-connector-linux-6d57ccbf8b-v9z54
+kubectl -n kube-system logs -f $(kubectl get po -n kube-system | egrep -o 'aci-connector-linux-[A-Za-z0-9-]+')
 ```
-### Step-02-02: Fix ACI Connector
+### Step-02-02: Fix ACI Connector CrashLoopBackOff Issue
 - Go to Services -> Managed Identities -> aciconnectorlinux-aksprod1 
 - Azure Role Assignments
     - Add Role Assignment
@@ -45,14 +47,14 @@ kubectl -n kube-system logs -f aci-connector-linux-6d57ccbf8b-v9z54
     - Role: Contributor
 - Click on **SAVE**
 
-### Step-02-03: Delete ACI Connector Pod
+### Step-02-03: Delete ACI Connector Pod to recreate it 
 ```
 # List Pods
 kubectl get pods -n kube-system
 
-# Delete Pod
+# Delete aci-connector-linux pod to recreate it
 kubectl -n kube-system delete pod <ACI-Connector-Pod-Name>
-kubectl -n kube-system delete pod aci-connector-linux-6d57ccbf8b-v9z54
+kubectl -n kube-system delete pod $(kubectl get po -n kube-system | egrep -o 'aci-connector-linux-[A-Za-z0-9-]+')
 
 # List Pods (ACI Connector Pod should be running)
 kubectl get pods -n kube-system
@@ -85,10 +87,10 @@ az aks nodepool add --resource-group ${AKS_RESOURCE_GROUP} \
                     --min-count 1 \
                     --mode User \
                     --node-vm-size Standard_DS2_v2 \
-                    --node-zones 3 \
-                    --os-type Linux \                 
+                    --os-type Linux \
                     --labels nodepool-type=user nodepoolos=linux environment=production nodepoolos=linux app=java-apps \
-                    --tags nodepool-type=user nodepoolos=linux environment=production nodepoolos=linux app=java-apps
+                    --tags nodepool-type=user nodepoolos=linux environment=production nodepoolos=linux app=java-apps \
+                    --zones 3
 
 ```
 ### Step-03-02: List Node Pools & Nodes
@@ -119,8 +121,14 @@ az aks nodepool add --resource-group ${AKS_RESOURCE_GROUP} \
                     --os-type Windows \
                     --name win101 \
                     --node-count 1 \
+                    --enable-cluster-autoscaler \
+                    --max-count 5 \
+                    --min-count 1 \
+                    --mode User \
+                    --node-vm-size Standard_DS2_v2 \
                     --labels environment=production nodepoolos=windows app=dotnet-apps nodepool-type=user \
-                    --tags environment=production nodepoolos=windows app=dotnet-apps nodepool-type=user
+                    --tags environment=production nodepoolos=windows app=dotnet-apps nodepool-type=user \
+                    --zones 3
 ```
 ### Step-04-02: List Node Pools & Nodes
 ```
@@ -132,6 +140,19 @@ kubectl get nodes -o wide
 kubectl get nodes -o wide -l nodepoolos=linux
 kubectl get nodes -o wide -l nodepoolos=windows
 kubectl get nodes -o wide -l environment=production
+```
+
+```
+# List Node Pools
+az aks nodepool list --cluster-name ${AKS_CLUSTER} --resource-group ${AKS_RESOURCE_GROUP} --output table
+
+# Sample Output (for reference)
+Name        OsType    KubernetesVersion    VmSize           Count    MaxPods    ProvisioningState    Mode
+----------  --------  -------------------  ---------------  -------  ---------  -------------------  ------
+linux101    Linux     1.17.13              Standard_DS2_v2  1        30         Succeeded            User
+systempool  Linux     1.17.13              Standard_DS2_v2  1        30         Succeeded            System
+win101      Windows   1.17.13              Standard_DS2_v2  1        30         Succeeded            User
+
 ```
 
 

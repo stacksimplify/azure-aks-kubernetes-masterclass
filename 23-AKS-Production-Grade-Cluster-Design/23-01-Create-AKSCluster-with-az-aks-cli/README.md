@@ -1,4 +1,15 @@
 ## Step-01: Introduction
+- Design a Production grade cluster using command line
+### Pre-requisite Items for AKS Cluster Design
+- Create Resource Group
+- Create Azure Virtual Network
+  - Create default Subnet for AKS Nodepools
+  - Create separate Subnet for Virtual Nodes (Serverless)
+- Create Azure AD User, Group for managing AKS Clusters using Azure AD Users
+- Create SSH Keys to enable and access Kubernetes Workernodes via SSH Terminal
+- Create Log Analytics Workspace for enabling Monitoring Add On during AKS Cluster creation  
+- Set Windows Username and Password during AKS Cluster creation to have AKS Cluster support future Windows Nodepools
+
 
 
 ## Step-02: Pre-requisite-1: Create Resource Group
@@ -23,11 +34,11 @@ az group create --location ${AKS_REGION} \
 ```
 # Edit export statements to make any changes required as per your environment
 # Execute below export statements 
-AKS_VNET=aks-vnet-prod
+AKS_VNET=aks-vnet
 AKS_VNET_ADDRESS_PREFIX=10.0.0.0/8
-AKS_VNET_SUBNET_DEFAULT=aks-prod-default
+AKS_VNET_SUBNET_DEFAULT=aks-subnet-default
 AKS_VNET_SUBNET_DEFAULT_PREFIX=10.240.0.0/16
-AKS_VNET_SUBNET_VIRTUALNODES=aks-prod-virtual-nodes
+AKS_VNET_SUBNET_VIRTUALNODES=aks-subnet-virtual-nodes
 AKS_VNET_SUBNET_VIRTUALNODES_PREFIX=10.241.0.0/16
 
 # Create Virtual Network & default Subnet
@@ -72,7 +83,7 @@ AKS_AD_AKSADMIN1_USER_OBJECT_ID=$(az ad user create \
   --query objectId -o tsv)
 echo $AKS_AD_AKSADMIN1_USER_OBJECT_ID
 
-# Associate Dev User to Dev AKS Group
+# Associate aksadmin User to aksadmins Group
 az ad group member add --group aksadmins --member-id $AKS_AD_AKSADMIN1_USER_OBJECT_ID
 
 # Make a note of Username and Password
@@ -99,6 +110,7 @@ ls -lrt $HOME/.ssh/aks-prod-sshkeys
 
 # Set SSH KEY Path
 AKS_SSH_KEY_LOCATION=/Users/kalyanreddy/.ssh/aks-prod-sshkeys/aksprodsshkey.pub
+echo $AKS_SSH_KEY_LOCATION
 ```
 - Reference for [Create SSH Key](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/create-ssh-keys-detailed)
 
@@ -138,6 +150,7 @@ echo $AKS_WINDOWS_NODE_USERNAME, $AKS_WINDOWS_NODE_PASSWORD
 ```
 # Set Cluster Name
 AKS_CLUSTER=aksprod1
+echo $AKS_CLUSTER
 
 # Create AKS cluster and enable the cluster autoscaler
 az aks create --resource-group ${AKS_RESOURCE_GROUP} \
@@ -183,7 +196,7 @@ Username: aksadmin1@stacksimplifygmail.onmicrosoft.com
 Password: @AKSDemo123
 
 # Cluster Info
-kubectl cluster-info     
+kubectl cluster-info
 
 # List Node Pools
 az aks nodepool list --cluster-name ${AKS_CLUSTER} --resource-group ${AKS_RESOURCE_GROUP} -o table
@@ -228,9 +241,12 @@ AKS_CLUSTER_MSI_PRINCIPALID=$(az aks show -g ${AKS_RESOURCE_GROUP} -n ${AKS_CLUS
 echo $AKS_CLUSTER_MSI_PRINCIPALID
 ```
 
-## Step-12: Provide Access 
+## Step-12: Provide Access to AKS Cluster to access VNET (Optional for us)
 - **Important Note-1:** For creating and using your own VNet, static IP address, or attached Azure disk where the resources are outside of the worker node resource group, use the PrincipalID of the cluster System Assigned Managed Identity to perform a role assignment. For more information on role assignment
-- **Important Note-2:** Permission grants to cluster Managed Identity used by Azure Cloud provider may take up 60 minutes to populate.
+- **Important Note-2:** Permission grants to cluster Managed Identity used by Azure Cloud provider may take up 
+60 minutes to populate.
+- This is optional and not needed for us. This is required only when our AKS VNET and AKS Worker Nodes both are in different resource groups
+- Example: VNET is in RG1 and AKS Cluster in RG2 then we need this step.
 ```
 # Get VNET ID
 AKS_VNET_ID=$(az network vnet show --resource-group ${AKS_RESOURCE_GROUP} \
@@ -265,18 +281,6 @@ az role assignment create --assignee ${AKS_CLUSTER_MSI_PRINCIPALID} \
 ```
 
 
-## PENDING TOPIC
-```
-# We will Deal these later separately for load balancers
-              --load-balancer-sku standard \
-              --load-balancer-managed-outbound-ip-count 5 \
-              --load-balancer-idle-timeout 5 \
-              --load-balancer-outbound-ports 1024 \
-              --outbound-type loadBalancer \
-https://docs.microsoft.com/en-us/azure/aks/load-balancer-standard
---load-balancer-managed-outbound-ip-count
-```
-
 ## References
-- https://docs.microsoft.com/en-us/azure/aks/use-managed-identity
-- https://docs.microsoft.com/en-us/azure/aks/kubernetes-service-principal#delegate-access-to-other-azure-resources
+- [Azure AKS Managed Identity](https://docs.microsoft.com/en-us/azure/aks/use-managed-identity)
+- [Delegate Access to Other Azure Resources](https://docs.microsoft.com/en-us/azure/aks/kubernetes-service-principal#delegate-access-to-other-azure-resources)

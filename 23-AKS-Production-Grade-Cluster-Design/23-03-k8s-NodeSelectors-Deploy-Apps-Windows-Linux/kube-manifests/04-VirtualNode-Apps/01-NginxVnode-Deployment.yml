@@ -5,7 +5,7 @@ metadata:
   labels:
     app: vnode-nginx
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: vnode-nginx
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: vnode-nginx
-          image: stacksimplify/kube-nginxapp1:1.0.0
+          image: stacksimplify/kubenginx:1.0.0
           ports:
             - containerPort: 80
 # To schedule pods on Azure Virtual Nodes            
