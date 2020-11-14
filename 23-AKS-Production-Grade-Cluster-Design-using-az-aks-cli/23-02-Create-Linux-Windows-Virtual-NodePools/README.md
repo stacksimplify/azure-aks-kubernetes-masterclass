@@ -88,8 +88,8 @@ az aks nodepool add --resource-group ${AKS_RESOURCE_GROUP} \
                     --mode User \
                     --node-vm-size Standard_DS2_v2 \
                     --os-type Linux \
-                    --labels nodepool-type=user nodepoolos=linux environment=production nodepoolos=linux app=java-apps \
-                    --tags nodepool-type=user nodepoolos=linux environment=production nodepoolos=linux app=java-apps \
+                    --labels nodepool-type=user environment=production nodepoolos=linux app=java-apps \
+                    --tags nodepool-type=user environment=production nodepoolos=linux app=java-apps \
                     --zones 3
 
 ```
