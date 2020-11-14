@@ -1,5 +1,7 @@
 ## Step-01: Introduction
 - Design a Production grade cluster using command line
+- az aks cli
+
 ### Pre-requisite Items for AKS Cluster Design
 - Create Resource Group
 - Create Azure Virtual Network
