@@ -155,6 +155,7 @@ AKS_CLUSTER=aksprod1
 echo $AKS_CLUSTER
 
 # Upgrade az CLI  (To latest version)
+az --version
 az upgrade
 
 # Create AKS cluster 
