@@ -154,7 +154,10 @@ echo $AKS_WINDOWS_NODE_USERNAME, $AKS_WINDOWS_NODE_PASSWORD
 AKS_CLUSTER=aksprod1
 echo $AKS_CLUSTER
 
-# Create AKS cluster and enable the cluster autoscaler
+# Upgrade az CLI  (To latest version)
+az upgrade
+
+# Create AKS cluster 
 az aks create --resource-group ${AKS_RESOURCE_GROUP} \
               --name ${AKS_CLUSTER} \
               --enable-managed-identity \
