@@ -90,7 +90,7 @@ az aks nodepool add --resource-group ${AKS_RESOURCE_GROUP} \
                     --os-type Linux \
                     --labels nodepool-type=user environment=production nodepoolos=linux app=java-apps \
                     --tags nodepool-type=user environment=production nodepoolos=linux app=java-apps \
-                    --zones 3
+                    --zones {1,2,3}
 
 ```
 ### Step-03-02: List Node Pools & Nodes
@@ -128,7 +128,7 @@ az aks nodepool add --resource-group ${AKS_RESOURCE_GROUP} \
                     --node-vm-size Standard_DS2_v2 \
                     --labels environment=production nodepoolos=windows app=dotnet-apps nodepool-type=user \
                     --tags environment=production nodepoolos=windows app=dotnet-apps nodepool-type=user \
-                    --zones 3
+                    --zones {1,2,3}
 ```
 ### Step-04-02: List Node Pools & Nodes
 ```

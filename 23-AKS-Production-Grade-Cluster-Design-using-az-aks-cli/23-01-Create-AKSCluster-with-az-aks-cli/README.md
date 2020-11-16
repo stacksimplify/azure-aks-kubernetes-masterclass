@@ -186,7 +186,7 @@ az aks create --resource-group ${AKS_RESOURCE_GROUP} \
               --enable-addons monitoring \
               --workspace-resource-id ${AKS_MONITORING_LOG_ANALYTICS_WORKSPACE_ID} \
               --enable-ahub \
-              --zones 3
+              --zones {1,2,3}
 ```
 
 ## Step-08: Configure Credentials & test
