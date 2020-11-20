@@ -26,7 +26,7 @@ variable "resource_group_name" {
 variable "environment" {
   type = string  
   description = "This variable defines the Environment"  
-  default = "prod"
+  default = "prod2"
 }
 
 # V2 Changes
