@@ -31,6 +31,7 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     }    
   }
 
+# Identity (System Assigned or Service Principal)
   identity { type = "SystemAssigned" }
 
 # Add On Profiles
@@ -41,6 +42,15 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
       log_analytics_workspace_id = azurerm_log_analytics_workspace.insights.id
     }
   }
+
+# RBAC and Azure AD Integration Block
+role_based_access_control {
+  enabled = true
+  azure_active_directory {
+    managed                = true
+    admin_group_object_ids = [azuread_group.aks_administrators.object_id]
+  }
+}  
 
 # Windows Admin Profile
 windows_profile {
@@ -62,6 +72,7 @@ network_profile {
   network_plugin = "azure"
 }
 
+# AKS Cluster Tags 
 tags = {
   Environment = "prod"
 }

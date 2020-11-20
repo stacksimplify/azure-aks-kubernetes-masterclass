@@ -15,3 +15,4 @@ Since TF only support AKS without RBAC or AKS with RBAC & AAD and not the option
 - https://dev.to/cdennig/fully-automated-creation-of-an-aad-integrated-kubernetes-cluster-with-terraform-15cm
 - https://dev.to/cdennig/azure-devops-terraform-provider-22fb
 - https://github.com/dwaiba/aks-terraform/blob/master/main.tf
+- https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/kubernetes_cluster
