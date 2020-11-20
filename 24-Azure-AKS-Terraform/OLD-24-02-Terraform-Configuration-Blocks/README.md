@@ -114,13 +114,3 @@ output "clusterid" {
 
 
 
-## References
-- https://www.terraform.io/docs/configuration/syntax.html
-- https://learn.hashicorp.com/collections/terraform/azure-get-started
-
-## Terraform State
-- https://docs.microsoft.com/en-us/azure/developer/terraform/store-state-in-azure-storage
-
-## Temp References
-- **Picture Good:** https://medium.com/developingnodes/how-to-manage-terraform-state-in-azure-blob-storage-870a80917450
-- https://learn.hashicorp.com/tutorials/terraform/azure-remote?in=terraform/azure-get-started
