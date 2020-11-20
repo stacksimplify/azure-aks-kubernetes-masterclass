@@ -178,39 +178,87 @@ tags = {
 }
 ```
 
-## Step-08: Deploy Terraform Resources
+## Step-08: Create Terraform Output Values for AKS Cluster
+- Create a file named **08-outputs.tf**
+```
+# Define Output Values for AKS Cluster
+output "location" {
+  value = azurerm_resource_group.aks_rg.location
+}
+output "aks_cluster_id" {
+  value = azurerm_kubernetes_cluster.aks_cluster.id
+}
+
+output "aks_resource_group" {
+  value = azurerm_resource_group.aks_rg.name
+}
+
+output "kube_config" {
+  value = azurerm_kubernetes_cluster.aks_cluster.kube_config_raw
+}
+
+output "client_key" {
+  value = azurerm_kubernetes_cluster.aks_cluster.kube_config.0.client_key
+}
+
+output "client_certificate" {
+  value = azurerm_kubernetes_cluster.aks_cluster.kube_config.0.client_certificate
+}
+
+output "cluster_ca_certificate" {
+  value = azurerm_kubernetes_cluster.aks_cluster.kube_config.0.cluster_ca_certificate
+}
+
+output "host" {
+  value = azurerm_kubernetes_cluster.aks_cluster.kube_config.0.host
+}
+
+output "cluster_username" {
+    value = azurerm_kubernetes_cluster.aks_cluster.kube_config.0.username
+}
+
+output "cluster_password" {
+    value = azurerm_kubernetes_cluster.aks_cluster.kube_config.0.password
+}
+```
+
+
+## Step-09: Deploy Terraform Resources
 ```
 # Change Directory 
-cd 24-03-Create-AKS-Cluster/v2-terraform-manifests-aks
+cd 24-03-Create-AKS-Cluster/terraform-manifests-aks
 
 # Initialize Terraform from this new folder
 # Anyway our state storage is from Azure Storage we are good from any folder
 terraform init
 
-
-# Try terraform validate
+# Validate Terraform manifests
 terraform validate
 
-# Try terraform plan (Should fail telling us to re-initialize backed)
+# Review the Terraform Plan
 terraform plan
 
-# Re-Initialize Terraform Backend
-terraform init 
-
-# Verify if any local state file
-ls -lrta
+# Deploy Terraform manifests
+terraform apply 
 ```
 
-## Step-09: Access Terraform created AKS cluster using AKS default admin
+## Step-10: Access Terraform created AKS cluster using AKS default admin
 ```
 # Azure AKS Get Credentials with --admin
 az aks get-credentials --resource-group terraform-aks --name terraform-aks-prod --admin
+
+# Get Full Cluster Information
+az aks show --resource-group terraform-aks --name terraform-aks-prod 
+az aks show --resource-group terraform-aks --name terraform-aks-prod -o table
+
+# Get AKS Cluster Information using kubectl
+kubectl cluster-info
 
 # List Kubernetes Nodes
 kubectl get nodes
 ```
 
-## Step-10: Verify Resources using Azure Management Console
+## Step-11: Verify Resources using Azure Management Console
 - Resource Group
   - terraform-aks
   - terraform-aks-nrg
@@ -222,7 +270,7 @@ kubectl get nodes
   - terraform-aks-prod-administrators
 
 
-## Step-10: Create a User in Azure AD and Associate User to AKS Admin Group in Azure AD
+## Step-12: Create a User in Azure AD and Associate User to AKS Admin Group in Azure AD
 - Create a user in Azure Active Directory
   - User Name: taksadmin1
   - Name: taksadmin1
@@ -239,7 +287,7 @@ kubectl get nodes
   - Confirm Password: @AKSadmin22
 
 
-## Step-11: Access Terraform created AKS Cluster 
+## Step-13: Access Terraform created AKS Cluster 
 ```
 # Azure AKS Get Credentials with --admin
 az aks get-credentials --resource-group terraform-aks --name terraform-aks-prod --overwrite-existing
