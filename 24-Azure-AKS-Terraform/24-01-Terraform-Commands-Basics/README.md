@@ -173,8 +173,7 @@ terraform apply
 - **Desired State:** Local Terraform Manifest (main.tf)
 - **Current State:**  Real Resources present in your cloud when it created (last reference - your tfstate file)
 - **Command Order of Execution:** refresh, plan, make a decision, apply
-- Why?
-- Lets understand that in detail about this order of execution
+- Why? Lets understand that in detail about this order of execution
 ```
 # Step-1: Add a new tag to Resource Group using Azure Portal Management console (demotag: 1)
 
