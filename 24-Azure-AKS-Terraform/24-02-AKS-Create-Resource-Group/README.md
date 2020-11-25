@@ -1,4 +1,4 @@
-# Understand Terraform Basics
+# Understand Terraform Language Basics
 
 ## Step-01: Introduction
 - Understand Terraform language basics 
