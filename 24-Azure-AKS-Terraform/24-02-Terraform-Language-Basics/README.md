@@ -102,9 +102,10 @@ resource "random_pet" "aksrandom" {}
 
 ## Step-05: Understand Terraform Variables 
 ### Three types of Terraform Variables
-- Input Variables
-- Local Values
-- Output Values
+- [Input Variables](https://www.terraform.io/docs/configuration/variables.html)
+- [Output Values](https://www.terraform.io/docs/configuration/outputs.
+html)
+- [Local Values](https://www.terraform.io/docs/configuration/locals.html)
 ### Input Variables
 - Implement input variables in terraform for AKS Cluster
 - Understand different options available to pass input variables
