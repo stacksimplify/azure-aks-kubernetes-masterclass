@@ -1,4 +1,10 @@
-# Define Terraform Providers required for us
+# We will define 
+# 1. Terraform Settings Block
+# 2. Terraform Provide Block for AzureRM
+# 3. Define a Random Pet Resource
+# 4. Define Terraform Remote State Storage 
+
+# Terraform Settings Block (https://www.terraform.io/docs/configuration/terraform.html)
 terraform {
   # Use a recent version of Terraform
   required_version = ">= 0.13"
@@ -21,6 +27,13 @@ terraform {
       version = "~> 3.0"
     }
   }
+# Configure Terraform State Storage
+    backend "azurerm" {
+    resource_group_name   = "terraform-storage-rg"
+    storage_account_name  = "terraformstatexlrwdrzs"
+    container_name        = "prodtfstate"
+    key                   = "terraform.tfstate"
+  }
 }
 
 
@@ -34,12 +47,4 @@ provider azurerm {
 resource "random_pet" "aksrandom" {}
 
 
-# Configure Terraform State Storage
-terraform {
-  backend "azurerm" {
-    resource_group_name   = "terraform-storage-rg"
-    storage_account_name  = "terraformstatexlrwdrzs"
-    container_name        = "prodtfstate"
-    key                   = "terraform.tfstate"
-  }
-}
+

@@ -1,12 +1,47 @@
 # Understand Terraform Basics
 
 ## Step-01: Introduction
-- Understand Terraform language basics by creating a simple Azure AKS cluster using terraform.
+- Understand Terraform language basics 
+  - Understand Resources
+  - Understand Blocks
+  - Understand Arguments
+  - Understand Identifiers
+  - Understand Comments
 - Understand Input Variables in Terraform
 - Understand Output Values in Terraform
+- Migrate Terraform State from local to Remote Storage (Azure Storage)
 
 
-## Step-02: Define Terraform Providers
+
+## Step-02: Terraform Configuration Language Syntax
+- [Terraform Configuration](https://www.terraform.io/docs/configuration/index.html)
+- Refer [Terraform Syntax](https://www.terraform.io/docs/configuration/syntax.html)
+- Understand Resources
+- Understand Blocks
+- Understand Arguments
+- Understand Identifiers
+- Understand Comments
+- [Terraform Configuration Syntax](https://www.terraform.io/docs/configuration/syntax.html)
+```
+# Template
+<BLOCK TYPE> "<BLOCK LABEL>" "<BLOCK LABEL>"   {
+  # Block body
+  <IDENTIFIER> = <EXPRESSION> # Argument
+}
+
+# Example
+resource "azurerm_resource_group" "aksdev" {   # BLOCK
+  name     = "aks-rg2-tf" # Argument
+  location = var.region   # Argument with value as expression (Variable value replaced from varibales.tf )
+
+  tags = {  #BLOCK
+    "environment" = "k8sdev"
+  }
+}
+```
+
+## Step-03: Define Terraform Providers
+- Understand about [Terraform Settings Block](https://www.terraform.io/docs/configuration/terraform.html)
 - Create a file **01-main.tf** and create terraform providers
 ```
 # Define Terraform Providers required for us
@@ -36,8 +71,7 @@ terraform {
 
 ```
 
-
-## Step-03: Define Azure Resource Manager Features Block
+## Step-04: Define Azure Resource Manager Features Block
 - Add **azurerm features block** to **01-main.tf**
 ```
 # This block is required for azurerm 2.x
@@ -47,31 +81,6 @@ provider azurerm {
 }
 ```
 
-
-## Step-04: Terraform Configuration Language Syntax
-- Understand Resources
-- Understand Blocks
-- Understand Arguments
-- Understand Identifiers
-- Understand Comments
-- [Terraform Configuration Syntax](https://www.terraform.io/docs/configuration/syntax.html)
-```
-# Template
-<BLOCK TYPE> "<BLOCK LABEL>" "<BLOCK LABEL>"   {
-  # Block body
-  <IDENTIFIER> = <EXPRESSION> # Argument
-}
-
-# Example
-resource "azurerm_resource_group" "aksdev" {   # BLOCK
-  name     = "aks-rg2-tf" # Argument
-  location = var.region   # Argument with value as expression (Variable value replaced from varibales.tf )
-
-  tags = {  #BLOCK
-    "environment" = "k8sdev"
-  }
-}
-```
 
 
 ## Step-05: Create Random Pet Resource
@@ -182,7 +191,29 @@ resource "azurerm_resource_group" "aks" {
 }
 ```
 
-## Step-09: Create or Deploy Terraform Resources & Verify
+## Step-09: Define Output Values
+- Understand about [Terraform Output Values](https://www.terraform.io/docs/configuration/outputs.html)
+```
+# Create Outputs
+# 1. Resource Group Location
+# 2. Resource Group Id
+# 3. Resource Group Name
+
+output "location" {
+  value = azurerm_resource_group.aks_rg.location
+}
+
+output "resource_group_id" {
+  value = azurerm_resource_group.aks_rg.id
+}
+
+output "resource_group_name" {
+  value = azurerm_resource_group.aks_rg.name
+}
+```
+
+
+## Step-10: Create or Deploy Terraform Resources & Verify
 ```
 # Initialize Terraform 
 terraform init
@@ -202,19 +233,19 @@ terraform apply v1out.plan
 terraform show
 ```
 
-## Step-10: Verify the same in Azure Portal Mgmt Console
+## Step-11: Verify the same in Azure Portal Mgmt Console
 - Verify if Resource Group got created in Azure Mgmt Console
 - Understand about terraform state file named **terraform.tfstate**
 - Migrate this state file to Azure Storage Account
 
-## Step-11: Migrate Terraform State Storage to Azure Storage Account
+## Step-12: Migrate Terraform State Storage to Azure Storage Account
 
 ### Create Azure Storage Account in new Resource Group
 - Why should be we create terraform state storage in different resource group? 
   - State storage is key for all terraform resources and it should be deleted at any point of time even accidentally.
 - **Create New Resource Group:** terraform-storage-rg
 - **Create Storage Account:** terraformstatexlrwdrzs  (Note: Name should be unique across Azure)
-- **Create Container Name:** prodtfstate
+- **Create Container Name:** tfstatefiles
 - Upload the file **terraform.tfstate** to storage account container
 
 ### Update main.tf with Terraform State Storage
@@ -224,7 +255,7 @@ terraform {
   backend "azurerm" {
     resource_group_name   = "terraform-storage-rg"
     storage_account_name  = "terraformstatexlrwdrzs"
-    container_name        = "prodtfstate"
+    container_name        = "tfstatefiles"
     key                   = "terraform.tfstate"
   }
 }
