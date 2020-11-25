@@ -39,9 +39,14 @@ resource "azurerm_resource_group" "aksdev" {   # BLOCK
 
 ## Step-03: Define Terraform Providers
 - Understand about [Terraform Settings Block](https://www.terraform.io/docs/configuration/terraform.html)
+- We primarily define the below 3 items in Terraform Settings Block
+  - Terraform Version
+  - Terraform Providers
+  - Terraform State Storage Backend
 - Create a file **01-main.tf** and create terraform providers
 ```
-# Define Terraform Providers required for us
+
+# Terraform Settings Block (https://www.terraform.io/docs/configuration/terraform.html)
 terraform {
   # Use a recent version of Terraform
   required_version = ">= 0.13"
@@ -63,6 +68,13 @@ terraform {
       source  = "hashicorp/random"
       version = "~> 3.0"
     }
+  }
+# Configure Terraform State Storage
+    backend "azurerm" {
+    resource_group_name   = "terraform-storage-rg"
+    storage_account_name  = "terraformstatexlrwdrzs"
+    container_name        = "prodtfstate"
+    key                   = "terraform.tfstate"
   }
 }
 
