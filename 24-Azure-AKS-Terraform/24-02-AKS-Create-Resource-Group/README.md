@@ -11,16 +11,13 @@
 - Understand Output Values in Terraform
 - Migrate Terraform State from local to Remote Storage (Azure Storage)
 
-
-
 ## Step-02: Terraform Configuration Language Syntax
-- [Terraform Configuration](https://www.terraform.io/docs/configuration/index.html)
-- Refer [Terraform Syntax](https://www.terraform.io/docs/configuration/syntax.html)
 - Understand Resources
 - Understand Blocks
 - Understand Arguments
 - Understand Identifiers
 - Understand Comments
+- [Terraform Configuration](https://www.terraform.io/docs/configuration/index.html)
 - [Terraform Configuration Syntax](https://www.terraform.io/docs/configuration/syntax.html)
 ```
 # Template
