@@ -217,5 +217,5 @@ ls -lrt
 id_aks_ubuntu_rsa
 id_aks_ubuntu_rsa.pub
 
-# Note:  We should have these files in our git repos for security Reasons
+# Note:  We should not have these files in our git repos for security Reasons
 ```

@@ -16,3 +16,7 @@ Since TF only support AKS without RBAC or AKS with RBAC & AAD and not the option
 - https://dev.to/cdennig/azure-devops-terraform-provider-22fb
 - https://github.com/dwaiba/aks-terraform/blob/master/main.tf
 - https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/kubernetes_cluster
+
+## Terraform Azure AKS References
+- https://medium.com/@nicolas.yuen/deploying-aks-with-terraform-on-azure-devops-65c7ef95d737
+- https://github.com/nyuen/AKS-Articles/blob/master/1-terraform/azure-pipelines.yml
