@@ -171,7 +171,7 @@ terraform apply
 ## Step-07: Understand terraform refresh in detail
 - **terraform refresh:** Update local state file against real resources in cloud
 - **Desired State:** Local Terraform Manifest (main.tf)
-- **Current State:**  Real Resources present in your cloud when it created (last reference - your tfstate file)
+- **Current State:**  Real Resources present in your cloud
 - **Command Order of Execution:** refresh, plan, make a decision, apply
 - Why? Lets understand that in detail about this order of execution
 ### Step-07-01: Add a new tag to Resource Group using Azure Portal Management console 
