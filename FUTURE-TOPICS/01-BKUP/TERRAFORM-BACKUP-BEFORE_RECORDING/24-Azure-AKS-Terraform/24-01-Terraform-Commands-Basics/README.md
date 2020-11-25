@@ -32,17 +32,17 @@
 brew install hashicorp/tap/terraform
 
 # Verify Terraform Version
-terraform version
+terraform -version
 
 # To Upgrade on MAC OS
 brew upgrade hashicorp/tap/terraform
 
 # Verify Terraform Version
-terraform version
+terraform -version
 
 # Verify Installation
-terraform help
-terraform help plan
+terraform -help
+terraform -help plan
 
 # Enable Tab Completion
 terraform -install-autocomplete
@@ -58,9 +58,7 @@ brew update && brew install azure-cli
 
 # Upgrade az cli version
 az --version
-brew upgrade azure-cli 
-[or]
-az upgrade
+brew upgrade azure-cli
 az --version
 
 # Azure CLI Login
@@ -178,6 +176,9 @@ terraform show
 # Terraform Refresh
 terraform refresh
 
+# Terraform Graph
+terraform graph
+
 # Terraform Providers
 terraform providers
 ```
@@ -198,3 +199,11 @@ rm -rf terraform.tfstate
 - [Main Azure Resource Manager Reference](https://www.terraform.io/docs/providers/azurerm/index.html)
 - [Azure Get Started on Terraform](https://learn.hashicorp.com/collections/terraform/azure-get-started)
 - [Terraform Resources and Modules](https://www.terraform.io/docs/configuration/index.html#resources-and-modules)
+
+## Kubernetes Terraform Azure References
+- https://www.terraform.io/docs/providers/azurerm/r/kubernetes_cluster.html
+- https://github.com/terraform-providers/terraform-provider-azurerm/tree/master/examples/kubernetes/basic-cluster
+- https://docs.microsoft.com/en-us/azure/developer/terraform/create-k8s-cluster-with-tf-and-aks
+- https://learn.hashicorp.com/tutorials/terraform/aks
+- https://github.com/hashicorp/learn-terraform-provision-aks-cluster
+

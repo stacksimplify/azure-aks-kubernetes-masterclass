@@ -12,5 +12,7 @@ provider "azurerm" {
 resource "azurerm_resource_group" "aks-rg2" {
   name     = "aks-rg2-tf"
   location = "Central US"
+
+
 }
 
