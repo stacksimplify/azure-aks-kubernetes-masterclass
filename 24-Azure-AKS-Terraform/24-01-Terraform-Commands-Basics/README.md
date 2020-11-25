@@ -174,21 +174,48 @@ terraform apply
 - **Current State:**  Real Resources present in your cloud when it created (last reference - your tfstate file)
 - **Command Order of Execution:** refresh, plan, make a decision, apply
 - Why? Lets understand that in detail about this order of execution
+### Step-07-01: Add a new tag to Resource Group using Azure Portal Management console 
 ```
-# Step-1: Add a new tag to Resource Group using Azure Portal Management console (demotag: 1)
+demotag: refreshtest
+```
 
-# Step-2: Execute terraform plan  (You should observe no changes to local state file because plan does the comparison in memory - no update to tfstate file locally about the change )
+### Step-07-02: Execute terraform plan  
+- You should observe no changes to local state file because plan does the comparison in memory 
+- no update to tfstate file locally about the change 
+```
+# Execute Terraform plan
 terraform plan 
-
-# Step-3: Execute terraform refresh (You should see local state file updated with new demo tag)
+```
+### Step-07-03: Execute terraform refresh 
+- You should see local state file updated with new demo tag
+```
+# Execute terraform refresh
+ls -lrta
 terraform refresh
 diff terraform.tfstate.backup terraform.tfstate
+```
+### Step-07-04: Why you need to the execution in this order (refresh, plan, make a decision, apply) ?
+- There are changes happened in your infra manually and not via terraform.
+- Now decision to be made if you want those changes or not.
+- **Choice-1:** If you dont want those changes proceed with terraform apply so manual changes will be removed.
+- **Choice-2:** If you want those changes, refer terraform.tfstate file about changes and embed them in your terraform manifests (example: main.tf) and proceed with flow (referesh, plan, review execution plan and apply)
 
-# Step-4: Why you need to the execution in this order (refresh, plan, make a decision, apply) ?
-There are changes happened in your infra manually and not via terraform.
-Now decision to be made if you want those changes or not.
-Choice-1: If you dont want those changes proceed with apply.
-Choice-2: If you want those changes, refer terraform.tfstate file about changes and embed them in your terraform manifests (example: main.tf) and proceed with flow (referesh, plan, review execution plan and apply)
+### Step-07-05: I picked choice-2, so i will update the tags in main.tf
+- Update in main.tf
+```
+  tags = {
+    "environment" = "k8sdev"
+    "demotag"     = "refreshtest"
+  }
+```
+### Step-07-06: Execute the commands to make our manual change official in terraform manifests and tfstate files perspective  
+```
+# Execute commands
+ls -lrta
+terraform refresh
+diff terraform.tfstate.backup terraform.tfstate
+terraform plan
+terraform apply
 ```
 
 ## Step-08: Understand terraform show, providers
