@@ -167,28 +167,50 @@ terraform apply
 ```
 - Verify if resource group with new name got re-created in Azure using Management Console
 
-## Step-07: Understand terraform show, refresh and providers
-- terraform show: Inspect Terraform state or plan
-- terraform refresh: Update local state file against real resources
-- terraform providers: Prints a tree of the providers used in the configuration
+
+## Step-07: Understand terraform refresh in detail
+- **terraform refresh:** Update local state file against real resources in cloud
+- **Desired State:** Local Terraform Manifest (main.tf)
+- **Current State:**  Real Resources present in your cloud when it created (last reference - your tfstate file)
+- **Command Order of Execution:** refresh, plan, make a decision, apply
+- Why?
+- Lets understand that in detail about this order of execution
+```
+# Step-1: Add a new tag to Resource Group using Azure Portal Management console (demotag: 1)
+
+# Step-2: Execute terraform plan  (You should observe no changes to local state file because plan does the comparison in memory - no update to tfstate file locally about the change )
+terraform plan 
+
+# Step-3: Execute terraform refresh (You should see local state file updated with new demo tag)
+terraform refresh
+diff terraform.tfstate.backup terraform.tfstate
+
+# Step-4: Why you need to the execution in this order (refresh, plan, make a decision, apply) ?
+There are changes happened in your infra manually and not via terraform.
+Now decision to be made if you want those changes or not.
+Choice-1: If you dont want those changes proceed with apply.
+Choice-2: If you want those changes, refer terraform.tfstate file about changes and embed them in your terraform manifests (example: main.tf) and proceed with flow (referesh, plan, review execution plan and apply)
+```
+
+## Step-08: Understand terraform show, providers
+- **terraform show:** Inspect Terraform state or plan
+- **terraform providers:** Prints a tree of the providers used in the configuration
 ```
 # Terraform Show
 terraform show
-
-# Terraform Refresh
-terraform refresh
 
 # Terraform Providers
 terraform providers
 ```
 
-## Step-08: Understand terraform destroy
+
+## Step-09: Understand terraform destroy
 - Understand about `terraform destroy`
 ```
 # Delete newly created Resource Group in Azure 
 terraform destroy
 
-# Delete State 
+# Delete State (Deleting for github repo case for course purpose)
 rm -rf .terraform
 rm -rf terraform.tfstate
 ```
