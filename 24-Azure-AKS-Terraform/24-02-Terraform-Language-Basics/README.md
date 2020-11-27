@@ -104,7 +104,7 @@ resource "random_pet" "aksrandom" {}
 ```
 
 
-## Step-05: Understand Terraform Variables 
+## Step-06: Understand Terraform Variables 
 ### Three types of Terraform Variables
 - [Input Variables](https://www.terraform.io/docs/configuration/variables.html)
 - [Output Values](https://www.terraform.io/docs/configuration/outputs.html)
@@ -137,7 +137,7 @@ resource "random_pet" "aksrandom" {}
 
 
 
-## Step-06: Create Terraform Input Variables
+## Step-07: Create Terraform Input Variables
 - Create a variables file **02-variables.tf**
 ```
 # https://www.terraform.io/docs/configuration/variables.html
@@ -175,7 +175,7 @@ variable "environment" {
 
 
 
-## Step-07: Create Resource Group Terraform Resource
+## Step-08: Create Resource Group Terraform Resource
 - Create a file named **03-resource-group.tf**
 ```
 # Terraform Resource to Create Azure Resource Group with Input Variables defined in variables.tf
@@ -185,7 +185,7 @@ resource "azurerm_resource_group" "aks_rg" {
 }
 ```
 
-## Step-08: Create Terraform Local Values (Optional)
+## Step-09: Create Terraform Local Values (Optional)
 ```
 # Local Values (Optional)
 locals {
@@ -204,7 +204,7 @@ resource "azurerm_resource_group" "aks" {
 }
 ```
 
-## Step-09: Define Output Values
+## Step-10: Define Output Values
 - Understand about [Terraform Output Values](https://www.terraform.io/docs/configuration/outputs.html)
 ```
 # Create Outputs
@@ -226,7 +226,7 @@ output "resource_group_name" {
 ```
 
 
-## Step-10: Create or Deploy Terraform Resources & Verify
+## Step-11: Create or Deploy Terraform Resources & Verify
 ```
 # Initialize Terraform 
 terraform init
@@ -246,12 +246,12 @@ terraform apply v1out.plan
 terraform show
 ```
 
-## Step-11: Verify the same in Azure Portal Mgmt Console
+## Step-12: Verify the same in Azure Portal Mgmt Console
 - Verify if Resource Group got created in Azure Mgmt Console
 - Understand about terraform state file named **terraform.tfstate**
 - Migrate this state file to Azure Storage Account
 
-## Step-12: Migrate Terraform State Storage to Azure Storage Account
+## Step-13: Migrate Terraform State Storage to Azure Storage Account
 
 ### Create Azure Storage Account in new Resource Group
 - Why should be we create terraform state storage in different resource group? 
