@@ -20,3 +20,6 @@ Since TF only support AKS without RBAC or AKS with RBAC & AAD and not the option
 ## Terraform Azure AKS References
 - https://medium.com/@nicolas.yuen/deploying-aks-with-terraform-on-azure-devops-65c7ef95d737
 - https://github.com/nyuen/AKS-Articles/blob/master/1-terraform/azure-pipelines.yml
+
+## Terraform Variables
+- https://build5nines.com/use-terraform-input-variables-to-parameterize-infrastructure-deployments/

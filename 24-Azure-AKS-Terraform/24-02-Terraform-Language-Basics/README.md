@@ -123,6 +123,8 @@ resource "azurerm_resource_group" "aks_rg" {
 - [Local Values](https://www.terraform.io/docs/configuration/locals.html)
 
 ### Input Variables
+- We can parameterize our deployments using Terraform Input Variables.
+- This is the right way to build a Terraform project that can be reused to deploy multiple environments like dev, qa, staging and production
 - Implement input variables in terraform for AKS Cluster
 - Understand different options available to pass input variables
   - variables.tf
