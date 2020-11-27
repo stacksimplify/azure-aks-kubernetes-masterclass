@@ -81,7 +81,7 @@ data "azurerm_kubernetes_service_versions" "current" {
 
 ## Step-05: Create Azure Log Analytics Workspace Terraform Resource
 - The Azure Monitor for Containers (also known as Container Insights) feature provides performance monitoring for workloads running in the Azure Kubernetes cluster.
-- We need to create Log Analytics workspace and reference its id in AKS Cluster when enabling the monitoring feature.
+- We need to create [Log Analytics workspace](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_workspace) and reference its id in AKS Cluster when enabling the monitoring feature.
 - Create a file **05-log-analytics-workspace.tf**
 ```
 # Create Log Analytics Workspace

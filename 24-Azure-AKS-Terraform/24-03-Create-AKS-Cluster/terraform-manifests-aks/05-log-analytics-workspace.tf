@@ -1,0 +1,1 @@
+# Create Log Analytics Workspace
