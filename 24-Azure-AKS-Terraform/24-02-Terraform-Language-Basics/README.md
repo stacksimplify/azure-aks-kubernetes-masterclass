@@ -303,7 +303,7 @@ terraform fmt
 - Understand about terraform state file named **terraform.tfstate**
 - Migrate this state file to Azure Storage Account
 
-## Step-12: Migrate Terraform State Storage to Azure Storage Account
+## Step-13: Migrate Terraform State Storage to Azure Storage Account
 
 ### Create Azure Storage Account in new Resource Group
 - Why should be we create terraform state storage in different resource group? 
