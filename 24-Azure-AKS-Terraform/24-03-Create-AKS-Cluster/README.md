@@ -1,4 +1,4 @@
-# Create AKS Cluster
+# Provision AKS Cluster using Terraform
 
 ## Step-01: Introduction
 - Create SSH Keys for AKS Linux VMs
@@ -8,6 +8,9 @@
 - Create Azure AD AKS Admins Group Resource in Terraform
 - Create AKS Cluster with default nodepool
 - Create AKS Cluster Output Values
+- Provision Azure AKS Cluster using Terraform
+- Access and Test using Azure AKS default admin `--admin`
+- Access and Test using Azure AD User as AKS Admin
 
 ## Step-02: Create SSH Public Key for Linux VMs
 ```
