@@ -43,11 +43,13 @@ resource "azurerm_resource_group" "aksdev" {   # BLOCK
 - We primarily define the below 3 items in Terraform Settings Block
   - Terraform Version
   - Terraform Providers
+    - [Azure RM Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest)
+    - [Azure AD Provider](https://registry.terraform.io/providers/hashicorp/azuread/latest)
+    - [Random Provider](https://registry.terraform.io/providers/hashicorp/random/latest)
+    - Append with **/docs** for above 3 links to get their equivalent documentation
   - Terraform State Storage Backend
 - Create a file **01-main.tf** and create terraform providers
-
 ```
-
 # Terraform Settings Block (https://www.terraform.io/docs/configuration/terraform.html)
 terraform {
   # Use a recent version of Terraform
