@@ -38,12 +38,14 @@ resource "azurerm_resource_group" "aksdev" {   # BLOCK
 ```
 
 ## Step-03: Define Terraform Providers
+- [VS Code Terraform Plugin -  Syntax highlighting and autocompletion for Terraform](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform)
 - Understand about [Terraform Settings Block](https://www.terraform.io/docs/configuration/terraform.html)
 - We primarily define the below 3 items in Terraform Settings Block
   - Terraform Version
   - Terraform Providers
   - Terraform State Storage Backend
 - Create a file **01-main.tf** and create terraform providers
+
 ```
 
 # Terraform Settings Block (https://www.terraform.io/docs/configuration/terraform.html)
