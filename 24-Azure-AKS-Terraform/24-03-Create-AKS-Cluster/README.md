@@ -95,7 +95,7 @@ resource "azurerm_log_analytics_workspace" "insights" {
 
 ## Step-06: Create Azure AD Group for AKS Admins Terraform Resource
 - To enable AKS AAD Integration, we need to provide Azure AD group object id. 
-- We wil create a Azure Active Directory group for AKS Admins
+- We wil create a [Azure Active Directory group](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group) for AKS Admins
 ```
 # Create Azure AD Group in Active Directory for AKS Admins
 resource "azuread_group" "aks_administrators" {
