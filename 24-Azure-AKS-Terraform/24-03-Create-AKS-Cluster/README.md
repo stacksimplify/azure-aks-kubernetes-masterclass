@@ -1,7 +1,13 @@
 # Create AKS Cluster
 
 ## Step-01: Introduction
-
+- Create SSH Keys for AKS Linux VMs
+- Declare Windows Username, Passwords for Windows nodepools. This needs to be done during the creation of cluster for 1st time itself if you have plans for Windows workloads on your cluster
+- Understand about Datasources and Create Datasource for Azure AKS latest Version
+- Create Azure Log Analytics Workspace Resource in Terraform
+- Create Azure AD AKS Admins Group Resource in Terraform
+- Create AKS Cluster with default nodepool
+- Create AKS Cluster Output Values
 
 ## Step-02: Create SSH Public Key for Linux VMs
 ```
@@ -49,8 +55,14 @@ variable "windows_admin_password" {
 ```
 
 ## Step-04: Create a Terraform Datasource for getting latest Azure AKS Versions 
-- Understand **Terraform Datasources** concept as part of this step
+- Understand [Terraform Datasources](https://www.terraform.io/docs/configuration/data-sources.html) concept as part of this step
+- Data sources allow data to be fetched or computed for use elsewhere in Terraform configuration. 
+- Use of data sources allows a Terraform configuration to make use of information defined outside of Terraform, or defined by another separate Terraform configuration.
 - Use Azure AKS versions datasource API to get the latest version and use it
+```
+# Call get-versions API via command line
+az aks get-versions --location centralus -o table
+```
 - Create **04-aks-versions-datasource.tf**
 - **Important Note:**
   - `include_preview` defaults to true which means we get preview version as latest version which we should not use in production.
@@ -84,8 +96,8 @@ resource "azurerm_log_analytics_workspace" "insights" {
 ```
 # Create Azure AD Group in Active Directory for AKS Admins
 resource "azuread_group" "aks_administrators" {
-  name        = "${azurerm_resource_group.aks_rg.name}-${var.environment}-administrators"
-  description = "Azure AKS Kubernetes administrators for the ${azurerm_resource_group.aks_rg.name}-${var.environment} cluster."
+  name        = "${azurerm_resource_group.aks_rg.name}-cluster-administrators"
+  description = "Azure AKS Kubernetes administrators for the ${azurerm_resource_group.aks_rg.name}-cluster."
 }
 ```
 
@@ -96,9 +108,9 @@ resource "azuread_group" "aks_administrators" {
 
 ```
 resource "azurerm_kubernetes_cluster" "aks_cluster" {
-  dns_prefix          = "${azurerm_resource_group.aks_rg.name}-${var.environment}"
+  dns_prefix          = "${azurerm_resource_group.aks_rg.name}-cluster"
   location            = azurerm_resource_group.aks_rg.location
-  name                = "${azurerm_resource_group.aks_rg.name}-${var.environment}"
+  name                = "${azurerm_resource_group.aks_rg.name}-cluster"
   resource_group_name = azurerm_resource_group.aks_rg.name
   kubernetes_version  = data.azurerm_kubernetes_service_versions.current.latest_version
   node_resource_group = "${azurerm_resource_group.aks_rg.name}-nrg"
@@ -181,44 +193,32 @@ tags = {
 ## Step-08: Create Terraform Output Values for AKS Cluster
 - Create a file named **08-outputs.tf**
 ```
-# Define Output Values for AKS Cluster
+
+# Resource Group Outputs
 output "location" {
   value = azurerm_resource_group.aks_rg.location
 }
+
+output "resource_group_id" {
+  value = azurerm_resource_group.aks_rg.id
+}
+
+output "resource_group_name" {
+  value = azurerm_resource_group.aks_rg.name
+}
+
+# Azure AKS Outputs
+
 output "aks_cluster_id" {
   value = azurerm_kubernetes_cluster.aks_cluster.id
 }
 
-output "aks_resource_group" {
-  value = azurerm_resource_group.aks_rg.name
+output "aks_cluster_name" {
+  value = azurerm_kubernetes_cluster.aks_cluster.name
 }
 
-output "kube_config" {
-  value = azurerm_kubernetes_cluster.aks_cluster.kube_config_raw
-}
-
-output "client_key" {
-  value = azurerm_kubernetes_cluster.aks_cluster.kube_config.0.client_key
-}
-
-output "client_certificate" {
-  value = azurerm_kubernetes_cluster.aks_cluster.kube_config.0.client_certificate
-}
-
-output "cluster_ca_certificate" {
-  value = azurerm_kubernetes_cluster.aks_cluster.kube_config.0.cluster_ca_certificate
-}
-
-output "host" {
-  value = azurerm_kubernetes_cluster.aks_cluster.kube_config.0.host
-}
-
-output "cluster_username" {
-    value = azurerm_kubernetes_cluster.aks_cluster.kube_config.0.username
-}
-
-output "cluster_password" {
-    value = azurerm_kubernetes_cluster.aks_cluster.kube_config.0.password
+output "aks_cluster_kubernetes_version" {
+  value = azurerm_kubernetes_cluster.aks_cluster.kubernetes_version
 }
 ```
 
@@ -245,11 +245,11 @@ terraform apply
 ## Step-10: Access Terraform created AKS cluster using AKS default admin
 ```
 # Azure AKS Get Credentials with --admin
-az aks get-credentials --resource-group terraform-aks --name terraform-aks-prod --admin
+az aks get-credentials --resource-group terraform-aks-dev --name terraform-aks-dev-cluster --admin
 
 # Get Full Cluster Information
-az aks show --resource-group terraform-aks --name terraform-aks-prod 
-az aks show --resource-group terraform-aks --name terraform-aks-prod -o table
+az aks show --resource-group terraform-aks-dev --name terraform-aks-dev-cluster
+az aks show --resource-group terraform-aks-dev --name terraform-aks-dev-cluster -o table
 
 # Get AKS Cluster Information using kubectl
 kubectl cluster-info
@@ -260,14 +260,14 @@ kubectl get nodes
 
 ## Step-11: Verify Resources using Azure Management Console
 - Resource Group
-  - terraform-aks
-  - terraform-aks-nrg
+  - terraform-aks-dev
+  - terraform-aks-dev-nrg
 - AKS Cluster & Node Pool
-  - Cluster: terraform-aks-prod
+  - Cluster: terraform-aks-dev-cluster
   - AKS System Pool
 - Log Analytics Workspace
 - Azure AD Group
-  - terraform-aks-prod-administrators
+  - terraform-aks-dev-cluster-administrators
 
 
 ## Step-12: Create a User in Azure AD and Associate User to AKS Admin Group in Azure AD
