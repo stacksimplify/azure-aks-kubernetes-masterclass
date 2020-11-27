@@ -9,8 +9,3 @@
 # 3. Azure AKS Environment Name (Dev, QA, Prod)
 
 
-variable "location" {
-  description = "Azure Location where all resources will be created"
-  type = string 
-  default = "Central US"
-}

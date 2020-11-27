@@ -182,7 +182,7 @@ resource "azurerm_resource_group" "aks_rg" {
 }
 ```
 
-## Step-08: Pass Input Variables to Terraform Deployments during runtime
+## Step-08: Terraform Input Variables - Multiple Options
 ### Option-1: With -var
 - `-var` flag enables a single input variable value to be passed in at the command-line per each `-var`.
 ```
@@ -226,7 +226,7 @@ terraform plan
 Observation: You can see that variable present in dev.auto.tfvars autoloaded now. 
 ```
 
-- **Clean-Up:** Move `dev.tfvars` to backup folder for reference and move back to original `02-variables.tf` and move to next step.
+- **Clean-Up:** Move `dev.auto.tfvars` to backup folder for reference and move back to original `02-variables.tf` and move to next step.
 
 
 ### Option-4: With Environment Variables
@@ -239,7 +239,17 @@ TF_VAR_<VARIABLE-NAME>  - case-sensitive
 export TF_VAR_location="westus"
 ```
 
-## Step-09: Define Output Values
+## Step-09: Final Look of Resource Group
+- Combine Two variables to make it one for resource group
+- Two have 1 resource group per environment (dev, qa), we are going to use this approach
+```
+resource "azurerm_resource_group" "aks_rg" {
+  location = var.location
+  name     = "${var.resource_group_name}-${var.environment}"
+}
+```
+
+## Step-10: Define Output Values
 - Understand about [Terraform Output Values](https://www.terraform.io/docs/configuration/outputs.html)
 ```
 # Create Outputs
@@ -261,7 +271,7 @@ output "resource_group_name" {
 ```
 
 
-## Step-10: Create or Deploy Terraform Resources & Verify
+## Step-11: Create or Deploy Terraform Resources & Verify
 ```
 # Initialize Terraform 
 terraform init
@@ -279,9 +289,12 @@ terraform apply v1out.plan
 
 # Verify current infrastructure state
 terraform show
+
+# Format Terraform files
+terraform fmt
 ```
 
-## Step-11: Verify the same in Azure Portal Mgmt Console
+## Step-12: Verify the same in Azure Portal Mgmt Console
 - Verify if Resource Group got created in Azure Mgmt Console
 - Understand about terraform state file named **terraform.tfstate**
 - Migrate this state file to Azure Storage Account
