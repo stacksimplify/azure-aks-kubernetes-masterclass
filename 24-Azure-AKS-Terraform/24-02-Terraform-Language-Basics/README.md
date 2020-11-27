@@ -251,6 +251,10 @@ resource "azurerm_resource_group" "aks_rg" {
 
 ## Step-10: Define Output Values
 - Understand about [Terraform Output Values](https://www.terraform.io/docs/configuration/outputs.html)
+- Output values are like the return values of a Terraform module
+- Output values are a way to expose some of that information to the user of your module.
+- A child module can use outputs to expose a subset of its resource attributes to a parent module
+- A root module can use outputs to print certain values in the CLI output after running terraform apply
 ```
 # Create Outputs
 # 1. Resource Group Location
