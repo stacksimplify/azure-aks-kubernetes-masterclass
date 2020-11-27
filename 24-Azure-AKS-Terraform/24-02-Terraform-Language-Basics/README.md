@@ -180,8 +180,8 @@ resource "azurerm_resource_group" "aks_rg" {
 }
 ```
 
-### Pass Input Variables to Terraform Deployments during runtime
-#### Option-1: With -var
+## Step-08: Pass Input Variables to Terraform Deployments during runtime
+### Option-1: With -var
 - `-var` flag enables a single input variable value to be passed in at the command-line per each `-var`.
 ```
 # Execute Terraform plan with -var and observe
@@ -189,7 +189,7 @@ terraform plan -var "location=eastus"
 Observation: Value to should be picked from runtime -var what ever provided which is eastus.
 ```
 
-#### Option-2: With -var-file
+### Option-2: With -var-file
 - `-var-file` flag enables multiple input variable values to be passed in by referencing a file that contains the values.
 - Create file `terraform.tfvars`
 ```
@@ -210,28 +210,34 @@ Observation: dev.tfvars will not be picked and value comes from variables.tf def
 terraform plan -var-file 'dev.tfvars'
 Observation: value to should be picked from dev.tfvars now
 ```
+
+### Option-3: With filename.auto.tfvars
+- We already seen the auto loading of `.tfvars` when the file name is `terraform.tfvars`
+- Now we can also do that when we have the file names with `filname.auto.tfvars`
+- Lets try out
+```
+# Rename file 
+mv dev.tfvars dev.auto.tfvars
+
+# Execute Terraform plan (No runtime arguments like -var-file)
+terraform plan
+Observation: You can see that variable present in dev.auto.tfvars autoloaded now. 
+```
+
 - **Clean-Up:** Move `dev.tfvars` to backup folder for reference and move back to original `02-variables.tf` and move to next step.
 
-## Step-09: Create Terraform Local Values (Optional)
-```
-# Local Values (Optional)
-locals {
-  aks_cluster_name    = "${local.resource_group_name}-${local.environment}"
-  location            = "centralus"
-  resource_group_name = "aks-terraform5"
-  environment         = "prod"
-}
 
-# Reference Local Values
-# Terraform Resource to Create Resource Group with Local Variables
-# Optional - If you use local Values
-resource "azurerm_resource_group" "aks" {
- location = local.location
-  name     = local.resource_group_name
-}
+### Option-4: With Environment Variables
+- When running Terraform commands, we can also use Environment Variables to define the values for Input Variables 
+- **Important Note:** Be sure to keep in mind that if the Operating System is case-sensitive, then Terraform will match variable names exactly as given during configuration. 
+```
+# Template
+TF_VAR_<VARIABLE-NAME>  - case-sensitive
+# Set Environment Variable using Bash
+export TF_VAR_location="westus"
 ```
 
-## Step-10: Define Output Values
+## Step-09: Define Output Values
 - Understand about [Terraform Output Values](https://www.terraform.io/docs/configuration/outputs.html)
 ```
 # Create Outputs
@@ -253,7 +259,7 @@ output "resource_group_name" {
 ```
 
 
-## Step-11: Create or Deploy Terraform Resources & Verify
+## Step-10: Create or Deploy Terraform Resources & Verify
 ```
 # Initialize Terraform 
 terraform init
@@ -273,12 +279,12 @@ terraform apply v1out.plan
 terraform show
 ```
 
-## Step-12: Verify the same in Azure Portal Mgmt Console
+## Step-11: Verify the same in Azure Portal Mgmt Console
 - Verify if Resource Group got created in Azure Mgmt Console
 - Understand about terraform state file named **terraform.tfstate**
 - Migrate this state file to Azure Storage Account
 
-## Step-13: Migrate Terraform State Storage to Azure Storage Account
+## Step-12: Migrate Terraform State Storage to Azure Storage Account
 
 ### Create Azure Storage Account in new Resource Group
 - Why should be we create terraform state storage in different resource group? 
