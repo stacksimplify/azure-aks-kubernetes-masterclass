@@ -102,42 +102,41 @@ provider azurerm {
 # Create Random pet resource
 resource "random_pet" "aksrandom" {}
 ```
+- Initialize the terraform and understand what happened
+```
+# Terraform Initialize
+terraform init
+```
+## Step-06: Create a Resource Group Resource
+- Create a file named **03-resource-group.tf** 
+```
+resource "azurerm_resource_group" "aks_rg" {
+  location = "Central US"
+  name     = "terraform-aks"
+}
+```
 
-
-## Step-06: Understand Terraform Variables 
+## Step-07: Understand and Create Terraform Input Variables
 ### Three types of Terraform Variables
 - [Input Variables](https://www.terraform.io/docs/configuration/variables.html)
 - [Output Values](https://www.terraform.io/docs/configuration/outputs.html)
 - [Local Values](https://www.terraform.io/docs/configuration/locals.html)
+
 ### Input Variables
 - Implement input variables in terraform for AKS Cluster
 - Understand different options available to pass input variables
   - variables.tf
-  - arguments
-  - arguments with a file containing variables
+  - arguments during runtime (-var)
+  - arguments during runtime (-var-file terraform.tfvars) with a file containing variables
 #### Using 02-variables.tf
 - Define few input variables in `02-variables.tf`
-- Reference them in `01-main.tf`
+- Reference them in `03-resource-group.tf`
 - Variables we are going to play with
   - Resource Group Name
   - Location or Region
-  - AKS Cluster Name
-  - AKS SSH Public Key for Linux Machines
   - AKS Environment Name
 
-#### Using Command Line (Optional)
-```
--var = 
-```
-
-#### Using Command Line and load from file (Optional)
-```
--var-file = 
-```
-
-
-
-## Step-07: Create Terraform Input Variables
+### Create Variables in a file and Reference them
 - Create a variables file **02-variables.tf**
 ```
 # https://www.terraform.io/docs/configuration/variables.html
@@ -162,7 +161,7 @@ variable "location" {
 variable "resource_group_name" {
   type = string
   description = "This variable defines the Resource Group"
-  default = "terraform-aks-rg1"
+  default = "terraform-aks"
 }
 
 # Azure AKS Environment Name
@@ -172,11 +171,7 @@ variable "environment" {
   default = "prod"
 }
 ```
-
-
-
-## Step-08: Create Resource Group Terraform Resource
-- Create a file named **03-resource-group.tf**
+- Update a file named **03-resource-group.tf** with Variable references
 ```
 # Terraform Resource to Create Azure Resource Group with Input Variables defined in variables.tf
 resource "azurerm_resource_group" "aks_rg" {
@@ -184,6 +179,38 @@ resource "azurerm_resource_group" "aks_rg" {
   name     = var.resource_group_name
 }
 ```
+
+### Pass Input Variables to Terraform Deployments during runtime
+#### Option-1: With -var
+- `-var` flag enables a single input variable value to be passed in at the command-line per each `-var`.
+```
+# Execute Terraform plan with -var and observe
+terraform plan -var "location=eastus"
+Observation: Value to should be picked from runtime -var what ever provided which is eastus.
+```
+
+#### Option-2: With -var-file
+- `-var-file` flag enables multiple input variable values to be passed in by referencing a file that contains the values.
+- Create file `terraform.tfvars`
+```
+terraform.tfvars with content in it as 
+location = "westus"
+
+# Run plan and observe 
+terraform plan 
+Observation: No need to give -var-file when name terraform.tfvars and values pickup directly from terraform.tfvars
+```
+- Rename file name `terraform.tfvars` to `dev.tfvars`
+```
+# Run plan and observe 
+terraform plan 
+Observation: dev.tfvars will not be picked and value comes from variables.tf default attribute
+
+# Run plan with -var-file 'dev.tfvars'
+terraform plan -var-file 'dev.tfvars'
+Observation: value to should be picked from dev.tfvars now
+```
+- **Clean-Up:** Move `dev.tfvars` to backup folder for reference and move back to original `02-variables.tf` and move to next step.
 
 ## Step-09: Create Terraform Local Values (Optional)
 ```
