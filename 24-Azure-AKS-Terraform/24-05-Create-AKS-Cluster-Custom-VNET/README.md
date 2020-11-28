@@ -8,7 +8,7 @@
 - Destroy the cluster after tests
 
 ## Step-02: Create Virtual Network and AKS Default Subnet
-- Create Virtual Network using Terraform
+- Create [Virtual Network using Terraform](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network)
 - Create a separate subnet for AKS Nodepools
 - Create a file named **11-virtual-network.tf**
 ```
