@@ -1,6 +1,7 @@
-# Create AKS Cluster Node Pools
+# Create AKS Cluster Linux and Windows Node Pools
 
 ## Step-01: Introduction
+- Create Windows and Linux Nodepools
 
 ## Step-02: Create Azure AKS Linux User Node Pool using Terraform
 - Understand about Terraform resource [azurerm_kubernetes_cluster_node_pool](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster_node_pool)
