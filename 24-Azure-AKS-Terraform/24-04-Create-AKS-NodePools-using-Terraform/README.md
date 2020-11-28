@@ -74,6 +74,9 @@ resource "azurerm_kubernetes_cluster_node_pool" "win101" {
 # Change Directory 
 cd 24-04-Create-AKS-NodePools-using-Terraform/terraform-manifests-aks
 
+# Initialize Terraform
+terraform init
+
 # Validate Terraform manifests
 terraform validate
 
@@ -87,13 +90,13 @@ terraform apply
 ## Step-05: Verify if Nodepools added successfully
 ```
 # List Node Pools
-az aks nodepool list --resource-group terraform-aks --cluster-name  terraform-aks-prod --output table
+az aks nodepool list --resource-group terraform-aks-dev --cluster-name  terraform-aks-dev-cluster --output table
 
 # List Nodes using Labels
 kubectl get nodes -o wide
 kubectl get nodes -o wide -l nodepoolos=linux
 kubectl get nodes -o wide -l nodepoolos=windows
-kubectl get nodes -o wide -l environment=production
+kubectl get nodes -o wide -l environment=dev
 ```
 
 
