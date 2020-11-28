@@ -55,7 +55,7 @@ stages:
 
 
 
-# Stage-2: Deploy Stage
+# Stage-2: Deploy Stage for Dev
 ## Step-1: Download Secure File
 ## Step-2: Terraform Initialize (State Storage to store in Azure Storage Account)
 ## Step-3: Terraform Plan 
@@ -107,6 +107,11 @@ stages:
               commandOptions: '$(Pipeline.Workspace)/terraform-manifests-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
               allowTelemetryCollection: false
 
+# Stage-2: Deploy for QA
+## Step-1: Download Secure File
+## Step-2: Terraform Initialize (State Storage to store in Azure Storage Account)
+## Step-3: Terraform Plan 
+## Step-4: Terraform Apply              
 
   - deployment: DeployQA
     dependsOn: DeployDev

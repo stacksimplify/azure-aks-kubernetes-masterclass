@@ -162,7 +162,8 @@ ssh-keygen \
     -b 4096 \
     -C "azureuser@myserver" \
     -f ~/ssh-keys-teerraform-aks-devops/aks-terraform-devops-ssh-key-ububtu \
-Passphrase: empty
+
+Note: We will have passphrase as : empty when asked
 
 # List Files
 ls -lrt $HOME/ssh-keys-teerraform-aks-devops
@@ -334,7 +335,7 @@ stages:
 ```
 # Setup kubeconfig
 az aks get-credentials --resource-group <Resource-Group-Name>  --name <AKS-Cluster-Name>
-az aks get-credentials --resource-group terraform-aks-dev  --name terraform-aks-dev-cluster
+az aks get-credentials --resource-group terraform-aks-dev  --name terraform-aks-dev-cluster --admin
 
 # View Cluster Info
 kubectl cluster-info
@@ -343,16 +344,99 @@ kubectl cluster-info
 kubectl get nodes
 ```
 
-## Step-13: 
+## Step-13: Create QA Environment Deploy Stage in Pipeline
+### Update Pipeline
+```yaml
+# Stage-2: Deploy for QA
+## Step-1: Download Secure File
+## Step-2: Terraform Initialize (State Storage to store in Azure Storage Account)
+## Step-3: Terraform Plan 
+## Step-4: Terraform Apply              
 
+  - deployment: DeployQA
+    dependsOn: DeployDev
+    pool:
+      vmImage: 'ubuntu-latest'
+    environment: $(QA_ENVIRONMENT)
+    strategy:
+      # default deployment strategy
+      runOnce:
+        deploy:
+          steps:
+          - task: DownloadSecureFile@1
+            displayName: Download SSH Key for Linux VMs
+            name: sshkey
+            inputs:
+              secureFile: 'aks-terraform-devops-ssh-key-ububtu.pub'
+          - task: TerraformCLI@0
+            displayName: Terraform Init
+            inputs:
+              command: 'init'
+              workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
+              backendType: 'azurerm'
+              backendServiceArm: 'terraform-aks-azurerm-for-pipe3'
+              backendAzureRmResourceGroupName: 'terraform-state-storage-rg2'
+              backendAzureRmStorageAccountName: 'tfstatekalyan123'
+              backendAzureRmContainerName: 'tfstatefiles'
+              backendAzureRmKey: 'aks-$(QA_ENVIRONMENT).tfstate'
+              allowTelemetryCollection: false
 
-
-## Step-11: Verify Pipeline logs
-- Verify Pipeline logs
-- Once pipeline run completed verify nodes
+          - task: TerraformCLI@0
+            displayName: Terraform Plan
+            inputs:
+              command: 'plan'
+              workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
+              environmentServiceName: 'terraform-aks-azurerm-for-pipe3'
+              commandOptions: '-var ssh_public_key=$(sshkey.secureFilePath) -var environment=$(QA_ENVIRONMENT) -out $(Pipeline.Workspace)/terraform-manifests-out/$(QA_ENVIRONMENT)-$(Build.BuildId).out'
+              allowTelemetryCollection: false
+              
+          - task: TerraformCLI@0
+            displayName: Terraform Apply
+            inputs:
+              command: 'apply'
+              workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
+              environmentServiceName: 'terraform-aks-azurerm-for-pipe3'
+              commandOptions: '$(Pipeline.Workspace)/terraform-manifests-out/$(QA_ENVIRONMENT)-$(Build.BuildId).out'
+              allowTelemetryCollection: false
 ```
-# Get Nodes
+
+
+
+### Pipeline Save and Run
+- Click on **Save and Run**
+- Commit Message: First Commit - AKS Provision via terraform
+- Click on **Job** and Verify Pipeline
+
+## Step-12: Verify all the resources created 
+### Verify Pipeline logs
+- Verify Pipeline logs for all the tasks
+
+### Verify new Storage Account in Azure Mgmt Console
+- Verify if `terraform init` command ran successfully from Azure Pipelines
+- Verify Storage Account
+- Verify Storage Container
+- Verify tfstate file got created in storage container
+
+### Verify new AKS Cluster in Azure Mgmt Console
+- Verify Resource Group 
+- Verify AKS Cluster
+- Verify AD Group
+- Verify Tags for a nodepool
+
+### Connect to AKS Cluster
+```
+# Setup kubeconfig
+az aks get-credentials --resource-group <Resource-Group-Name>  --name <AKS-Cluster-Name>
+az aks get-credentials --resource-group terraform-aks-qa  --name terraform-aks-qa-cluster --admin
+
+# View Cluster Info
+kubectl cluster-info
+
+# List Kubernetes Worker Nodes
 kubectl get nodes
 ```
+
+
+
 
 

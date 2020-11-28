@@ -89,6 +89,9 @@ terraform apply
 # List Node Pools
 az aks nodepool list --resource-group terraform-aks-dev2 --cluster-name  terraform-aks-dev2-cluster --output table
 
+# Configure kubectl with Default Admin Credentials
+az aks get-credentials --resource-group terraform-aks-dev2 --name  terraform-aks-dev2-cluster --admin
+
 # List Nodes using Labels
 kubectl get nodes -o wide
 kubectl get nodes -o wide -l nodepoolos=linux
