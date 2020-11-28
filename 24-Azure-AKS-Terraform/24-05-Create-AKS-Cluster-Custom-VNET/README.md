@@ -1,7 +1,11 @@
 # Create AKS Cluster using Custom Virtual Network
 
 ## Step-01: Introduction
-
+- Create a Custom Virtual Network and Subnet
+- Reference the same in AKS Cluster and Node Pools linux and windows
+- Create the AKS Cluster with nodepools on custom vnet
+- Deploy sample Apps and test
+- Destroy the cluster after tests
 
 ## Step-02: Create Virtual Network and AKS Default Subnet
 - Create Virtual Network using Terraform
@@ -40,24 +44,24 @@ terraform {
 ```
 
 ## Step-04: Update variables.tf with environment name
-- We are also going to change cluster environment name as prod2
+- We are also going to change cluster environment name as dev2
 ```
 # Azure AKS Environment Name
 variable "environment" {
   type = string  
   description = "This variable defines the Environment"  
-  default = "prod2"
+  default = "dev2"
 }
 ```
 
 ## Step-05: Add below for default system, Linux, windows nodepools
 - We will add this in following files
-  - 07-aks-cluster.tf
+  - 07-aks-cluster.tf in default node pool
   - 08-aks-cluster-linux-user-nodepools.tf
   - 09-aks-cluster-windows-user-nodepools.tf
 ```
 # AKS Default Subnet ID
-vnet_subnet_id = azurerm_subnet.aks-default.id 
+vnet_subnet_id        = azurerm_subnet.aks-default.id 
 ```
 
 ## Step-06: Deploy Terraform Resources
@@ -83,13 +87,13 @@ terraform apply
 ## Step-07: Verify if Nodepools added successfully
 ```
 # List Node Pools
-az aks nodepool list --resource-group terraform-aks --cluster-name  terraform-aks-prod2 --output table
+az aks nodepool list --resource-group terraform-aks-dev2 --cluster-name  terraform-aks-dev2-cluster --output table
 
 # List Nodes using Labels
 kubectl get nodes -o wide
 kubectl get nodes -o wide -l nodepoolos=linux
 kubectl get nodes -o wide -l nodepoolos=windows
-kubectl get nodes -o wide -l environment=production
+kubectl get nodes -o wide -l environment=dev2
 ```
 
 
@@ -99,7 +103,7 @@ kubectl get nodes -o wide -l environment=production
 - Dotnet App to Windows Nodepool
 ```
 # Change Directory 
-cd 24-04-Create-AKS-NodePools-using-Terraform/
+cd 24-05-Create-AKS-Cluster-Custom-VNET/
 
 # Deploy All Apps
 kubectl apply -R -f kube-manifests/
@@ -128,7 +132,7 @@ http://<public-ip-of-windows-app>
 ## Step-08: Destroy our Terraform Cluster
 ```
 # Change Directory 
-cd 24-04-Create-AKS-NodePools-using-Terraform/v3-terraform-manifests-aks
+cd 24-05-Create-AKS-Cluster-Custom-VNET/terraform-manifests-aks-custom-vnet
 
 # Destroy all our Terraform Resources
 terraform destroy
