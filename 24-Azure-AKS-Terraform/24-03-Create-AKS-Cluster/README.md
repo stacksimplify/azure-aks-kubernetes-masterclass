@@ -293,7 +293,7 @@ kubectl get nodes
 ## Step-13: Access Terraform created AKS Cluster 
 ```
 # Azure AKS Get Credentials with --admin
-az aks get-credentials --resource-group terraform-aks --name terraform-aks-prod --overwrite-existing
+az aks get-credentials --resource-group terraform-aks-dev --name terraform-aks-dev-cluster --overwrite-existing
 
 # List Kubernetes Nodes
 kubectl get nodes

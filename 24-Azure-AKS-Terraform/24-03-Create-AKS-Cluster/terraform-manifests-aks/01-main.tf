@@ -31,7 +31,7 @@ terraform {
     resource_group_name   = "terraform-storage-rg"
     storage_account_name  = "terraformstatexlrwdrzs"
     container_name        = "tfstatefiles"
-    key                   = "terraform.tfstate"
+    key                   = "dev.terraform.tfstate"
   }  
 }
 
