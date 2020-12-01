@@ -54,6 +54,7 @@ stages:
 
 
 # Stage-2: Deploy Stages for Dev & QA
+# Deployment-1: Deploy Dev AKS Cluster
 ## Step-1: Download Secure File
 ## Step-2: Terraform Initialize (State Storage to store in Azure Storage Account)
 ## Step-3: Terraform Plan 
@@ -106,6 +107,7 @@ stages:
               allowTelemetryCollection: false
 
 # Stage-2: Deploy Stages for Dev & QA
+# Deployment-2: Deploy QA AKS Cluster
 ## Step-1: Download Secure File
 ## Step-2: Terraform Initialize (State Storage to store in Azure Storage Account)
 ## Step-3: Terraform Plan 
