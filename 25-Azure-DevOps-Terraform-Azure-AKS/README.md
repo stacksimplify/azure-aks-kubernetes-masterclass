@@ -213,15 +213,6 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-
-# Define Variables
-variables:
-- name: DEV_ENVIRONMENT
-  value: dev 
-- name: QA_ENVIRONMENT
-  value: qa 
-
-
 # Stage-1: Validate Stage
 ## Step-1: Install Latest Terraform (0.13.5) (Ideally not needed if we use default Agents)
 ## Step-2: Validate Terraform Manifests
@@ -272,10 +263,19 @@ stages:
 ```yaml
 # Stage-2: Deploy Stages for Dev & QA
 # Deployment-1: Deploy Dev AKS Cluster
-## Step-1: Download Secure File
-## Step-2: Terraform Initialize (State Storage to store in Azure Storage Account)
-## Step-3: Terraform Plan 
-## Step-4: Terraform Apply
+## Step-1: Define Variables
+## Step-2: Download Secure File
+## Step-3: Terraform Initialize (State Storage to store in Azure Storage Account)
+## Step-4: Terraform Plan 
+## Step-5: Terraform Apply
+
+# Define Variables
+variables:
+- name: DEV_ENVIRONMENT
+  value: dev 
+- name: QA_ENVIRONMENT
+  value: qa 
+
 - stage: DeployAKS
   jobs:
   - deployment: DeployDev
