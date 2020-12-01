@@ -18,6 +18,7 @@
 - Two variables we will define in Azure DevOps and use it
   - Environment 
   - SSH Public Key
+- Just comment the default values here (ideally not needed but we will do that)  
 
 ### 03-resource-group.tf
 - We are going to create resource groups for each environment with **terraform-aks-envname**
@@ -182,130 +183,17 @@ Public File: aks-terraform-devops-ssh-key-ububtu.pub (To be uploaded to Azure De
 - Go to -> Azure DevOps -> Select Organization -> Select project **terraform-azure-aks**
 - Go to Pipelines -> Pipelines -> Create Pipeline
 ### Where is your Code?
-  - Github
-  - Select a Repository: stacksimplify/azure-devops-aks-kubernetes-terraform-pipeline
-  - Provide your github password
-  - Click on **Approve and Install** on Github
+- Github
+- Select a Repository: stacksimplify/azure-devops-aks-kubernetes-terraform-pipeline
+- Provide your github password
+- Click on **Approve and Install** on Github
 ### Configure your Pipeline
- - Select Pipeline: Starter Pipeline  
- - Design your Pipeline
- - Pipeline Name: 01-terraform-provision-aks-cluster-pipeline.yml
+- Select Pipeline: Starter Pipeline  
+- Design your Pipeline
+- Pipeline Name: 01-terraform-provision-aks-cluster-pipeline.yml
 ### Create Pipeline
+
 ```yaml
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-trigger:
-- master
-
-pool:
-  vmImage: 'ubuntu-latest'
-
-
-variables:
-- name: DEV_ENVIRONMENT
-  value: dev 
-- name: QA_ENVIRONMENT
-  value: qa 
-
-
-# Stage-1: Validate Stage
-## Step-1: Install Latest Terraform (Ideally not needed if we use default Agents)
-## Step-2: Validate Terraform Manifests
-
-stages:
-- stage: Validate
-  jobs:
-  - job: ValidateJob
-    continueOnError: false
-    steps:
-      - publish: terraform-manifests
-        artifact: terraform-manifests-out
-      - task: TerraformInstaller@0
-        displayName: Terraform Installer
-        inputs:
-          terraformVersion: 'latest'
-      - task: TerraformCLI@0
-        displayName: Terraform Init
-        inputs:
-          command: 'init'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests'
-          backendType: 'azurerm'
-          backendServiceArm: 'terraform-aks-azurerm-for-pipe3'
-          backendAzureRmResourceGroupName: 'terraform-state-storage-rg2'
-          backendAzureRmStorageAccountName: 'tfstatekalyan123'
-          backendAzureRmContainerName: 'tfstatefiles'
-          backendAzureRmKey: 'aks-base.tfstate'
-          allowTelemetryCollection: false
-      - task: TerraformCLI@0
-        displayName: Terraform Validate
-        inputs:
-          command: 'validate'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests'
-          allowTelemetryCollection: false
-       
-
-
-
-# Stage-2: Deploy Stage
-## DEV Environment
-## Step-1: Download Secure File
-## Step-2: Terraform Initialize (State Storage to store in Azure Storage Account)
-## Step-3: Terraform Plan 
-## Step-4: Terraform Apply
-## QA Environment
-## Step-1: Download Secure File
-## Step-2: Terraform Initialize (State Storage to store in Azure Storage Account)
-## Step-3: Terraform Plan 
-## Step-4: Terraform Apply
-- stage: DeployAKS
-  jobs:
-  - deployment: DeployDev
-    pool:
-      vmImage: 'ubuntu-latest'
-    environment: $(DEV_ENVIRONMENT)
-    strategy:
-      # default deployment strategy
-      runOnce:
-        deploy:
-          steps:
-          - task: DownloadSecureFile@1
-            displayName: Download SSH Key for Linux VMs
-            name: sshkey
-            inputs:
-              secureFile: 'aks-terraform-devops-ssh-key-ububtu.pub'
-          - task: TerraformCLI@0
-            displayName: Terraform Init
-            inputs:
-              command: 'init'
-              workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
-              backendType: 'azurerm'
-              backendServiceArm: 'terraform-aks-azurerm-for-pipe3'
-              backendAzureRmResourceGroupName: 'terraform-state-storage-rg2'
-              backendAzureRmStorageAccountName: 'tfstatekalyan123'
-              backendAzureRmContainerName: 'tfstatefiles'
-              backendAzureRmKey: 'aks-$(DEV_ENVIRONMENT).tfstate'
-              allowTelemetryCollection: false
-
-          - task: TerraformCLI@0
-            displayName: Terraform Plan
-            inputs:
-              command: 'plan'
-              workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
-              environmentServiceName: 'terraform-aks-azurerm-for-pipe3'
-              commandOptions: '-var ssh_public_key=$(sshkey.secureFilePath) -var environment=$(DEV_ENVIRONMENT) -out $(Pipeline.Workspace)/terraform-manifests-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
-              allowTelemetryCollection: false
-              
-          - task: TerraformCLI@0
-            displayName: Terraform Apply
-            inputs:
-              command: 'apply'
-              workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
-              environmentServiceName: 'terraform-aks-azurerm-for-pipe3'
-              commandOptions: '$(Pipeline.Workspace)/terraform-manifests-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
-              allowTelemetryCollection: false
 ```
 
 
