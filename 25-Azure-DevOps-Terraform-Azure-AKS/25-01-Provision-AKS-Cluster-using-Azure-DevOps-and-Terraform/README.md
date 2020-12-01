@@ -3,6 +3,9 @@
 ## Step-01: Introduction
 - Create Azure DevOps Pipeline to create AKS cluster using Terraform
 - We are going to create two environments Dev and QA using single pipeline. 
+- Terraform Manifests Validate
+- Provision Dev AKS Cluster
+- Provision QA AKS Cluster
 
 ## Step-02: Install Azure Market Place Plugins in Azure DevOps
 - Install below listed two plugins in your respective Azure DevOps Organization
