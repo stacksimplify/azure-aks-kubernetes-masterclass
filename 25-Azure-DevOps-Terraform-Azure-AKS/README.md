@@ -56,17 +56,17 @@
 
 ### 08-outputs.tf  
 - We will put out output values very simple
- - Resource Group 
+- Resource Group 
   - Location
   - Name
   - ID
- - AKS Cluster 
+- AKS Cluster 
   - AKS Versions
   - AKS Latest Version
   - AKS Cluster ID
   - AKS Cluster Name
   - AKS Cluster Kubernetes Version
- - AD Group
+- AD Group
   - ID
   - Object ID
  
