@@ -223,8 +223,9 @@ variables:
 
 
 # Stage-1: Validate Stage
-## Step-1: Install Latest Terraform (Ideally not needed if we use default Agents)
+## Step-1: Install Latest Terraform (0.13.5) (Ideally not needed if we use default Agents)
 ## Step-2: Validate Terraform Manifests
+## Step-3: Publish Artifacts to Pipeline (Pipeline artifacts provide a way to share files between stages in a pipeline or between different pipelines. )
 
 stages:
 - stage: Validate
@@ -454,7 +455,8 @@ kubectl cluster-info
 kubectl get nodes
 ```
 
-
+## References
+- [Publish & Download Artifacts in Azure DevOps Pipeline](https://docs.microsoft.com/en-us/azure/devops/pipelines/artifacts/pipeline-artifacts?view=azure-devops&tabs=yaml)
 
 
 
