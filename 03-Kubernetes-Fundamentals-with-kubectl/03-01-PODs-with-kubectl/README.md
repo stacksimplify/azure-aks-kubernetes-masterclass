@@ -8,6 +8,9 @@
 ### Get Worker Nodes Status
 - Verify if kubernetes worker nodes are ready. 
 ```
+# Configure Cluster Creds (kube config) for Azure AKS Clusters
+az aks get-credentials --resource-group aks-rg1 --name aksdemo1
+
 # Get Worker Node Status
 kubectl get nodes
 
@@ -165,8 +168,6 @@ kubectl get all
 
 # Delete Services
 kubectl delete svc my-first-service
-kubectl delete svc my-first-service2
-kubectl delete svc my-first-service3
 
 # Delete Pod
 kubectl delete pod my-first-pod
