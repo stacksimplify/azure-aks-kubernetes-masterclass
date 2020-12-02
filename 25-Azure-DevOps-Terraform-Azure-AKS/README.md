@@ -259,6 +259,15 @@ stages:
 
 
 ## Stage-12: Deploy Dev AKS Cluster
+- **Stage-2:** Deploy Stages for Dev & QA
+  - **Deployment-1:** Deploy Dev AKS Cluster
+    - **Step-1:** Define Environment Variables
+    - **Step-2:** Download SSH Secure File
+    - **Step-3:** Terraform Initialize (State Storage to store in Azure Storage Account for Dev AKS Cluster)
+    - **Step-4:** Terraform Plan (Create Plan)
+    - **Step-5:** Terraform Apply (Use the plan created in previous step)
+- [Azure Pipelines - Deployment Jobs](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/deployment-jobs?view=azure-devops)
+
 ### Stage-2: Deployment-1: Deploy Dev AKS Cluster
 ```yaml
 # Stage-2: Deploy Stages for Dev & QA
@@ -457,6 +466,6 @@ kubectl get nodes
 
 ## References
 - [Publish & Download Artifacts in Azure DevOps Pipeline](https://docs.microsoft.com/en-us/azure/devops/pipelines/artifacts/pipeline-artifacts?view=azure-devops&tabs=yaml)
-
+- [Azure Pipelines - Deployment Jobs](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/deployment-jobs?view=azure-devops)
 
 
