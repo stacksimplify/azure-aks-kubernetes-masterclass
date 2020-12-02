@@ -519,6 +519,9 @@ git push
 
 ### Connect to Dev AKS Cluster & verify
 ```
+# List Nodepools
+az aks nodepool list --cluster-name terraform-aks-dev-cluster --resource-group terraform-aks-dev -o table
+
 # Setup kubeconfig
 az aks get-credentials --resource-group <Resource-Group-Name>  --name <AKS-Cluster-Name>
 az aks get-credentials --resource-group terraform-aks-dev  --name terraform-aks-dev-cluster --admin
@@ -533,9 +536,13 @@ kubectl get nodes
 
 ### Connect to QA AKS Cluster & Verify
 ```
+# List Nodepools
+az aks nodepool list --cluster-name terraform-aks-qa-cluster --resource-group terraform-aks-qa -o table
+
 # Setup kubeconfig
 az aks get-credentials --resource-group <Resource-Group-Name>  --name <AKS-Cluster-Name>
 az aks get-credentials --resource-group terraform-aks-qa  --name terraform-aks-qa-cluster --admin
+
 
 # View Cluster Info
 kubectl cluster-info
