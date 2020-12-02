@@ -473,22 +473,83 @@ kubectl get nodes
 ```
 
 ## Step-16: Make Changes to Infrastructure and Push Code
-- Add this as node-label and tag to linux101 nodepool
+- Add new nodepool named linux102
+- Create file **11-aks-cluster-linux102-user-nodepools.tf**
+```yaml
+# Create Linux Azure AKS Node Pool
+
+resource "azurerm_kubernetes_cluster_node_pool" "linux101" {
+  availability_zones    = [1, 2, 3]
+  enable_auto_scaling   = true
+  kubernetes_cluster_id = azurerm_kubernetes_cluster.aks_cluster.id
+  max_count             = 3
+  min_count             = 1
+  mode                  = "User"
+  name                  = "linux102"
+  orchestrator_version  = data.azurerm_kubernetes_service_versions.current.latest_version
+  os_disk_size_gb       = 30
+  os_type               = "Linux" # Default is Linux, we can change to Windows
+  vm_size               = "Standard_DS2_v2"
+  priority              = "Regular"  # Default is Regular, we can change to Spot with additional settings like eviction_policy, spot_max_price, node_labels and node_taints
+  node_labels = {
+    "nodepool-type" = "user"
+    "environment"   = var.environment
+    "nodepoolos"    = "linux"
+    "ui-app"        = "reactjs-apps"
+  }
+  tags = {
+    "nodepool-type" = "user"
+    "environment"   = var.environment
+    "nodepoolos"    = "linux"
+    "ui-app"        = "reactjs-apps" 
+  }
+}
 ```
-# Add this tag and node-label
-"ui-apps"           = "react-apps"
-```
-- Execute Git Commands
+- Commit Code 
 ```
 # First sync Remote repo with local repo
 git pull
 
 # Commit
 git add .
-git commit -am "Added New Node-label to linux101 nodepool"
+git commit -am "Added New Node-Pool linux102"
 git push
 ```
-- Verify the pipeline 
+- Verify the pipeline
+
+### Connect to Dev AKS Cluster & verify
+```
+# Setup kubeconfig
+az aks get-credentials --resource-group <Resource-Group-Name>  --name <AKS-Cluster-Name>
+az aks get-credentials --resource-group terraform-aks-dev  --name terraform-aks-dev-cluster --admin
+
+# View Cluster Info
+kubectl cluster-info
+
+# List Kubernetes Worker Nodes
+kubectl get nodes
+```
+
+
+### Connect to QA AKS Cluster & Verify
+```
+# Setup kubeconfig
+az aks get-credentials --resource-group <Resource-Group-Name>  --name <AKS-Cluster-Name>
+az aks get-credentials --resource-group terraform-aks-qa  --name terraform-aks-qa-cluster --admin
+
+# View Cluster Info
+kubectl cluster-info
+
+# List Kubernetes Worker Nodes
+kubectl get nodes
+```
+
+## Step-17: Clean-Up
+- Delete the Resource groups which will delete all resources
+  - terraform-aks-dev
+  - terraform-aks-qa
+- Delete AD Groups  
+
 
 ## References
 - [Publish & Download Artifacts in Azure DevOps Pipeline](https://docs.microsoft.com/en-us/azure/devops/pipelines/artifacts/pipeline-artifacts?view=azure-devops&tabs=yaml)
