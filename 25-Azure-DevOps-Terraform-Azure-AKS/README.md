@@ -210,7 +210,51 @@ Public File: aks-terraform-devops-ssh-key-ububtu.pub (To be uploaded to Azure De
   - **Step-2:** Install Latest Terraform (0.13.5) (Ideally not needed if we use default Agents)
   - **Step-3:** Validate Terraform Manifests
 ```yaml
-       
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+# Stage-1: Terraform Validate Stage
+## Step-1: Publish Artifacts to Pipeline (Pipeline artifacts provide a way to share files between stages in a pipeline or between different pipelines. )
+## Step-2: Install Latest Terraform (0.13.5) (Ideally not needed if we use default Ubuntu Agents)
+## Step-3: Validate Terraform Manifests (terraform init, terraform validate)
+
+stages:
+- stage: TerraformValidate
+  jobs:
+    - job: TerraformValidateJob
+      continueOnError: false
+      steps:
+      - task: PublishPipelineArtifact@1
+        displayName: Publish Artifacts
+        inputs:
+          targetPath: '$(System.DefaultWorkingDirectory)/terraform-manifests'
+          artifact: 'terraform-manifests-out'
+          publishLocation: 'pipeline'
+      - task: TerraformInstaller@0
+        displayName: Terraform Install
+        inputs:
+          terraformVersion: 'latest'
+      - task: TerraformCLI@0
+        displayName: Terraform Init
+        inputs:
+          command: 'init'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests'
+          backendType: 'azurerm'
+          backendServiceArm: 'terraform-aks-azurerm-svc-con'
+          backendAzureRmResourceGroupName: 'terraform-storage-rg'
+          backendAzureRmStorageAccountName: 'terraformstatexlrwdrzs'
+          backendAzureRmContainerName: 'tfstatefiles'
+          backendAzureRmKey: 'aks-base.tfstate'
+          allowTelemetryCollection: false
+      - task: TerraformCLI@0
+        displayName: Terraform Validate
+        inputs:
+          command: 'validate'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests'
+          allowTelemetryCollection: false       
 ```
 
 
