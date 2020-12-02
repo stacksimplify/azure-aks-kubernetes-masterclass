@@ -205,56 +205,18 @@ Public File: aks-terraform-devops-ssh-key-ububtu.pub (To be uploaded to Azure De
 - Design your Pipeline
 - Pipeline Name: 01-terraform-provision-aks-cluster-pipeline.yml
 ### Stage-1: Validate Stage
+- **Stage-1:** Terraform Validate Stage
+  - **Step-1:** Publish Artifacts to Pipeline (Pipeline artifacts provide a way to share files between stages in a pipeline or between different pipelines. )
+  - **Step-2:** Install Latest Terraform (0.13.5) (Ideally not needed if we use default Agents)
+  - **Step-3:** Validate Terraform Manifests
 ```yaml
-
-trigger:
-- master
-
-pool:
-  vmImage: 'ubuntu-latest'
-
-# Stage-1: Validate Stage
-## Step-1: Install Latest Terraform (0.13.5) (Ideally not needed if we use default Agents)
-## Step-2: Validate Terraform Manifests
-## Step-3: Publish Artifacts to Pipeline (Pipeline artifacts provide a way to share files between stages in a pipeline or between different pipelines. )
-
-stages:
-- stage: Validate
-  jobs:
-  - job: ValidateJob
-    continueOnError: false
-    steps:
-      - publish: terraform-manifests
-        artifact: terraform-manifests-out
-      - task: TerraformInstaller@0
-        displayName: Terraform Installer
-        inputs:
-          terraformVersion: 'latest'
-      - task: TerraformCLI@0
-        displayName: Terraform Init
-        inputs:
-          command: 'init'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests'
-          backendType: 'azurerm'
-          backendServiceArm: 'terraform-aks-azurerm-for-pipe3'
-          backendAzureRmResourceGroupName: 'terraform-state-storage-rg2'
-          backendAzureRmStorageAccountName: 'tfstatekalyan123'
-          backendAzureRmContainerName: 'tfstatefiles'
-          backendAzureRmKey: 'aks-base.tfstate'
-          allowTelemetryCollection: false
-      - task: TerraformCLI@0
-        displayName: Terraform Validate
-        inputs:
-          command: 'validate'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests'
-          allowTelemetryCollection: false
        
 ```
 
 
 ### Pipeline Save and Run
 - Click on **Save and Run**
-- Commit Message: First Commit - Validate terraform manifests
+- Commit Message: First Pipeline Commit - Validate terraform manifests
 - Click on **Job** and Verify Pipeline
 
 
@@ -266,7 +228,8 @@ stages:
     - **Step-3:** Terraform Initialize (State Storage to store in Azure Storage Account for Dev AKS Cluster)
     - **Step-4:** Terraform Plan (Create Plan)
     - **Step-5:** Terraform Apply (Use the plan created in previous step)
-- [Azure Pipelines - Deployment Jobs](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/deployment-jobs?view=azure-devops)
+- [Azure DevOps Pipelines - Deployment Jobs](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/deployment-jobs?view=azure-devops)
+- [Azure DevOps Pipelines - Environments](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/environments?view=azure-devops)
 
 ### Stage-2: Deployment-1: Deploy Dev AKS Cluster
 ```yaml
