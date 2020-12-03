@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-restapp
-  labels:
+  labels: 
     app: backend-restapp
     tier: backend
 spec:
@@ -10,7 +10,7 @@ spec:
   selector:
     matchLabels:
       app: backend-restapp
-  template:
+  template: 
     metadata:
       labels:
         app: backend-restapp
@@ -20,4 +20,4 @@ spec:
         - name: backend-restapp
           image: stacksimplify/kube-helloworld:1.0.0
           ports:
-          - containerPort: 8080
+            - containerPort: 8080

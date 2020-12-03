@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-nginxapp
-  labels:
+  labels: 
     app: frontend-nginxapp
     tier: frontend
 spec:
@@ -10,7 +10,7 @@ spec:
   selector:
     matchLabels:
       app: frontend-nginxapp
-  template:
+  template: 
     metadata:
       labels:
         app: frontend-nginxapp
@@ -20,4 +20,4 @@ spec:
         - name: frontend-nginxapp
           image: stacksimplify/kube-frontend-nginx:1.0.0
           ports:
-          - containerPort: 80
+            - containerPort: 80

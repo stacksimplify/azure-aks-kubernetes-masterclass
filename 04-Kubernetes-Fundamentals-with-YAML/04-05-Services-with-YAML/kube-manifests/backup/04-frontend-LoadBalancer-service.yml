@@ -1,16 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-nginxapp-nodeport-service
-  labels:
+  name: frontend-nginxapp-loadbalancer-service
+  labels: 
     app: frontend-nginxapp
-    tier: frontend
+    tier: frontend     
 spec:
-  type: NodePort
+  type: LoadBalancer 
   selector:
     app: frontend-nginxapp
-  ports:
+  ports: 
     - name: http
       port: 80
       targetPort: 80
-      nodePort: 31234

@@ -11,9 +11,9 @@
 - **Important Notes:** 
   - Name of Cluster IP service should be `name: my-backend-service` because  same is configured in frontend nginx reverse proxy `default.conf`. 
   - Test with different name and understand the issue we face
-  - We have also discussed about in our section [05-Services-with-kubectl](/05-Services-with-kubectl/README.md)
+  - We have also discussed about in our section [03-04-Services-with-kubectl](https://github.com/stacksimplify/azure-aks-kubernetes-masterclass/tree/master/03-Kubernetes-Fundamentals-with-kubectl/03-04-Services-with-kubectl)
 ```
-cd <Course-Repo>\kubernetes-fundamentals\10-Services-with-YAML\kube-manifests
+cd 04-05-Services-with-YAML/kube-manifests
 kubectl get all
 kubectl apply -f 01-backend-deployment.yml -f 02-backend-clusterip-service.yml
 kubectl get all
@@ -22,9 +22,9 @@ kubectl get all
 
 ## Step-03: Create Frontend Deployment & LoadBalancer Service
 - Write the Deployment template for frontend Nginx Application
-- Write the NodePort service template for frontend Nginx Application
+- Write the LoadBalancer service template for frontend Nginx Application
 ```
-cd <Course-Repo>\kubernetes-fundamentals\10-Services-with-YAML\kube-manifests
+cd 04-05-Services-with-YAML/kube-manifests
 kubectl get all
 kubectl apply -f 03-frontend-deployment.yml -f 04-frontend-LoadBalancer-service.yml
 kubectl get all
@@ -34,7 +34,7 @@ kubectl get all
 # Get Service IP
 kubectl get svc
 
-# Access REST Application  (Port is static 31234 configured in frontend service template)
+# Access REST Application 
 http://<Load-Balancer-Service-IP>/hello
 ```
 
@@ -46,18 +46,18 @@ kubectl get all
 ```
 ### Recreate Objects using YAML files in a folder
 ```
-cd <Course-Repo>\kubernetes-fundamentals\10-Services-with-YAML
+cd 04-05-Services-with-YAML/
 kubectl apply -f kube-manifests/
 kubectl get all
 ```
 ### Delete Objects using YAML files in folder
 ```
-cd <Course-Repo>\kubernetes-fundamentals\10-Services-with-YAML
+cd 04-05-Services-with-YAML/
 kubectl delete -f kube-manifests/
 kubectl get all
 ```
 
 
 ## Additional References - Use Label Selectors for get and delete
-- https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/#using-labels-effectively
-- https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
+- [Labels](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/#using-labels-effectively)
+- [Labels-Selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors)
