@@ -50,14 +50,14 @@ kind: Service
 metadata:
   name: replicaset-loadbalancer-service
 spec:
-  type: NodePort
-  selector:
-    app: myapp2
-  ports:
+  type: LoadBalancer 
+  selector: 
+    app: myapp2 
+  ports: 
     - name: http
       port: 80
       targetPort: 80
-      nodePort: 31232  
+     
 ```
 - **Create LoadBalancer Service for ReplicaSet & Test**
 ```
