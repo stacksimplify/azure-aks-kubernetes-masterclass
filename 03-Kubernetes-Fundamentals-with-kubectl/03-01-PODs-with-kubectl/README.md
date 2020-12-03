@@ -92,7 +92,7 @@ kubectl delete pod my-first-pod
   - Azure Standard Load Balancer created for Azure AKS Cluster
     - Frontend IP Configuration
     - Load Balancing Rules
-  - Azure Public IP
+  - Azure Public IP 
 ```
 # Create  a Pod
 kubectl run <desired-pod-name> --image <Container-Image> 
@@ -117,6 +117,7 @@ http://<External-IP-from-get-service-output>
     - Frontend IP Configuration
     - Load Balancing Rules
   - Azure Public IP
+- View the resources in Azure AKS Cluster - Resources section from Azure Portal Management Console  
 
 
 
