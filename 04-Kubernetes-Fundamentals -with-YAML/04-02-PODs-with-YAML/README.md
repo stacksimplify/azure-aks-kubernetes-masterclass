@@ -9,7 +9,7 @@ metadata:
   
 spec:
 ```
--  **Pod API Objects Reference:**  https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#pod-v1-core
+-  [Pod API Objects Reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#pod-v1-core)
 
 ## Step-02: Create Simple Pod Definition using YAML 
 - We are going to create a very basic pod definition
@@ -40,7 +40,7 @@ kubectl get pods
 ```
 
 ## Step-03: Create a NodePort Service
-- **03-pod-nodeport-service.yml**
+- **03-pod-LoadBalancer-service.yml**
 ```yml
 apiVersion: v1
 kind: Service
@@ -71,7 +71,8 @@ http://<Load-Balancer-Service-IP>
 ```
 
 ## API Object References
--  **Pod**: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#pod-v1-core
-- **Service**: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#service-v1-core
+- [Kubernetes API Spec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/)
+- [Pod Spec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#pod-v1-core)
+- [Service Spec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#service-v1-core)
 
 
