@@ -39,7 +39,7 @@ kubectl apply -f 02-pod-definition.yml
 kubectl get pods
 ```
 
-## Step-03: Create a NodePort Service
+## Step-03: Create a LoadBalancer Service
 - **03-pod-LoadBalancer-service.yml**
 ```yml
 apiVersion: v1
