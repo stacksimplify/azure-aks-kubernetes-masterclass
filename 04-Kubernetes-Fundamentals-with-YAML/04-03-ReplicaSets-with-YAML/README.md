@@ -73,4 +73,4 @@ http://<Load-Balancer-Service-IP>
 ```
 
 ## API References
-- **ReplicaSet:** https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#replicaset-v1-apps
+- [ReplicaSet](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#replicaset-v1-apps)
