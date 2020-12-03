@@ -26,4 +26,4 @@ kubectl get nodes -o wide
 http://<Load-Balancer-Service-IP>
 ```
 ## API References
-- **Deployment:** https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#deployment-v1-apps
+- [Deployment](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#deployment-v1-apps)
