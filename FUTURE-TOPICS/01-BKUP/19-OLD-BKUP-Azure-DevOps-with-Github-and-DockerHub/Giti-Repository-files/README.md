@@ -1,1 +1,0 @@
-# AKS Azure DevOps - Github & Dockerhub
