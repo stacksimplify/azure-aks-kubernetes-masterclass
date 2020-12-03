@@ -88,6 +88,11 @@ kubectl delete pod my-first-pod
 - **Ports**
   - **port:** Port on which node port service listens in Kubernetes cluster internally
   - **targetPort:** We define container port here on which our application is running.
+- Verify the following before LB Service creation
+  - Azure Standard Load Balancer created for Azure AKS Cluster
+    - Frontend IP Configuration
+    - Load Balancing Rules
+  - Azure Public IP
 ```
 # Create  a Pod
 kubectl run <desired-pod-name> --image <Container-Image> 
@@ -101,12 +106,19 @@ kubectl expose pod my-first-pod  --type=LoadBalancer --port=80 --name=my-first-s
 kubectl get service
 kubectl get svc
 
+# Describe Service
+kubectl describe service my-first-service
+
 # Access Application
 http://<External-IP-from-get-service-output>
 ```
+- Verify the following after LB Service creation
+  - Azure Standard Load Balancer created for Azure AKS Cluster
+    - Frontend IP Configuration
+    - Load Balancing Rules
+  - Azure Public IP
 
-- **Important Note about: target-port**
-  -  If target-port is not defined, by default and for convenience, the **targetPort** is set to the same value as the **port** field.
+
 
 ## Step-05: Interact with a Pod
 
