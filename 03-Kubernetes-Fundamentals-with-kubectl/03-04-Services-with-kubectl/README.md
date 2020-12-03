@@ -6,6 +6,7 @@
   2. NodePort
   3. LoadBalancer
   4. ExternalName
+  5. Ingress
 - We are going to look in to ClusterIP and LoadBalancer Service in this section with a detailed example. 
 - LoadBalancer Type is primarily for cloud providers and it will differ cloud to cloud, so we will do it accordingly (per cloud basis)
 - ExternalName doesn't have Imperative commands and we need to write YAML definition for the same, so we will look in to it as and when it is required in our course. 
