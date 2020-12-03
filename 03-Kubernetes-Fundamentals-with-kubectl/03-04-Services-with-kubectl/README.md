@@ -56,8 +56,8 @@ server {
 kubectl create deployment my-frontend-nginx-app --image=stacksimplify/kube-frontend-nginx:1.0.0 
 kubectl get deploy
 
-# Create ClusterIp Service for Frontend Nginx Proxy
-kubectl expose deployment my-frontend-nginx-app  --type=NodePort --port=80 --target-port=80 --name=my-frontend-service
+# Create LoadBalancer Service for Frontend Nginx Proxy
+kubectl expose deployment my-frontend-nginx-app  --type=LoadBalancer --port=80 --target-port=80 --name=my-frontend-service
 kubectl get svc
 
 # Get Load Balancer IP
