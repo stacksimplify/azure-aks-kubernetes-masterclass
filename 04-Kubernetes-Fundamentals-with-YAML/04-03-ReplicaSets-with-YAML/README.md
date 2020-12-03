@@ -62,7 +62,7 @@ spec:
 - **Create LoadBalancer Service for ReplicaSet & Test**
 ```
 # Create LoadBalancer Service
-kubectl apply -f 03-replicaset-nodeport-servie.yml
+kubectl apply -f 03-replicaset-LoadBalancer-servie.yml
 
 # List LoadBalancer Service
 kubectl get svc
