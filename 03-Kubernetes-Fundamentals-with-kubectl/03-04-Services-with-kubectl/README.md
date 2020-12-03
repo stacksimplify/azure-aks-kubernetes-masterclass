@@ -25,7 +25,7 @@ Observation: We don't need to specify "--type=ClusterIp" because default setting
 ```
 - **Important Note:** If backend application port (Container Port: 8080) and Service Port (8080) are same we don't need to use **--target-port=8080** but for avoiding the confusion i have added it. Same case applies to frontend application and service. 
 
-- **Backend HelloWorld Application Source** [kube-helloworld](../00-Docker-Images/02-kube-backend-helloworld-springboot/kube-helloworld)
+- **Backend HelloWorld Application Source** [kube-helloworld](https://github.com/stacksimplify/kubernetes-fundamentals/tree/master/00-Docker-Images/02-kube-backend-helloworld-springboot/kube-helloworld)
 
 
 ## Step-03: LoadBalancer Service - Frontend Application Setup
@@ -50,7 +50,7 @@ server {
 }
 ```
 - **Docker Image Location:** https://hub.docker.com/repository/docker/stacksimplify/kube-frontend-nginx
-- **Frontend Nginx Reverse Proxy Application Source** [kube-frontend-nginx](../00-Docker-Images/03-kube-frontend-nginx)
+- **Frontend Nginx Reverse Proxy Application Source** [kube-frontend-nginx](https://github.com/stacksimplify/kubernetes-fundamentals/tree/master/00-Docker-Images/03-kube-frontend-nginx)
 ```
 # Create Deployment for Frontend Nginx Proxy
 kubectl create deployment my-frontend-nginx-app --image=stacksimplify/kube-frontend-nginx:1.0.0 
