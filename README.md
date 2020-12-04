@@ -182,6 +182,15 @@
 - Any beginner who is interested in learning kubernetes on cloud using Azure AKS. 
 - Any beginner who is interested in learning Azure DevOps, Terraform to provision Azure Kubernetes Clusters
 
+## Github Repositories used for this course
+- [Azure Kubernetes Service with Azure DevOps & Terraform](https://github.com/stacksimplify/azure-aks-kubernetes-masterclass)
+- [Azure DevOps for Kubernetes Workloads running on Azure AKS Cluster](https://github.com/stacksimplify/azure-devops-github-acr-aks-app1)
+- [Provision Azure AKS Cluster using Terraform and Azure DevOps](https://github.com/stacksimplify/azure-devops-aks-kubernetes-terraform-pipeline)
+- [Docker Fundamentals](https://github.com/stacksimplify/docker-fundamentals)
+- [Presentation with 250 Slides outlining the various architectures and designs we are going to do in this course](https://github.com/stacksimplify/azure-aks-kubernetes-masterclass/ppt-presentation)
+- **Important Note:** Please go to these repositories and FORK these repositories and make use of them during the course.
+
+
 ## Each of my courses come with
 - Amazing Hands-on Step By Step Learning Experiences
 - Real Implementation Experience
