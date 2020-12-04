@@ -1,4 +1,4 @@
-# Azure Kubernetes Service with Azure DevOps & Terraform 
+# Azure Kubernetes Service with Azure DevOps and Terraform 
 
 ## Course Modules
 
@@ -183,7 +183,7 @@
 - Any beginner who is interested in learning Azure DevOps, Terraform to provision Azure Kubernetes Clusters
 
 ## Github Repositories used for this course
-- [Azure Kubernetes Service with Azure DevOps & Terraform](https://github.com/stacksimplify/azure-aks-kubernetes-masterclass)
+- [Azure Kubernetes Service with Azure DevOps and Terraform](https://github.com/stacksimplify/azure-aks-kubernetes-masterclass)
 - [Azure DevOps for Kubernetes Workloads running on Azure AKS Cluster](https://github.com/stacksimplify/azure-devops-github-acr-aks-app1)
 - [Provision Azure AKS Cluster using Terraform and Azure DevOps](https://github.com/stacksimplify/azure-devops-aks-kubernetes-terraform-pipeline)
 - [Docker Fundamentals](https://github.com/stacksimplify/docker-fundamentals)
