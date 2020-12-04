@@ -1,19 +1,15 @@
 # Pre-requisites
 1. Azure Cloud Subscription
-2. Optional: Setup Github Project in Azure Cloud Shell
+2. Course Github Repositories
 
-## Step-01: Create Cloud Shell
-- Click on link https://shell.azure.com/
-- Select **Bash**
-- Click on **Create Storage**
+## Step-01: Azure Cloud Subscription
+- https://azure.microsoft.com/en-in/free/
+- 200 dollar credit for first 30 days
 
-## Step-02: Fork the github Repository
-- Pre-requisites: You should have a github account so you can fork it to your account
-- Azure AKS Github Repository: https://github.com/stacksimplify/azure-aks-kubernetes-masterclass
-- Fork it
-- **Why do you need to fork it?** 
-- When you do any changes to files in your local machine, just `git commit` and `git push` to your git repo and `git pull` on `Azure Cloud Shell` so that using `kubectl` you can deploy the modified changes.
-
-## Step-03: Clone Github Repository
-```
-```
+## Step-02: Fork Course Github Repositories
+- [Azure Kubernetes Service with Azure DevOps & Terraform](https://github.com/stacksimplify/azure-aks-kubernetes-masterclass)
+- [Azure DevOps for Kubernetes Workloads running on Azure AKS Cluster](https://github.com/stacksimplify/azure-devops-github-acr-aks-app1)
+- [Provision Azure AKS Cluster using Terraform and Azure DevOps](https://github.com/stacksimplify/azure-devops-aks-kubernetes-terraform-pipeline)
+- [Docker Fundamentals](https://github.com/stacksimplify/docker-fundamentals)
+- [Presentation with 250 Slides outlining the various architectures and designs we are going to do in this course](https://github.com/stacksimplify/azure-aks-kubernetes-masterclass/ppt-presentation)
+- **Important Note:** Please go to these repositories and FORK these repositories and make use of them during the course.
