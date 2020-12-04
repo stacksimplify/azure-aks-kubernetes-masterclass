@@ -1,4 +1,4 @@
-# Provision AKS Cluster using Terraform
+# Provision Azure AKS Cluster using Terraform
 
 ## Step-01: Introduction
 - Create SSH Keys for AKS Linux VMs

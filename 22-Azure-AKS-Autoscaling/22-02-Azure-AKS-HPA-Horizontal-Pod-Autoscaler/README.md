@@ -1,4 +1,4 @@
-# EKS - Horizontal Pod Autoscaling (HPA)
+# Azure AKS - Horizontal Pod Autoscaling (HPA)
 
 ## Step-01: Introduction
 - What is Horizontal Pod Autoscaling?

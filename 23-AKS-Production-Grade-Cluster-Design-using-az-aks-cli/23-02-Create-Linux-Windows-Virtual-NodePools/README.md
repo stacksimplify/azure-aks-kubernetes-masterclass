@@ -1,4 +1,4 @@
-# Create Linux, Windows and Virtual Node Pools
+# Create Azure AKS Linux, Windows and Virtual Node Pools
 
 ## Step-01: Introduction
 - Enable Virtual Nodes (Serverless)

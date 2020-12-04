@@ -1,4 +1,4 @@
-# Create AKS Cluster using Custom Virtual Network
+# Create Azure AKS Cluster using Custom Virtual Network
 
 ## Step-01: Introduction
 - Create a Custom Virtual Network and Subnet

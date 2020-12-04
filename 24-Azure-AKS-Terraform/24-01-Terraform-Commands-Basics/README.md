@@ -1,4 +1,4 @@
-# Terraform Basics
+# Terraform Command Basics
 
 ## Step-01: Introduction
 - Install Terraform

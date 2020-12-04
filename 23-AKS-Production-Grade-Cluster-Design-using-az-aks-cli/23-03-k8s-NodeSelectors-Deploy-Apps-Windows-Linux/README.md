@@ -1,4 +1,4 @@
-# Deploy Apps
+# Deploy Apps to Azure AKS Linux, Windows and Virtual Node Pools
 
 ## Step-01: Introduction
 - Understand Kubernetes Node Selector concept

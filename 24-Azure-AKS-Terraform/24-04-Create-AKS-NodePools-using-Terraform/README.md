@@ -1,4 +1,4 @@
-# Create AKS Cluster Linux and Windows Node Pools
+# Create Azure AKS Cluster Linux and Windows Node Pools
 
 ## Step-01: Introduction
 - Create Windows and Linux Nodepools
