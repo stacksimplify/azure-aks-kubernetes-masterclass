@@ -2,7 +2,7 @@
 
 ## Course Modules
 
-| S.No | AWS Service Name |
+| S.No | Azure Service Name |
 | ---- | ---------------- |
 | 1.   | Create Azure AKS Cluster using Azure Portal |
 | 2.   | [Docker Fundamentals](https://github.com/stacksimplify/docker-fundamentals) |
@@ -155,7 +155,7 @@
 - You will learn to build Azure AKS Production grade clusters using Azure AKS CLI
 - You will learn terraform from basics and create terraform manifests for provisioning Azure AKS Production grade clusters
 - You will learn to provision Azure AKS Clusters using Terraform and Azure DevOps. 
-- You will learn 30+ kubernetes concepts and use 21 AWS Services in combination with Azure AKS
+- You will learn 30+ kubernetes concepts and use 21 Azure Services in combination with Azure AKS
 - You will implement DevOps concepts with Azure DevOps Continuous Integration Pipelines and Continuous Deliver Pipelines also called Release Pipelines
 - You will write Azure DevOps CI Pipelines from scratch using Starter Pipelines
 - You will write kubernetes manifests with confidence after going through live template writing sections
