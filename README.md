@@ -1,4 +1,4 @@
-# Azure AKS Kubernetes - Masterclass | Azure DevOps, Terraform
+# Azure Kubernetes Service with Azure DevOps & Terraform 
 
 ## Course Modules
 
@@ -137,57 +137,50 @@
 | Frontend Application  | stacksimplify/kube-frontend-nginx:1.0.0  |
 | Kube Nginx App1  | stacksimplify/kube-nginxapp1:1.0.0  |
 | Kube Nginx App2  | stacksimplify/kube-nginxapp2:1.0.0  |
-| Kube Nginx App2  | stacksimplify/kube-nginxapp2:1.0.0  |
-| User Management Microservice with MySQLDB  | stacksimplify/kube-usermanagement-microservice:1.0.0  |
-| User Management Microservice with H2 DB  | stacksimplify/kube-usermanagement-microservice:2.0.0-H2DB  |
-| User Management Microservice with MySQL DB and AWS X-Ray  | stacksimplify/kube-usermanagement-microservice:3.0.0-AWS-XRay-MySQLDB  |
-| User Management Microservice with H2 DB and AWS X-Ray  | stacksimplify/kube-usermanagement-microservice:4.0.0-AWS-XRay-H2DB  |
-| Notification Microservice V1  | stacksimplify/kube-notifications-microservice:1.0.0  |
-| Notification Microservice V2  | stacksimplify/kube-notifications-microservice:2.0.0  |
-| Notification Microservice V1 with AWS X-Ray  | stacksimplify/kube-notifications-microservice:3.0.0-AWS-XRay  |
-| Notification Microservice V2 with AWS X-Ray  | stacksimplify/kube-notifications-microservice:4.0.0-AWS-XRay  |
+| User Management Web Application  | stacksimplify/kube-usermgmt-webapp:1.0.0-MySQLDB  |
 
-
-## List of Docker Images you build in AWS ECR
+## List of Docker Images you build in Azure Container Registry
 
 | Application Name  | Docker Image Name |
 | ----------------- | ----------------- |
-| AWS Elastic Container Registry  | YOUR-AWS-ACCOUNT-ID.dkr.ecr.us-east-1.amazonaws.com/aws-ecr-kubenginx:DATETIME-REPOID  |
-| DevOps Usecase  | YOUR-AWS-ACCOUNT-ID.dkr.ecr.us-east-1.amazonaws.com/eks-devops-nginx:DATETIME-REPOID  |
-
+| ACR attached to AKS  | YOUR_ACR_REPO.azurecr.io/app1/kube-nginx-acr:v1  |
+| ACR with Service Principal | YOUR_ACR_REPO.azurecr.io/app2/acr-app2:v1   |
+| ACR with Service Principal | YOUR_ACR_REPO.azurecr.io/custom2aksnginxapp1:BUILDID   |
 
 ## Sample Applications
-- User Management Microservice
-- Notification Miroservice
 - Nginx Applications
+- User Management Web Application built using Spring Boot using MySQL as underlying storage
 
 ## What will students learn in your course?
+- You will learn to build Azure AKS Production grade clusters using Azure AKS CLI
+- You will learn terraform from basics and create terraform manifests for provisioning Azure AKS Production grade clusters
+- You will learn to provision Azure AKS Clusters using Terraform and Azure DevOps. 
+- You will learn 30+ kubernetes concepts and use 21 AWS Services in combination with Azure AKS
+- You will implement DevOps concepts with Azure DevOps Continuous Integration Pipelines and Continuous Deliver Pipelines also called Release Pipelines
+- You will write Azure DevOps CI Pipelines from scratch using Starter Pipelines
 - You will write kubernetes manifests with confidence after going through live template writing sections
-- You will learn 30+ kubernetes concepts and use 18 AWS Services in combination with EKS
 - You will learn Kubernetes Fundamentals in both imperative and declarative approaches
-- You will learn writing & deploying k8s manifests for storage concepts like storage class, persistent volume claim pvc, mysql and EBS CSI Driver
-- You will learn to switch from native EBS Storage to RDS Database using k8s external name service
-- You will learn writing and deploying load balancer k8s manifests for Classic and Network load balancers
-- You will learn writing ingress k8s manifests by enabling features like context path based routing, SSL, SSL Redirect and External DNS. 
-- You will learn writing k8s manifests for advanced fargate profiles and do mixed mode workload deployments in both EC2 and Fargate Serverless
-- You will learn using ECR - Elastic Container Registry in combination with EKS. 
-- You will implement DevOps concepts with AWS Code Services like CodeCommit, CodeBuild and CodePipeline
-- You will implement microservices core cocepts like Service Discovery, Distributed Tracing using X-Ray and Canary Deployments
-- You will learn to enable Autoscaling features like HPA,VPA and Cluster Autoscaler
-- You will learn to enable monitoring and logging for EKS cluster and workloads in cluster using CloudWatch Container Insights
+- You will learn writing & deploying k8s manifests for storage concepts like storage class, persistent volume claim pvc, mysql 
+- You will learn to switch from native Azure Disks to Azure MySQL Database using k8s external name service
+- You will learn writing and deploying load balancer k8s manifests for Azure Standard Load Balancer
+- You will learn writing ingress k8s manifests by enabling features like context path based routing, domain name based routing,  SSL with LetsEncrypt and External DNS. 
+- You will learn writing k8s manifests for Azure Virtual Nodes (serverless)  and do mixed mode workload deployments in both Azure Linux NodePools and Virtual Nodes. 
+- You will learn using ACR - Azure Container Registry in combination with AKS in 3 ways (ACR Attach, using Service Principal, on Virtual Nodes). 
+- You will learn to enable Autoscaling features like HPA & Cluster Autoscaler
 - You will learn Docker fundamentals by implementing usecases like download image from Docker Hub and run on local desktop and build an image locally, test and push to Docker Hub.
-- You will slowly start by learning Docker Fundamentals and move on to Kubenetes. 
 - You will master many kubectl commands over the process
+- You will learn to integrate Azure AKS with Azure Active Directory for AKS Admins to be created managed in Azure Active Directory
+- You will learn Kubernetes RBAC concepts like role, role-binding, cluster role, cluster role binding in combination with Azure AD for Azure AKS granular level access
 
 ## Are there any course requirements or prerequisites?
-- You must have an AWS account to follow with me for hands-on activities.
+- You must have an Azure Cloud account to follow with me for hands-on activities.
 - You dont need to have any basic Docker or kubernetes knowledge to start this course.  
 
 
 ## Who are your target students?
-- AWS Architects or Sysadmins or Developers who are planning to master Elastic Kubernetes Service (EKS) for running applications on Kubernetes
-- Any beginner who is interested in learning kubernetes on cloud using AWS EKS. 
-- Any beginner who is interested in learning Kubernetes DevOps and Microservices deployments on Kubernetes
+- Azure Architects or Sysadmins or Developers who are planning to master Azure Kubernetes Service (AKS) for running applications on Kubernetes
+- Any beginner who is interested in learning kubernetes on cloud using Azure AKS. 
+- Any beginner who is interested in learning Azure DevOps, Terraform to provision Azure Kubernetes Clusters
 
 ## Each of my courses come with
 - Amazing Hands-on Step By Step Learning Experiences
