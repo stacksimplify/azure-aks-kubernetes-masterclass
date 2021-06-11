@@ -47,7 +47,7 @@ kind: Service
 metadata:
   name: myapp-pod-loadbalancer-service  # Name of the Service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
   # Loadbalance traffic across Pods matching this label selector
     app: myapp
