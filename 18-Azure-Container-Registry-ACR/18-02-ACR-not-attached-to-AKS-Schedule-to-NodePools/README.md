@@ -139,6 +139,15 @@ SP_APP_ID=$(az ad sp show --id http://$SERVICE_PRINCIPAL_NAME --query appId --ou
 echo "Service principal ID: $SP_APP_ID"
 echo "Service principal password: $SP_PASSWD"
 ```
+### Using Windows
+```sh
+$ACR_NAME='aks2021'
+$SERVICE_PRINCIPAL_NAME='acr-sp-demo'
+$ACR_REGISTRY_ID=$(az acr show --name $ACR_NAME --query id --output tsv)
+ 
+$SP_PASSWD=$(az ad sp create-for-rbac --name http://$SERVICE_PRINCIPAL_NAME --scopes $ACR_REGISTRY_ID --role acrpull --query password --output tsv)
+$SP_APP_ID=$(az ad app list --display-name http://$SERVICE_PRINCIPAL_NAME --query [].appId --output tsv)
+```
 
 ## Step-06: Create Image Pull Secret
 ```
