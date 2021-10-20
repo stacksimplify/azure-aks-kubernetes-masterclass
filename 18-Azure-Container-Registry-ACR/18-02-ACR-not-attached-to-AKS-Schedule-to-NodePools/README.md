@@ -120,7 +120,7 @@ docker push $ACR_REGISTRY/$ACR_NAMESPACE/$ACR_IMAGE_NAME:$ACR_IMAGE_TAG
 # Modify for your environment.
 # ACR_NAME: The name of your Azure Container Registry
 # SERVICE_PRINCIPAL_NAME: Must be unique within your AD tenant
-ACR_NAME=acrdemo9ss
+ACR_NAME=acrdemo2ss
 SERVICE_PRINCIPAL_NAME=acr-sp-demo
 
 # Obtain the full registry ID for subsequent command args
