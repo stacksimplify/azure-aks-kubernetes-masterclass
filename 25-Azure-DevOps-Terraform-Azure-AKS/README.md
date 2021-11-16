@@ -155,7 +155,7 @@ Example: https://github.com/stacksimplify/azure-devops-aks-kubernetes-terraform-
 - Click on **View API Permissions**
 - Click on **Add Permission**
 - Select an API: Microsoft APIs
-- Commonly used Microsoft APIs: Supported legacy APIs: Azure Active Directory Graph
+- Commonly used Microsoft APIs: Supported legacy APIs: **Azure Active Directory Graph-DEPRECATING**  Use **Microsoft Graph**
 - Click on **Application Permissions**
 - Check **Directory.ReadWrite.All** and click on **Add Permission**
 - Click on **Grant Admin consent for Default Directory**
