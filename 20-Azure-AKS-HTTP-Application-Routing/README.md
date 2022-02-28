@@ -127,7 +127,7 @@ kubectl get pod -n kube-system
 az aks show --resource-group myResourceGroup --name myAKSCluster --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName -o table
 
 # Replace Resource Group and Cluster Name
-az aks show --resource-group aks-rg2 --name aksdemo2 --query addonProfiles.httpapplicationrouting.config.HTTPApplicationRoutingZoneName -o table
+az aks show --resource-group aks-rg2 --name aksdemo2 --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName -o table
 ```
 - **Sample Output**
 ```
