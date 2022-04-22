@@ -1,6 +1,6 @@
 # Pre-requisites
 1. Azure Cloud Subscription
-2. Course Github Repositories
+2. Course Github Repositories --yannam
 
 ## Step-01: Azure Cloud Subscription
 - [Azure Free Account](https://azure.microsoft.com/en-in/free/)
