@@ -3,10 +3,11 @@ kind: Ingress
 metadata:
   name: nginxapp1-ingress-service
   annotations:
-    kubernetes.io/ingress.class: nginx  
+    kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-    - http:
+    - host: eapp1.kubeoncloud.com
+      http:
         paths:
           - path: /
             pathType: Prefix
@@ -15,5 +16,4 @@ spec:
                 name: app1-nginx-clusterip-service
                 port: 
                   number: 80
-      
 
