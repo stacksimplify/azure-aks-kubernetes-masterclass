@@ -168,3 +168,5 @@ kubectl delete namespace ingress-basic
 - https://cert-manager.io/docs/configuration/
 - https://cert-manager.io/docs/tutorials/acme/nginx-ingress/#step-6---configure-a-lets-encrypt-issuer
 - https://letsencrypt.org/how-it-works/
+
+  
