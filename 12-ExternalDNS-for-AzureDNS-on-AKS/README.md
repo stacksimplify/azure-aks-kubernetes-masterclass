@@ -192,7 +192,7 @@ time="2020-08-24T11:30:54Z" level=info msg="Updating A record named 'eapp1' to '
 time="2020-08-24T11:30:55Z" level=info msg="Updating TXT record named 'eapp1' to '\"heritage=external-dns,external-dns/owner=default,external-dns/resource=ingress/default/nginxapp1-ingress-service\"' for Azure DNS zone 'kubeoncloud.com'."
 ```
 
-### Verify Record Set in DNZ Zones -> kubeoncloud.com
+### Verify Record Set in DNS Zones -> kubeoncloud.com
 - Go to All Services -> DNS Zones -> kubeoncloud.com
 - Verify if we have `eapp1.kubeoncloud.com` created
 ```t
