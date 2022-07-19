@@ -163,6 +163,8 @@ kubectl delete namespace ingress-basic
 ```
 
 ## Cert Manager
+- https://cert-manager.io/docs/installation/#default-static-install
+- https://cert-manager.io/docs/installation/helm/
 - https://docs.cert-manager.io/
 - https://cert-manager.io/docs/installation/helm/#1-add-the-jetstack-helm-repository
 - https://cert-manager.io/docs/configuration/
