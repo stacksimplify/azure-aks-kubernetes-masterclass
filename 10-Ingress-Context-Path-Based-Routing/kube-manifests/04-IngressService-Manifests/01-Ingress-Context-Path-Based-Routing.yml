@@ -27,3 +27,14 @@ spec:
                 name: app2-nginx-clusterip-service
                 port: 
                   number: 80  
+#          - path: /
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: usermgmt-webapp-clusterip-service
+#                port: 
+#                  number: 80                  
+                                                 
+                  
+      
+
