@@ -128,6 +128,7 @@ kubectl delete -f kube-manifests/
 - https://helm.sh/docs/intro/install/
 - https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#ingress-v1-networking-k8s-io
 - [Kubernetes Ingress API Reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#ingress-v1-networking-k8s-io)
+- [Ingress Path Types](https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types)
 
 ## Important Note
 ```
