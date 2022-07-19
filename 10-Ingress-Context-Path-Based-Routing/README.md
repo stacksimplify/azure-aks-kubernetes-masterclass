@@ -57,4 +57,5 @@ Go to All Services -> Azure Disks -> Delete disk
 
 ## Ingress Annotation Reference
 - https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/
+- [Ingress Path Types](https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types)
 
