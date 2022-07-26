@@ -14,7 +14,7 @@
 - 04-IngressService-Manifests
 
 ## Step-04: Deploy and Verify
-```
+```t
 # Deploy Apps
 kubectl apply -R -f kube-manifests/
 
@@ -33,7 +33,7 @@ kubectl logs -f <pod-name> -n ingress-basic
 ```
 
 ## Step-05: Access Applications
-```
+```t
 # Access App1
 http://<Public-IP-created-for-Ingress>/app1/index.html
 
@@ -44,11 +44,10 @@ http://<Public-IP-created-for-Ingress>/app2/index.html
 http://<Public-IP-created-for-Ingress>
 Username: admin101
 Password: password101
-
 ```
 
 ## Step-06: Clean-Up Applications
-```
+```t
 # Delete Apps
 kubectl delete -f kube-manifests/
 
@@ -58,4 +57,5 @@ Go to All Services -> Azure Disks -> Delete disk
 
 ## Ingress Annotation Reference
 - https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/
+- [Ingress Path Types](https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types)
 

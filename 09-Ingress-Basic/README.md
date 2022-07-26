@@ -1,9 +1,7 @@
 # Ingress - Basics
 
 ## Step-01: Introduction
-
 ### Ingress Basic Architecture
-
 [![Image](https://www.stacksimplify.com/course-images/azure-aks-ingress-basic.png "Azure AKS Kubernetes - Masterclass")](https://www.udemy.com/course/aws-eks-kubernetes-masterclass-devops-microservices/?referralCode=257C9AD5B5AF8D12D1E1)
 
 ### What are we going to learn?
@@ -17,7 +15,7 @@
 - Clean-Up or delete application after testing
 
 ## Step-02: Create Static Public IP
-```
+```t
 # Get the resource group name of the AKS cluster 
 az aks show --resource-group aks-rg1 --name aksdemo1 --query nodeResourceGroup -o tsv
 
@@ -28,13 +26,13 @@ az network public-ip create --resource-group <REPLACE-OUTPUT-RG-FROM-PREVIOUS-CO
 az network public-ip create --resource-group MC_aks-rg1_aksdemo1_centralus --name myAKSPublicIPForIngress --sku Standard --allocation-method static --query publicIp.ipAddress -o tsv
 ```
 - Make a note of Static IP which we will use in next step when installing Ingress Controller
-```
+```t
 # Make a note of Public IP created for Ingress
 52.154.156.139
 ```
 
 ## Step-03: Install Ingress Controller
-```
+```t
 # Install Helm3 (if not installed)
 brew install helm
 
@@ -43,7 +41,6 @@ kubectl create namespace ingress-basic
 
 # Add the official stable repository
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 helm repo update
 
 #  Customizing the Chart Before Installing. 
@@ -53,19 +50,19 @@ helm show values ingress-nginx/ingress-nginx
 helm install ingress-nginx ingress-nginx/ingress-nginx \
     --namespace ingress-basic \
     --set controller.replicaCount=2 \
-    --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
-    --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set controller.nodeSelector."kubernetes\.io/os"=linux \
+    --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux \
     --set controller.service.externalTrafficPolicy=Local \
     --set controller.service.loadBalancerIP="REPLACE_STATIC_IP" 
 
-# Replace Static IP captured in Step-02
+# Replace Static IP captured in Step-02 (without beta for NodeSelectors)
 helm install ingress-nginx ingress-nginx/ingress-nginx \
     --namespace ingress-basic \
     --set controller.replicaCount=2 \
-    --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
-    --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set controller.nodeSelector."kubernetes\.io/os"=linux \
+    --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux \
     --set controller.service.externalTrafficPolicy=Local \
-    --set controller.service.loadBalancerIP="52.154.156.139" 
+    --set controller.service.loadBalancerIP="52.154.156.139"     
 
 
 # List Services with labels
@@ -92,7 +89,7 @@ Primarily refer Settings -> Frontend IP Configuration
 - 03-Ingress-Basic.yml
 
 ## Step-05: Deploy Application k8s manifests and verify
-```
+```t
 # Deploy
 kubectl apply -f kube-manifests/
 
@@ -115,7 +112,7 @@ kubectl logs -f <pod-name> -n ingress-basic
 ```
 
 ## Step-06: Clean-Up Apps
-```
+```t
 # Delete Apps
 kubectl delete -f kube-manifests/
 ```
@@ -130,6 +127,8 @@ kubectl delete -f kube-manifests/
 - https://kubernetes.github.io/ingress-nginx/deploy/#azure
 - https://helm.sh/docs/intro/install/
 - https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#ingress-v1-networking-k8s-io
+- [Kubernetes Ingress API Reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#ingress-v1-networking-k8s-io)
+- [Ingress Path Types](https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types)
 
 ## Important Note
 ```

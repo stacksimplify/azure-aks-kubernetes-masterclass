@@ -23,7 +23,7 @@ description: Enable HTTP Application Routing AddOn to enable Ingress and Externa
 - Enable HTTP application routing: Check the box 
 - Click on **SAVE**
 - Verify the same in AKS Cluster using kubectl
-```
+```t
 # Configure Command Line Credentials
 az aks get-credentials --name aksdemo2 --resource-group aks-rg2
 
@@ -44,7 +44,7 @@ kubectl get pod -n kube-system
 
 ### Option-1B: Using Azure CLI
 - For existing clusters, enable HTTP Application Routing Add On using Azure CLI
-```
+```t
 # Enable HTTP Application Routing 
 az aks enable-addons --resource-group myResourceGroup --name myAKSCluster --addons http_application_routing
 
@@ -52,7 +52,7 @@ az aks enable-addons --resource-group myResourceGroup --name myAKSCluster --addo
 az aks enable-addons --resource-group aks-rg2 --name aksdemo2 --addons http_application_routing
 ```
 - Verify the same in AKS Cluster using kubectl
-```
+```t
 # Configure Command Line Credentials
 az aks get-credentials --name aksdemo2 --resource-group aks-rg2
 
@@ -106,7 +106,7 @@ kubectl get pod -n kube-system
 ## Step-04: Configure AKS Credentials for kubectl
 - **Ingress Pods:** You should see Ingress and external DNS Pods running in kube-system namespaces
 - **Ingress Services:** You should see Ingress and external DNS Services running in kube-system namespaces
-```
+```t
 # Configure Command Line Credentials
 az aks get-credentials --name aksdemo2 --resource-group aks-rg2
 
@@ -122,15 +122,15 @@ kubectl get pod -n kube-system
 
 ## Step-05: List DNS Zone associated with AKS Cluster
 ### From Azure CLI
-```
+```t
 # List DNS Zone
 az aks show --resource-group myResourceGroup --name myAKSCluster --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName -o table
 
 # Replace Resource Group and Cluster Name
-az aks show --resource-group aks-rg2 --name aksdemo2 --query addonProfiles.httpapplicationrouting.config.HTTPApplicationRoutingZoneName -o table
+az aks show --resource-group aks-rg2 --name aksdemo2 --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName -o table
 ```
 - **Sample Output**
-```
+```t
 Result
 ----------------------------------------
 7b8803340f38495c8402.centralus.aksapp.io
@@ -147,7 +147,7 @@ Result
 - 02-NginxApp1-ClusterIP-Service.yml
 - 03-Ingress-HTTPApplicationRouting-ExternalDNS.yml
 ### Changes in Ingress Manifest (03-Ingress-HTTPApplicationRouting-ExternalDNS.yml)
-```yml
+```yaml
 # Change-1: Add Annotation related to HTTP Application Routing
   annotations:
     kubernetes.io/ingress.class: addon-http-application-routing
@@ -159,7 +159,7 @@ spec:
     http:
 ```
 ## Step-07: Deploy, Verify & Test
-```
+```t
 # Deploy
 kubectl apply -f kube-manifests/
 
@@ -186,7 +186,7 @@ kubectl -n kube-system logs -f $(kubectl -n kube-system get po | egrep -o 'addon
 - **Important Note:** If immediately application via DNS doesnt work, wait for 10 to 20 minutes for all the DNS changes to kick-in
 
 ## Step-08: Clean Up Apps
-```
+```t
 # Delete Apps
 kubectl delete -f  kube-manifests/
 
@@ -199,13 +199,13 @@ REFRESH to see DNS A and TXT records for app1 got deleted
 - Go to All Services -> Kubernetes Services -> aksdemo2 -> Settings -> Networking
 - Enable HTTP application routing: Disable check box
 - Click on **SAVE**
-```
+```t
 # Verify Ingress related Pods and SVC related to HTTP Application Routing Add On will be deleted
 kubectl get svc -n kube-system
 kubectl get pod -n kube-system
 ```
 ### Disable using Azure CLI
-```
+```t
 # Disable Add-On HTTP Application Routing to AKS cluster
 az aks disable-addons --addons http_application_routing --name aksdemo2 --resource-group aks-rg2 --no-wait
 

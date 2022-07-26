@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginxapp1-ingress-service
@@ -6,10 +6,14 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: eapp1.kubeoncloud.com
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: app1-nginx-clusterip-service
-          servicePort: 80
+    - host: eapp1.kubeoncloud.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app1-nginx-clusterip-service
+                port: 
+                  number: 80
+

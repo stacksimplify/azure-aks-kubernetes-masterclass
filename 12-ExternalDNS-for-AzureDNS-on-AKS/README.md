@@ -16,7 +16,7 @@
 
 
 ### Gather Information Required for azure.json file
-```
+```t
 # To get Azure Tenant ID
 az account show --query "tenantId"
 
@@ -42,13 +42,13 @@ kind: ServiceAccount
 metadata:
   name: external-dns
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: external-dns
 rules:
 - apiGroups: [""]
-  resources: ["services","endpoints","pods"]
+  resources: ["services","endpoints","pods", "nodes"]
   verbs: ["get","watch","list"]
 - apiGroups: ["extensions","networking.k8s.io"]
   resources: ["ingresses"] 
@@ -57,7 +57,7 @@ rules:
   resources: ["nodes"]
   verbs: ["list"]
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: external-dns-viewer
@@ -88,7 +88,7 @@ spec:
       serviceAccountName: external-dns
       containers:
       - name: external-dns
-        image: registry.opensource.zalan.do/teapot/external-dns:latest
+        image: k8s.gcr.io/external-dns/external-dns:v0.11.0
         args:
         - --source=service
         - --source=ingress
@@ -137,7 +137,7 @@ spec:
 
 
 ## Step-05: Create Kubernetes Secret and Deploy ExternalDNS
-```
+```t
 # Create Secret
 cd kube-manifests/01-ExteranlDNS
 kubectl create secret generic azure-config-file --from-file=azure.json
@@ -169,7 +169,7 @@ time="2020-08-24T11:27:59Z" level=info msg="Resolving to user assigned identity,
 - When dns record set got created in DNS Zone, the log in external-dns should look as below.
 
 ### Deploy Application
-```
+```t
 # Deploy Application
 kubectl apply -f kube-manifests/02-NginxApp1
 
@@ -182,7 +182,7 @@ kubectl get ingress
 
 ### Verify logs in External DNS Pod
 - Wait for 3 to 5 minutes for Record Set update in DNZ Zones
-```
+```t
 # Verify ExternalDNS Logs
 kubectl logs -f $(kubectl get po | egrep -o 'external-dns[A-Za-z0-9-]+')
 ```
@@ -192,10 +192,10 @@ time="2020-08-24T11:30:54Z" level=info msg="Updating A record named 'eapp1' to '
 time="2020-08-24T11:30:55Z" level=info msg="Updating TXT record named 'eapp1' to '\"heritage=external-dns,external-dns/owner=default,external-dns/resource=ingress/default/nginxapp1-ingress-service\"' for Azure DNS zone 'kubeoncloud.com'."
 ```
 
-### Verify Record Set in DNZ Zones -> kubeoncloud.com
+### Verify Record Set in DNS Zones -> kubeoncloud.com
 - Go to All Services -> DNS Zones -> kubeoncloud.com
 - Verify if we have `eapp1.kubeoncloud.com` created
-```
+```t
 # Template Command
 az network dns record-set a list -g <Resource-Group-dnz-zones> -z <yourdomain.com>
 
@@ -203,7 +203,7 @@ az network dns record-set a list -g <Resource-Group-dnz-zones> -z <yourdomain.co
 az network dns record-set a list -g dns-zones -z kubeoncloud.com
 ```
 - Perform `nslookup` test
-```
+```t
 # nslookup Test
 Kalyans-MacBook-Pro:01-ExternalDNS kdaida$ nslookup eapp1.kubeoncloud.com
 Server:		192.168.0.1
@@ -217,7 +217,7 @@ Kalyans-MacBook-Pro:01-ExternalDNS kdaida$
 ```
 
 ### Access Application and Test
-```
+```t
 # Access Application
 http://eapp1.kubeoncloud.com
 http://eapp1.kubeoncloud.com/app1/index.html
@@ -226,7 +226,7 @@ http://eapp1.kubeoncloud.com/app1/index.html
 ```
 
 ## Step-07: Clean-Up
-```
+```t
 # Delete Application
 kubectl delete -f kube-manifests/02-NginxApp1
 

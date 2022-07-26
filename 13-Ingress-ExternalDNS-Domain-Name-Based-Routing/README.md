@@ -16,7 +16,7 @@
 
 
 ## Step-04: Deploy and Verify
-```
+```t
 # Deploy Apps
 kubectl apply -R -f kube-manifests/
 
@@ -46,7 +46,7 @@ az network dns record-set a list -g dns-zones -z kubeoncloud.com
 ```
 
 ## Step-05: Access Applications
-```
+```t
 # Access App1
 http://eapp1.kubeoncloud.com/app1/index.html
 
@@ -61,7 +61,7 @@ Password: password101
 ```
 
 ## Step-06: Clean-Up Applications
-```
+```t
 # Delete Apps
 kubectl delete -R -f kube-manifests/
 
