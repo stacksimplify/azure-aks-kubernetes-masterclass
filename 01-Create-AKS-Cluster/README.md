@@ -15,19 +15,19 @@
   - **Node Size:** Standard DS2 v2 (Default one)
   - **Node Count:** 1
 - **Node Pools**
-  - leave to defaults
+  - Leave to defaults
 - **Authentication**
   - Authentication method: 	System-assigned managed identity
   - Rest all leave to defaults
 - **Networking**
   - **Network Configuration:** Advanced
-  - **Network Policy:** Azure
+  - **Network Policy:** Azure CNI
   - Rest all leave to defaults
 - **Integrations**
   - Azure Container Registry: None
-  - leave to defaults
+  - Leave to defaults
 - **Tags**
-  - leave to defaults
+  - Leave to defaults
 - **Review + Create**
   - Click on **Create**
 
