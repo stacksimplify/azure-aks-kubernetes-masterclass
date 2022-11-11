@@ -7,7 +7,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt    
 spec:
   rules:
-    - host: sapp1.kubeoncloud.com
+    - host: sapp1.alpercan.site
       http:
         paths:
           - path: /
@@ -17,7 +17,7 @@ spec:
                 name: app1-nginx-clusterip-service
                 port: 
                   number: 80
-    - host: sapp2.kubeoncloud.com
+    - host: sapp2.alpercan.site
       http:
         paths:
           - path: /
@@ -29,10 +29,10 @@ spec:
                   number: 80                         
   tls:
   - hosts:
-    - sapp1.kubeoncloud.com
+    - sapp1.alpercan.site
     secretName: sapp1-kubeoncloud-secret           
   - hosts:
-    - sapp2.kubeoncloud.com
+    - sapp2.alpercan.site
     secretName: sapp2-kubeoncloud-secret           
 
           

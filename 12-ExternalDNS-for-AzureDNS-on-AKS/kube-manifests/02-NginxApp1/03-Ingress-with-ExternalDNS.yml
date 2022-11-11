@@ -6,7 +6,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-    - host: eapp1.kubeoncloud.com
+    - host: eapp1.alpercan.site
       http:
         paths:
           - path: /
