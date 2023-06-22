@@ -9,5 +9,5 @@ spec:
   selector:
     app: myapp1
   ports: 
-    - port: 8000
+    - port: 80
       targetPort: 80
