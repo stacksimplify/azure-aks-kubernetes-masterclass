@@ -1,8 +1,12 @@
 # Create AKS Cluster
 
 ## Step-01: Introduction
-- Understand about AKS Cluster
-- Discuss about Kubernetes Architecture from AKS Cluster perspective
+- Create Azure AKS Cluster
+- Connect to Azure AKS Cluster using Azure Cloud Shell
+- Explore Azure AKS Cluster Resources
+- Install Azure CLI and Connect to Azure AKS Cluster using Azure CLI on local desktop
+- Deploy Sample Application on AKS Cluster and test
+
 
 ## Step-02: Create AKS Cluster
 - Create Kubernetes Cluster
