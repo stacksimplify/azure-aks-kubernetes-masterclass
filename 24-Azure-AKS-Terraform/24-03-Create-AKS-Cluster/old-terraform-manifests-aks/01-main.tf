@@ -9,16 +9,16 @@
 # 1. Terraform Settings Block
 terraform {
   # 1. Required Version Terraform
-  required_version = ">= 1.0"
+  required_version = ">= 0.13"
   # 2. Required Terraform Providers  
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 3.0"
+      version = "~> 2.0"
     }
     azuread = {
       source  = "hashicorp/azuread"
-      version = "~> 2.0"
+      version = "~> 1.0"
     }
     random = {
       source  = "hashicorp/random"
@@ -29,9 +29,9 @@ terraform {
 # Terraform State Storage to Azure Storage Container
   backend "azurerm" {
     resource_group_name   = "terraform-storage-rg"
-    storage_account_name  = "terraformstatekalyan"
+    storage_account_name  = "terraformstatexlrwdrzs"
     container_name        = "tfstatefiles"
-    key                   = "terraform-custom-vnet.tfstate"
+    key                   = "dev.terraform.tfstate"
   }  
 }
 
@@ -40,10 +40,7 @@ terraform {
 # 2. Terraform Provider Block for AzureRM
 provider "azurerm" {
   features {
-    # Updated as part of June2023 to delete "ContainerInsights Resources" when deleting the Resource Group
-    resource_group {
-      prevent_deletion_if_contains_resources = false
-    }
+
   }
 }
 
