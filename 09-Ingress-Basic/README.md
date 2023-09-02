@@ -17,10 +17,10 @@
 ## Step-02: Create Static Public IP
 ```t
 # Get the resource group name of the AKS cluster 
-az aks show --resource-group aks-rg1 --name aksdemo1 --query nodeResourceGroup -o tsv
+az aks show --resource-group Workshop-Temp --name aksdemo1 --query nodeResourceGroup -o tsv
 
 # TEMPLATE - Create a public IP address with the static allocation
-az network public-ip create --resource-group <REPLACE-OUTPUT-RG-FROM-PREVIOUS-COMMAND> --name myAKSPublicIPForIngress --sku Standard --allocation-method static --query publicIp.ipAddress -o tsv
+az network public-ip create --resource-group MC_Workshop-Temp_aksdemo1_centralus --name myAKSPublicIPForIngress --sku Standard --allocation-method static --query publicIp.ipAddress -o tsv
 
 # REPLACE - Create Public IP: Replace Resource Group value
 az network public-ip create --resource-group MC_aks-rg1_aksdemo1_centralus --name myAKSPublicIPForIngress --sku Standard --allocation-method static --query publicIp.ipAddress -o tsv
@@ -53,7 +53,7 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
     --set controller.nodeSelector."kubernetes\.io/os"=linux \
     --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux \
     --set controller.service.externalTrafficPolicy=Local \
-    --set controller.service.loadBalancerIP="REPLACE_STATIC_IP" 
+    --set controller.service.loadBalancerIP=23.99.200.119 
 
 # Replace Static IP captured in Step-02 (without beta for NodeSelectors)
 helm install ingress-nginx ingress-nginx/ingress-nginx \
@@ -74,7 +74,7 @@ kubectl get all -n ingress-basic
 
 
 # Access Public IP
-http://<Public-IP-created-for-Ingress>
+http://23.99.200.119
 
 # Output should be
 404 Not Found from Nginx
