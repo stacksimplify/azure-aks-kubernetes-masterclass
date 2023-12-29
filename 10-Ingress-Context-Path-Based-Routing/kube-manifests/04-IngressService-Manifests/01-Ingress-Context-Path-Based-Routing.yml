@@ -2,14 +2,15 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-cpr
-  annotations:
-    kubernetes.io/ingress.class: nginx  
+  #annotations:
+    #kubernetes.io/ingress.class: nginx  
 spec:
-  defaultBackend:
-    service:
-      name: usermgmt-webapp-clusterip-service
-      port:
-        number: 80
+  ingressClassName: nginx
+  #defaultBackend:
+  #  service:
+  #    name: usermgmt-webapp-clusterip-service
+  #    port:
+  #      number: 80
   rules:
     - http:
         paths:
@@ -27,13 +28,13 @@ spec:
                 name: app2-nginx-clusterip-service
                 port: 
                   number: 80  
-#          - path: /
-#            pathType: Prefix
-#            backend:
-#              service:
-#                name: usermgmt-webapp-clusterip-service
-#                port: 
-#                  number: 80                  
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: usermgmt-webapp-clusterip-service
+                port: 
+                  number: 80                  
                                                  
                   
       

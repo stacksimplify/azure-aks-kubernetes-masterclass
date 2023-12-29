@@ -20,23 +20,23 @@ helm repo update
 helm install \
   cert-manager jetstack/cert-manager \
   --namespace ingress-basic \
-  --version v1.13.3 \
+  --version v1.8.2 \
   --set installCRDs=true
 
 ## SAMPLE OUTPUT
-Kalyans-Mac-mini:azure-aks-kubernetes-masterclass-internal24 kalyanreddy$ helm install \
+Kalyans-MacBook-Pro:12-ExternalDNS-for-AzureDNS-on-AKS kdaida$ helm install \
 >   cert-manager jetstack/cert-manager \
 >   --namespace ingress-basic \
->   --version v1.13.3 \
+>   --version v1.8.2 \
 >   --set installCRDs=true
 NAME: cert-manager
-LAST DEPLOYED: Fri Dec 29 12:47:27 2023
+LAST DEPLOYED: Mon Jul 11 17:26:31 2022
 NAMESPACE: ingress-basic
 STATUS: deployed
 REVISION: 1
 TEST SUITE: None
 NOTES:
-cert-manager v1.13.3 has been deployed successfully!
+cert-manager v1.8.2 has been deployed successfully!
 
 In order to begin issuing certificates, you will need to set up a ClusterIssuer
 or Issuer resource (for example, by creating a 'letsencrypt-staging' issuer).
@@ -51,7 +51,8 @@ Certificates for Ingress resources, take a look at the `ingress-shim`
 documentation:
 
 https://cert-manager.io/docs/usage/ingress/
-Kalyans-Mac-mini:azure-aks-kubernetes-masterclass-internal24 kalyanreddy$ 
+Kalyans-MacBook-Pro:12-ExternalDNS-for-AzureDNS-on-AKS kdaida$ 
+
 
 # Verify Cert Manager pods
 kubectl get pods --namespace ingress-basic
@@ -70,19 +71,17 @@ metadata:
   name: letsencrypt
 spec:
   acme:
-    # You must replace this email address with your own.
-    # Let's Encrypt will use this to contact you about expiring
-    # certificates, and issues related to your account.
-    email: dkalyanreddy@gmail.com
+    # The ACME server URL
     server: https://acme-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: dkalyanreddy@gmail.com
+    # Name of a secret used to store the ACME account private key
     privateKeySecretRef:
-      # Secret resource that will be used to store the account's private key.
       name: letsencrypt
-    # Add a single challenge solver, HTTP01 using nginx
     solvers:
-    - http01:
-        ingress:
-          ingressClassName: nginx            
+      - http01:
+          ingress:
+            class: nginx
 ```
 
 ### Deploy Cluster Issuer
@@ -119,7 +118,7 @@ kubectl get pods
 
 # Verify Cert Manager Pod Logs
 kubectl get pods -n ingress-basic
-kubectl -n ingress-basic logs -f <cert-manager-55d65894c7-sx62f> -n ingress-basic #Replace Pod name
+kubectl  logs -f <cert-manager-55d65894c7-sx62f> -n ingress-basic #Replace Pod name
 
 # Verify SSL Certificates (It should turn to True)
 kubectl get certificate
