@@ -2,9 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginxapp1-ingress-service
-  annotations:
-    kubernetes.io/ingress.class: nginx  
+  #annotations:
+    #kubernetes.io/ingress.class: nginx  
 spec:
+  ingressClassName: nginx
   rules:
     - http:
         paths:

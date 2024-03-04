@@ -4,14 +4,16 @@ metadata:
   name: letsencrypt
 spec:
   acme:
-    # The ACME server URL
-    server: https://acme-v02.api.letsencrypt.org/directory
-    # Email address used for ACME registration
+    # You must replace this email address with your own.
+    # Let's Encrypt will use this to contact you about expiring
+    # certificates, and issues related to your account.
     email: dkalyanreddy@gmail.com
-    # Name of a secret used to store the ACME account private key
+    server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
+      # Secret resource that will be used to store the account's private key.
       name: letsencrypt
+    # Add a single challenge solver, HTTP01 using nginx
     solvers:
-      - http01:
-          ingress:
-            class: nginx
+    - http01:
+        ingress:
+          ingressClassName: nginx            
