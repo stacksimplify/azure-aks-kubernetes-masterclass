@@ -112,7 +112,7 @@ docker push $ACR_REGISTRY/$ACR_NAMESPACE/$ACR_IMAGE_NAME:$ACR_IMAGE_TAG
 - Review file: shell-script/generate-service-principal.sh
 - Update ACR_NAME with your container registry name
 - Update SERVICE_PRINCIPAL_NAME as desired
-### NEW SCRIPT - UPDATED ON 20-OCT-2021
+### NEW SCRIPT - UPDATED ON 22-MAY-2024 - Updated SP_PASSWD with SUBSCRIPTION_ID
 ```sh
 #!/bin/bash
 # This script requires Azure CLI version 2.25.0 or later. Check version with `az --version`.
@@ -132,7 +132,9 @@ ACR_REGISTRY_ID=$(az acr show --name $ACR_NAME --query id --output tsv)
 # acrpull:     pull only
 # acrpush:     push and pull
 # owner:       push, pull, and assign roles
-SP_PASSWD=$(az ad sp create-for-rbac --name $SERVICE_PRINCIPAL_NAME --scopes $ACR_REGISTRY_ID --role acrpull --query password --output tsv)
+## IMPORTANT NOTE: REPLACE SUBSCRIPTION_ID with your subscription ID
+SP_PASSWD=$(az ad sp create-for-rbac --name $SERVICE_PRINCIPAL_NAME --scopes $ACR_REGISTRY_ID --scope subscriptions/<<SUBSCRIPTION_ID>> --role acrpull --query "password" --output tsv)
+
 SP_APP_ID=$(az ad sp list --display-name $SERVICE_PRINCIPAL_NAME --query [].appId --output tsv)
 
 # Output the service principal's credentials; use these in your services and
@@ -141,7 +143,38 @@ echo "Service principal ID: $SP_APP_ID"
 echo "Service principal password: $SP_PASSWD"
 ```
 
-### OLD SCRIPT - NOT VALID - JUST FOR REFERENCE
+### OLD SCRIPT V2 (BEFORE MAY2024) - NOT VALID - JUST FOR REFERENCE
+```sh
+#!/bin/bash
+# This script requires Azure CLI version 2.25.0 or later. Check version with `az --version`.
+
+# Modify for your environment.
+# ACR_NAME: The name of your Azure Container Registry
+# SERVICE_PRINCIPAL_NAME: Must be unique within your AD tenant
+ACR_NAME=acrdemo2ss
+SERVICE_PRINCIPAL_NAME=acr-sp-demo
+
+# Obtain the full registry ID for subsequent command args
+ACR_REGISTRY_ID=$(az acr show --name $ACR_NAME --query id --output tsv)
+
+# Create the service principal with rights scoped to the registry.
+# Default permissions are for docker pull access. Modify the '--role'
+# argument value as desired:
+# acrpull:     pull only
+# acrpush:     push and pull
+# owner:       push, pull, and assign roles
+## IMPORTANT NOTE: REPLACE SUBSCRIPTION_ID with your subscription ID
+SP_PASSWD=$(az ad sp create-for-rbac --name $SERVICE_PRINCIPAL_NAME --scopes $ACR_REGISTRY_ID --role acrpull --query password --output tsv)
+
+SP_APP_ID=$(az ad sp list --display-name $SERVICE_PRINCIPAL_NAME --query [].appId --output tsv)
+
+# Output the service principal's credentials; use these in your services and
+# applications to authenticate to the container registry.
+echo "Service principal ID: $SP_APP_ID"
+echo "Service principal password: $SP_PASSWD"
+```
+
+### OLD SCRIPT V1 - NOT VALID - JUST FOR REFERENCE
 ```sh
 #!/bin/bash
 
