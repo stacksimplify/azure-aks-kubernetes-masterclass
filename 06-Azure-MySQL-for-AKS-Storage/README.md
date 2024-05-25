@@ -71,6 +71,9 @@ kubectl run -it --rm --image=mysql:5.7.22 --restart=Never mysql-client -- mysql 
 # Replace Host Name of Azure MySQL Database and Username and Password
 kubectl run -it --rm --image=mysql:5.7.22 --restart=Never mysql-client -- mysql -h akswebappdb.mysql.database.azure.com -u dbadmin@akswebappdb -pRedhat1449
 
+# Added --skip-ssl flag
+kubectl run -it --rm --image=mysql:5.7.22 --restart=Never mysql-client -- mysql -h akswebappdb.mysql.database.azure.com -u dbadmin@akswebappdb -pRedhat1449 --skip-ssl
+
 mysql> show schemas;
 mysql> create database webappdb;
 mysql> show schemas;
