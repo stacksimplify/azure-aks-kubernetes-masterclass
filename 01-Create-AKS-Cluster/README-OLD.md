@@ -14,6 +14,10 @@
   - **Kubernetes Version:** Select what ever is latest stable version
   - **Node Size:** Standard DS2 v2 (Default one)
   - **Node Count:** 1
+- **Kubernetes Resources**
+- Previews (Preview)
+- Workload(Preview)
+- Service and Ingress (Preview)
 - **Node Pools**
   - leave to defaults
 - **Authentication**
