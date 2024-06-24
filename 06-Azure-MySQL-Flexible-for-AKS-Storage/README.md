@@ -76,15 +76,6 @@ mysql> show schemas;
 mysql> exit
 ```
 
-### Step-04-03: Disable require_secure_transport Database server parameter
-- Go to Azure Database for MySQL Flexible servers -> akswebappdb201 -> Settings -> Server Parameters -
-```t
-# Database Server Parameters setting
-require_secure_transport = OFF
-
-# Save the changes
-Click on SAVE once the change is completed
-```
 ## Step-05: Update Kubernetes Manifests
 ### Step-05-01: Create Kubernetes externalName service Manifest and Deploy
 - Create mysql externalName Service
