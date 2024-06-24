@@ -65,7 +65,7 @@ mysql> exit
 ### Step-04-02: Using kubectl and create usermgmt schema/db
 ```t
 # Template
-kubectl run -it --rm --image=mysql:5.7.22 --restart=Never mysql-client -- mysql -h <AZURE-MYSQ-DB-HOSTNAME> -u <USER_NAME> -p<PASSWORD>
+kubectl run -it --rm --image=mysql:8.0 --restart=Never mysql-client -- mysql -h <AZURE-MYSQ-DB-HOSTNAME> -u <USER_NAME> -p<PASSWORD>
 
 # Replace Host Name of Azure MySQL Database and Username and Password
 kubectl run -it --rm --image=mysql:8.0 --restart=Never mysql-client -- mysql -h akswebappdb201.mysql.database.azure.com -u dbadmin -pRedhat1449
