@@ -87,10 +87,11 @@ terraform {
 ## Step-04: Define Azure Resource Manager Features Block
 - Add **azurerm features block** to **01-main.tf**
 ```
-# This block is required for azurerm 2.x
-provider azurerm {
-  # v2.x azurerm requires "features" block
-  features {}
+# 2. Terraform Provider Block for AzureRM
+provider "azurerm" {
+  subscription_id = "XXXXXXXX"
+  features {
+  }
 }
 ```
 

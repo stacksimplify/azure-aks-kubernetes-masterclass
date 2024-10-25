@@ -39,7 +39,8 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     #availability_zones   = [1, 2, 3]
     # Added June2023
     zones = [1, 2, 3]
-    enable_auto_scaling  = true
+    #enable_auto_scaling  = true # COMMENTED OCT2024
+    auto_scaling_enabled = true  # ADDED OCT2024
     max_count            = 3
     min_count            = 1
     os_disk_size_gb      = 30
@@ -87,8 +88,9 @@ oms_agent {
 #  }
 # Added June 2023
 azure_active_directory_role_based_access_control {
-  managed = true
-  admin_group_object_ids = [azuread_group.aks_administrators.id]
+  #managed = true # COMMENTED OCT2024
+  #admin_group_object_ids = [azuread_group.aks_administrators.id] # COMMENTED OCT2024
+  admin_group_object_ids = [azuread_group.aks_administrators.object_id] # ADDED OCT2024
 }
 
 # Windows Profile
