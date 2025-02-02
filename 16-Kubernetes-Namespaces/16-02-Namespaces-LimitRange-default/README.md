@@ -31,12 +31,7 @@ metadata:
 
 ## Step-02: Create LimitRange manifest
 - Instead of specifying `resources like cpu and memory` in every container spec of a pod defintion, we can provide the default CPU & Memory for all containers in a namespace using `LimitRange`
-```yaml
-apiVersion: v1
-kind: Namespace
-metadata: 
-  name: dev3
----  
+```yaml 
 apiVersion: v1
 kind: LimitRange
 metadata:
