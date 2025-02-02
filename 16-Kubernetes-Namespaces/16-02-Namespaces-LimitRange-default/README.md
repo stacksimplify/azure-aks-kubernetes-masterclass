@@ -40,7 +40,7 @@ metadata:
 spec:
   limits:
     - default:
-        cpu: "500m"  # If not specified default limit is 1 vCPU per container     
+        cpu: "500m"  # If not specified default limit is 0.5 vCPU per container     
         memory: "512Mi" # If not specified the Container's memory limit is set to 512Mi, which is the default memory limit for the namespace.
       defaultRequest:
         cpu: "300m" # If not specified default it will take from whatever specified in limits.default.cpu      
