@@ -33,19 +33,24 @@ metadata:
 - Instead of specifying `resources like cpu and memory` in every container spec of a pod defintion, we can provide the default CPU & Memory for all containers in a namespace using `LimitRange`
 ```yaml
 apiVersion: v1
-kind: ResourceQuota
+kind: Namespace
+metadata: 
+  name: dev3
+---  
+apiVersion: v1
+kind: LimitRange
 metadata:
-  name: ns-resource-quota
+  name: default-cpu-mem-limit-range
   namespace: dev3
 spec:
   limits:
     - default:
+        cpu: "500m"  # If not specified default limit is 1 vCPU per container     
         memory: "512Mi" # If not specified the Container's memory limit is set to 512Mi, which is the default memory limit for the namespace.
-        cpu: "500m"  # If not specified default limit is 1 vCPU per container 
       defaultRequest:
+        cpu: "300m" # If not specified default it will take from whatever specified in limits.default.cpu      
         memory: "256Mi" # If not specified default it will take from whatever specified in limits.default.memory
-        cpu: "300m" # If not specified default it will take from whatever specified in limits.default.cpu
-      type: Container                        
+      type: Container                     
 ```
 
 ## Step-03: Update all k8s manifest with namespace
