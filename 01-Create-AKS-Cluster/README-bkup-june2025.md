@@ -7,63 +7,45 @@
 - Install Azure CLI and Connect to Azure AKS Cluster using Azure CLI on local desktop
 - Deploy Sample Application on AKS Cluster and test
 
+
 ## Step-02: Create AKS Cluster
 - Create Kubernetes Cluster
-### Basics
-- **Subscription:** StackSimplify-Paid-Subscription
-- **Resource Group:** Creat New: aks-rg1
-- **Cluster preset configuration:** Dev/Test
-- **Kubernetes Cluster Name:** aksdemo1  
-- **Region:** (US) East US
-- **Fleet Manager:** NONE (LEAVE TO DEFAULT)
-- **Availability zones:** NONE (LEAVE TO DEFAULT)
-- **AKS Pricing Tier:** Free
-- **Kubernetes Version:** Select what ever is latest stable version
-- **Automatic upgrade:** Enabled with patch (recommended)
-- **Node security channel type:** Node Image (LEAVE TO DEFAULT)
-  - **Security channel scheduler:** Every week on Sunday (recommended)
-- **Authentication and Authorization:** 	Local accounts with Kubernetes RBAC    
-### Node Pools
-- In Nodepools, **Update node pool**
-  - **Node pool name:** agentpool (LEAVE TO DEFAULT)
-  - **Mode:** system (LEAVE TO DEFAULT)
-  - **OS SKU:** Ubuntu Linux  (LEAVE TO DEFAULT)
-  - **Availability zones:** ZONES 1,2,3 (LEAVE TO DEFAULT)
-  - **Node size:** Standard D2ls v6 (2 vcpus, 4 GiB memory)
+- **Basics**
+  - **Subscription:** StackSimplify-Paid-Subscription
+  - **Resource Group:** Creat New: aks-rg1
+  - **Cluster preset configuration:** Standard
+  - **Kubernetes Cluster Name:** aksdemo1
+  - **Region:** (US) Central US
+  - **Availability zones:** Zones 1, 2, 3
+  - **AKS Pricing Tier:** Free
+  - **Kubernetes Version:** Select what ever is latest stable version
+  - **Automatic upgrade:** Enabled with patch (recommended)
+  - **Node Size:** Standard DS2 v2 (Default one)
   - **Scale method:** Autoscale
-  - **Minimum node count:** 2
-  - **Maximum node count:** 5
-  - REST ALL LEAVE TO DEFAULTS
-  - Click on **UPDATE**
-- REST ALL LEAVE TO DEFAULTS
-### Networking
-- **Private access**
-  - Enable private cluster: UNCHECKED (LEAVE TO DEFAULTS)
-- **Public access**
-  - Set authorized IP ranges: UNCHECKED (LEAVE TO DEFAULTS)
-- **Container networking:** 
-  - Network configuration: Azure CNI Node Subnet
-- **Bring your own Azure virtual network:** CHECKED  
+  - **Node Count range:** 1 to 5
+- **Node Pools**
+  - leave to defaults
+- **Access**
+  - **Authentication and Authorization:** 	Local accounts with Kubernetes RBAC
+  - Rest all leave to defaults
+- **Networking**
+  - **Network Configuration:** Azure CNI
   - Review all the auto-populated details 
-  - Virtual Network
-  - Cluster Subnet
-  - Kubernetes Service address range
-  - Kubernetes DNS Service IP Address
-  - DNS Name prefix
-- **Network Policy:** None (LEAVE TO DEFAULTS)
-- **Load balancer:** Standard
-### Integrations
+    - Virtual Network
+    - Cluster Subnet
+    - Kubernetes Service address range
+    - Kubernetes DNS Service IP Address
+    - DNS Name prefix
+  - **Traffic routing:** leave to defaults
+  - **Security:** Leave to defaults
+- **Integrations**
   - **Azure Container Registry:** None
   - All leave to defaults
-### Monitoring
-  - All leave to defaults
-### Security
-  - All leave to defaults  
-### Advanced
-  - All leave to defaults  
-### Tags
-  - All leave to defaults 
-### Review + Create
+- **Advanced**
+  -  All leave to defaults
+- **Tags**
+  - leave to defaults
+- **Review + Create**
   - Click on **Create**
 
 
@@ -75,12 +57,6 @@ az aks get-credentials --resource-group <Resource-Group-Name> --name <Cluster-Na
 
 # Replace Resource Group & Cluster Name
 az aks get-credentials --resource-group aks-rg1 --name aksdemo1
-
-# Get kubectl client version only (shows client version only (no server required))
-kubectl version --client=true
-
-# Get kubectl version (Displays both client CLI and k8s server versions)
-kubectl version 
 
 # List Kubernetes Worker Nodes
 kubectl get nodes 
@@ -102,11 +78,40 @@ kubectl get all --all-namespaces
 
 ## Step-05: Explore the AKS cluster on Azure Management Console
 - Explore the following features on high-level
-  - Overview
-  - Kubernetes Resources
-  - Settings
-  - Monitoring
-  - Automation
+- **Overview**
+  - Activity Log
+  - Access Control (IAM)
+  - Security
+  - Diagnose and solver problems
+  - Microsoft Defender for Cloud
+- **Kubernetes Resources**  
+  - Namespaces
+  - Workloads
+  - Services and Ingress
+  - Storage
+  - Configuration
+- **Settings**
+  - Node Pools
+  - Cluster Configuration
+  - Extensions + Applications
+  - Backup (preview)
+  - Open Service Mesh
+  - GitOps
+  - Automated Deployments (preview)
+  - Policies
+  - Properties
+  - Locks
+- **Monitoring**
+  - Insights
+  - Alerts
+  - Metrics
+  - Diagnostic Settings
+  - Advisor Recommendations
+  - Logs
+  - Workbooks
+- **Automation** 
+  - Tasks
+  - Export Template    
 
 
 
@@ -115,20 +120,11 @@ kubectl get all --all-namespaces
 # Install Azure CLI (MAC)
 brew update && brew install azure-cli
 
-# Verify AZ CLI version
-az --version
-
-# Install Azure AKS CLI
-sudo az aks install-cli
-
-# Get kubectl client version only (shows client version only (no server required))
-kubectl version --client=true
-
-# Get kubectl version (Displays both client CLI and k8s server versions)
-kubectl version
-
 # Login to Azure
 az login
+
+# Install Azure AKS CLI
+az aks install-cli
 
 # Configure Cluster Creds (kube config)
 az aks get-credentials --resource-group aks-rg1 --name aksdemo1
@@ -160,12 +156,6 @@ kubectl get service
 
 # Access Application
 http://<External-IP-from-get-service-output>
-
-# Review the Kubernetes Resources in Azure Mgmt Console
-Go to Kubernetes Resources
-1. Namespaces
-2. Workloads
-3. Services and Ingress
 ```
 
 ## Step-07: Clean-Up
