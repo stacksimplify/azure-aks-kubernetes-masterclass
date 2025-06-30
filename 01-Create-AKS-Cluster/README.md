@@ -3,9 +3,10 @@
 ## Step-01: Introduction
 - Create Azure AKS Cluster
 - Connect to Azure AKS Cluster using Azure Cloud Shell
-- Explore Azure AKS Cluster Resources
-- Install Azure CLI and Connect to Azure AKS Cluster using Azure CLI on local desktop
+- Explore Azure AKS Cluster Resources using kubectl cli and Azure Portal
+- Install Azure CLI, kubectl CLI on local desktop and connect to Azure AKS Cluster using Azure CLI from local desktop
 - Deploy Sample Application on AKS Cluster and test
+- Clean-up Kubernetes resources deployed as part of this demo
 
 ## Step-02: Create AKS Cluster
 - Create Kubernetes Cluster
