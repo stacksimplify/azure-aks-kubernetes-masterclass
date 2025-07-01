@@ -43,7 +43,7 @@
 - **Public access**
   - Set authorized IP ranges: UNCHECKED (LEAVE TO DEFAULTS)
 - **Container networking:** 
-  - Network configuration: Azure CNI Node Subnet
+  - Network configuration: Azure CNI Overlay
 - **Bring your own Azure virtual network:** CHECKED  
   - Review all the auto-populated details 
   - Virtual Network
