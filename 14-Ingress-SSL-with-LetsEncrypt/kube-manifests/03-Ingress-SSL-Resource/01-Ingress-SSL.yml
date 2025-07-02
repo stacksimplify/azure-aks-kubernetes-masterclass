@@ -35,5 +35,3 @@ spec:
   - hosts:
     - sapp2.kubeoncloud.com
     secretName: sapp2-kubeoncloud-secret           
-
-          
