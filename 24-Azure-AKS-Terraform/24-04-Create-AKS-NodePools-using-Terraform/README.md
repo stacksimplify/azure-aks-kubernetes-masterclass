@@ -134,6 +134,9 @@ http://<public-ip-of-windows-app>
 
 ## Step-08: Destroy our Terraform Cluster
 ```
+# Clean-Up Applications deployed
+kubectl delete -R -f kube-manifests
+
 # Change Directory 
 cd 24-04-Create-AKS-NodePools-using-Terraform/terraform-manifests-aks
 

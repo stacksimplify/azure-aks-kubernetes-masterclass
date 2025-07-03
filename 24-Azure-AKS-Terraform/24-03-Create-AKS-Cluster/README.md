@@ -351,7 +351,6 @@ kubectl get nodes
   - New Password: @AKSadmin22
   - Confirm Password: @AKSadmin22
 
-
 ## Step-13: Access Terraform created AKS Cluster 
 ```
 # Azure AKS Get Credentials with --admin
