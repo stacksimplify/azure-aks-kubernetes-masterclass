@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp1-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp1
+  template: 
+    metadata: # Dictionary
+      name: myapp1-pod
+      labels: # Dictionary 
+        app: myapp1       
+    spec:
+      containers: # List
+        - name: myapp1-container
+          image: stacksimplify/kubenginx:1.0.0 
+          #image: ghcr.io/stacksimplify/kubenginx:1.0.0 
+          ports:
+            - containerPort: 80
+
+# 📌 Important Note on Docker Image:
+#
+# 1. By default, the image used is:
+#      image: stacksimplify/kubenginx:1.0.0
+#
+# 2. This image is hosted on **Docker Hub**, which may enforce **hourly download rate limits**.
+#
+# 3. If you hit the rate limit (e.g., image pull errors), follow these steps:
+#     a. Comment out this line:
+#        image: stacksimplify/kubenginx:1.0.0
+#     b. Uncomment this alternative image from GitHub Container Registry:
+#        image: ghcr.io/stacksimplify/kubenginx:1.0.0
+#
+# ✅ Both images are identical.
+#
+# 🔗 GitHub Packages Link:
+#    https://github.com/users/stacksimplify/packages/container/package/kubenginx
+
+
+    

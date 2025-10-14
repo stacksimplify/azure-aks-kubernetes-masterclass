@@ -1,0 +1,15 @@
+/ADDITIONAL-TOPICS
+/FUTURE-TOPICS
+#.gitignore
+
+# macOS Files
+.DS_Store
+
+# Ignore .sh files
+#*.sh
+
+# Terraform Files and Folders
+.terraform
+*.tfstate
+*.tfstate.backup
+*.tfvars
