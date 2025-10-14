@@ -1,1 +1,0 @@
-# Azure AKS User Management WebApp Demo
