@@ -1,2 +1,7 @@
 Today AKS is available in 36 regions and it is growing as compare to other cloud providers AKS is the one which is
 available in highest number of regions.
+We are able to deploy any type of workloads here like
+window based eaxampple like .Net Applications
+kinux based applications like Java
+Machine learning models with AKS
+IOT device deployments
