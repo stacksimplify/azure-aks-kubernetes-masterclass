@@ -5,3 +5,17 @@ window based eaxampple like .Net Applications
 kinux based applications like Java
 Machine learning models with AKS
 IOT device deployments
+AKS Architecture
+1: Azure AKS CLUSTER CONTROL PLAINE
+  A: Container Runtinme(docker)
+  B: kube-schedular-> It is responsible for distributing containers on worker nodes. it watches newly created pods which are not assigned to any 
+     nodes .it assignsthe nodes to run on them.
+  C: etcd: it is the backend of kubernetes that stores all master and waorker node related inf in key value pairs.
+  D: kube-api-server: it is frontend of k8's . it exposes k8's to external world
+  E: kube-controller-manaer: It watches everything containers, pods, nodes on worker node. There are different type of controllers that manages 
+     everything.
+2: Azure AKS NODE 
+   1: Container Rub=ntime(Docker)
+   2: kubelet:
+   3: Kube-proxy: it runs on every worker nodes . it is used for crating network rules.
+  
