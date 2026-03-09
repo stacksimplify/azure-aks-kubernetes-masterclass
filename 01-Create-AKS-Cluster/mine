@@ -19,3 +19,8 @@ AKS Architecture
    2: kubelet:
    3: Kube-proxy: it runs on every worker nodes . it is used for crating network rules.
   
+Docker Architecture:
+1: Docker Daemon: it listens for Docker API requests and manages docker objects such as images, containers, networks and volumes.
+2: Docker Client: it is primary way to connect with docker daemon.
+3: Docker image: it is a read only template with instructions how to create docker container.
+4: Docker container: it is running instance of an image.
