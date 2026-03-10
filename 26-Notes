@@ -24,3 +24,6 @@ Docker Architecture:
 2: Docker Client: it is primary way to connect with docker daemon.
 3: Docker image: it is a read only template with instructions how to create docker container.
 4: Docker container: it is running instance of an image.
+
+IN AKS ,whenever we create cluster load balancer(service) is created by default to expose pod to external worls.
+To use Node port we need to enable node port service on each node.
