@@ -27,3 +27,9 @@ Docker Architecture:
 
 IN AKS ,whenever we create cluster load balancer(service) is created by default to expose pod to external worls.
 To use Node port we need to enable node port service on each node.
+Troubleshooting:
+1: kubectl describe pods gives us details of all the events
+   events(does node assigned by kube sh, able to pull image, is app running....)
+2: with the help of kubectl logs pod we are able to stream the logs of our pod.
+   and with kubetcl logs pod -f we are able to do live streaming of our pods
+
