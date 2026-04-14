@@ -1,0 +1,35 @@
+Today AKS is available in 36 regions and it is growing as compare to other cloud providers AKS is the one which is
+available in highest number of regions.
+We are able to deploy any type of workloads here like
+window based eaxampple like .Net Applications
+kinux based applications like Java
+Machine learning models with AKS
+IOT device deployments
+AKS Architecture
+1: Azure AKS CLUSTER CONTROL PLAINE
+  A: Container Runtinme(docker)
+  B: kube-schedular-> It is responsible for distributing containers on worker nodes. it watches newly created pods which are not assigned to any 
+     nodes .it assignsthe nodes to run on them.
+  C: etcd: it is the backend of kubernetes that stores all master and waorker node related inf in key value pairs.
+  D: kube-api-server: it is frontend of k8's . it exposes k8's to external world
+  E: kube-controller-manaer: It watches everything containers, pods, nodes on worker node. There are different type of controllers that manages 
+     everything.
+2: Azure AKS NODE 
+   1: Container Rub=ntime(Docker)
+   2: kubelet:
+   3: Kube-proxy: it runs on every worker nodes . it is used for crating network rules.
+  
+Docker Architecture:
+1: Docker Daemon: it listens for Docker API requests and manages docker objects such as images, containers, networks and volumes.
+2: Docker Client: it is primary way to connect with docker daemon.
+3: Docker image: it is a read only template with instructions how to create docker container.
+4: Docker container: it is running instance of an image.
+
+IN AKS ,whenever we create cluster load balancer(service) is created by default to expose pod to external worls.
+To use Node port we need to enable node port service on each node.
+Troubleshooting:
+1: kubectl describe pods gives us details of all the events
+   events(does node assigned by kube sh, able to pull image, is app running....)
+2: with the help of kubectl logs pod we are able to stream the logs of our pod.
+   and with kubetcl logs pod -f we are able to do live streaming of our pods
+
