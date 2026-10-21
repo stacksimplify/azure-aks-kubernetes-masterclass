@@ -38,6 +38,9 @@
 # Template
 az aks get-credentials --resource-group <Resource-Group-Name> --name <Cluster-Name>
 
+----AWS
+aws eks update-kubeconfig --region ap-south-1 --name <cluster-name>
+
 # Replace Resource Group & Cluster Name
 az aks get-credentials --resource-group aks-rg1 --name aksdemo1
 
